@@ -1,0 +1,193 @@
+﻿<div class="container-fluid" lang-group="PLAN_SHIPMENT_PLANLIST" kkf-permssion-notfound="PLAN_SHIPMENT_PLANLIST">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/plan">plan</a></li>
+            <li><a href="#">shipment</a></li>
+            <li class="active"><a href="#">planlist</a></li>
+        </ol>
+    </div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header bg-success">
+            <h3 class="modal-title" id="modal-title">Auto Plan Option</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-6 control-label">Month : </label>
+                        <div class="col-sm-6">
+                            <p class="form-control-static"> {{ txtMonth }}</p>
+                        </div>
+                        <label class="col-sm-6 control-label">Week of Month : </label>
+                        <div class="col-sm-6">
+                            <p class="form-control-static"> {{ weeks.length }} Weeks</p>
+                        </div>
+                    </div>
+                    <label>Option Get OutStanding.</label>
+                    <div class="form-group" style="padding-left: 30px;">
+                        <label class="alert-label"><input type="radio" ng-model="radio.value" value="1" /> Close By KPK</label> &nbsp;&nbsp;&nbsp;
+                        <label class="alert-label"><input type="radio" ng-model="radio.value" value="2" /> Close By KCI</label>
+                    </div>
+                    <label>Option Combine Customers.</label>
+                    <div class="form-group" style="padding-left: 30px;">
+                        <label class="alert-label"><input type="checkbox" ng-disabled="!merge.enable" ng-model="merge.value" ng-change="MergeAction()" /> Include selected customer in one shipment.</label>
+                    </div>
+                    <label>Limit Container per Week</label>
+                    <table class="table">
+                        <tr>
+                            <th>Week</th>
+                            <th width="100px">Container Amount</th>
+                            <th width="100px">Container Size</th>
+                            <th width="100px">Volume Adj</th>
+                        </tr>
+                        <tr ng-repeat=" v in weeks">
+                            <td>Week {{ v.no }} ({{ v.start }}-{{ v.end }})</td>
+                            <td><input type="number" min="0" ng-model="v.num" ng-disabled="v.disabled" class="form-control" /></td>
+                            <td><select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="v.container" ng-disabled="v.disabled || disable"></select></td>
+                            <td><input type="number" min="{{v.container.vmin}}" max="{{v.container.vmax}}" ng-disabled="v.disabled || v.container.id === ''" ng-blur="VolumeChange(v)" ng-model="v.container.volume" class="form-control" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer bg-success">
+            <span style="float:left; margin-top:5px; max-width: 350px; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;" class="text-primary">Customer Selected : {{ customerSelect }}</span>
+            <button class="btn btn-info" type="button" ng-click="ok()">Auto Process</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+        </div>
+    </script>
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-code="PN_PLANLIST">แสดงแผนงาน</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w100-mb5">
+                    <label class="w100p"><span lang-codeDisalbe="LB_DATEPLAN">Month Plan</span> : </label>
+                    <kss-pattern-date placeholder="00/0000"
+                                      ng-model="datePlan"
+                                      ng-change="tmpfn"></kss-pattern-date>
+                </div>
+                <div class="form-group w200-mb5">
+                    <label class="w100p"><span lang-codeDisalbe="LB_SALES">Sales Representative</span> : </label>
+                    <tags-input ng-model="sales"
+                                add-on-paste="true"
+                                placeholder="code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadSales($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w200-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_ZONE">Regional Zone</span> : </label>
+                    <tags-input ng-model="regzone"
+                                add-on-paste="true"
+                                placeholder="code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadRegzone($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w200-mb5">
+                    <label class="w100p"><span lang-code="LB_ZONE">Zone</span> : </label>
+                    <tags-input ng-model="zones"
+                                add-on-paste="true"
+                                placeholder="code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadZones($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="30"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-code="LB_CUSTOMERS">Customers</span> : </label>
+                    <tags-input ng-model="customers"
+                                add-on-paste="true"
+                                placeholder="code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadCustomers($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">&nbsp;</label>
+                    <button class="btn btn-info"
+                            ng-click="LoadData()"
+                            lang-code="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+            <div class="panel panel-success">
+                <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Customer Shipment Plan List</span></div>
+                <div class="panel-body">
+                    <form class="form-inline">
+                        <label><input type="checkbox" ng-model="showSummary" ng-change="ChangeChk()" /> Show Summary Outstanding and Inventory.</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" ng-model="option.value" value="1" ng-change="ChangeChk()" /> Outstanding Close By KPK.</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" ng-model="option.value" value="2" ng-change="ChangeChk()" /> Outstanding Close By KCI.</label>
+                    </form>
+                    <div class="row both" style="height:15px;"></div>
+                    <!-- ui-grid -->
+                    <div ui-grid="gridOpt" ui-grid-selection ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-exporter ui-grid-resize-columns ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:350px;"></div>
+                    <!-- buttom Action -->
+                    <div class="form-inline">
+                        <button ng-disabled="!autoPlan"
+                                ng-click="AutoPlanAction()"
+                                kkf-permssion-view="PLANLIST_BTN_AUTOPLAN"
+                                class="btn btn-info btn-after-grid">
+                            Auto Monthly Plan
+                        </button>
+                        <button ng-disabled="!removePlan"
+                                ng-click="StatusUpDate(3)"
+                                kkf-permssion-view="PLANLIST_BTN_REMOVEPLAN"
+                                class="btn btn-danger btn-after-grid">
+                            Remove Plan
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}sxsEmployee, sxsCountry, sxsCustomerGroupMapping, sxsCustomer, sxsCustomerGroup, sxtShipmentPlanMain">
+                        {{ IP_DB }}sxsEmployee, sxsCountry, sxsCustomerGroupMapping, sxsCustomer, sxsCustomerGroup, sxtShipmentPlanMain
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

@@ -1,0 +1,19 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "productGrades": [
+      {
+        "id": 1,
+        "code": "P",
+        "description": "PP"
+      },
+      {
+        "id": 2,
+        "code": "A",
+        "description": "AA"
+      }
+    ]
+  }
+}

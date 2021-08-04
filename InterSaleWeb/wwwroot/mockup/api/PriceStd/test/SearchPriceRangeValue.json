@@ -1,0 +1,69 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "priceStdRangeH": {
+      "id": 1,
+      "minTwineSizeCode": "210/4",
+      "maxTwineSizeCode": "210/4",
+      "unitTypeID": 1,
+      "colorGroupID": 1,
+      "knotID": 1,
+      "stretchingID": 1,
+      "selvageWovenTypeID": 1
+    },
+    "priceStdValues": [
+      {
+        "id": 1,
+        "seq": 1,
+        "twineSeriesID": 1,
+        "minEyeSizeCM": 33,
+        "maxEyeSiaeCM": 45,
+        "minEyeAmountMD": 43,
+        "maxEyeAmountMD": 43,
+        "minLengthM": 43,
+        "maxLengthM": 50,
+        "tagDescription": "",
+        "pricePercent": 2,
+        "priceAmount": 5,
+        "increaseAmount": 8,
+        "status": "A",
+        "create": {
+          "by": "",
+          "datetime": ""
+        },
+        "modify": {
+          "by": "",
+          "datetime": ""
+        }
+      },
+      {
+        "id": 2,
+        "seq": 1,
+        "twineSeriesID": 1,
+        "minEyeSizeCM": 33,
+        "maxEyeSiaeCM": 45,
+        "minEyeAmountMD": 43,
+        "maxEyeAmountMD": 43,
+        "minLengthM": 43,
+        "maxLengthM": 50,
+        "tagDescription": "",
+        "pricePercent": 2,
+        "priceAmount": 5,
+        "increaseAmount": 8,
+        "status": "A",
+        "create": {
+          "by": "",
+          "datetime": ""
+        },
+        "modify": {
+          "by": "",
+          "datetime": ""
+        }
+      }
+    ]
+  }
+}
+
+

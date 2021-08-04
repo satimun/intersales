@@ -1,0 +1,40 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "data": {
+    "products": [
+      {
+        "id": 1,
+        "code": "PU303W/030&0602",
+        "descriptionsele": "ssdfdds",
+        "descriptionprod": "",
+        "grade": "",
+        "series": "",
+        "selvage": ""
+      },
+      {
+        "id": 2,
+        "code": "PU404W/030&0602",
+        "descriptionsele": "",
+        "descriptionprod": "",
+        "grade": "",
+        "series": "",
+        "selvage": ""
+      },
+      {
+        "id": 3,
+        "code": "PX504W/030&0602",
+        "descriptionsele": "",
+        "descriptionprod": "",
+        "grade": "",
+        "series": "",
+        "selvage": ""
+      }
+    ],
+    "page": {
+      "current_index": 1,
+      "last_index": 1,
+      "total_record": 100
+    }
+  }
+}

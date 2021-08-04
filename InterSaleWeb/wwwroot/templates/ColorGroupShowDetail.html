@@ -1,0 +1,26 @@
+﻿<div class="modal-header bg-info">
+    <h3 class="modal-title" id="modal-title">Color Group Detail.</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+        <table class="table table-striped">
+            <tr>
+                <th>Code</th>
+                <td>{{data.code}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{data.description}}</td>
+            </tr>
+            <tr>
+                <th>Colors</th>
+                <td>
+                    <span ng-repeat="v in data.colors">{{v.view}}<br /></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer bg-info">
+    <button class="btn btn-warning" ng-click="close()">Close</button>
+</div>

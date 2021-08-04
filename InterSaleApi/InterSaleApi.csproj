@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>0a2d6f35-5600-4a2a-b2d4-2b8a05572a0c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Engine\Bussiness\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Engine\Bussiness\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Engine\Bussiness\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Engine\Bussiness\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Engine\API\ShipmentPlan\ShipmentPlanDateCircleGetByCustomerIDAPI.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.4" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.35.2.1363" />
+    <PackageReference Include="Line.Bot.SDK" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InterSaleModel\InterSaleModel.csproj" />
+    <ProjectReference Include="..\KKFCoreEngine\KKFCoreEngine.csproj" />
+  </ItemGroup>
+
+</Project>

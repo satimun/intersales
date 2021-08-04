@@ -1,0 +1,40 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "constants": [
+      {
+        "id": "P",
+        "code": "P",
+        "description": "In Process"
+      },
+      {
+        "id": "W",
+        "code": "W",
+        "description": "Waiting for Approval"
+      },
+      {
+        "id": "N",
+        "code": "N",
+        "description": "Not Approved"
+      },
+      {
+        "id": "A",
+        "code": "A",
+        "description": "Active"
+      },
+      {
+        "id": "I",
+        "code": "I",
+        "description": "Inactive"
+      },
+      {
+        "id": "C",
+        "code": "C",
+        "description": "Cancel"
+      }
+    ]
+  }
+}
+

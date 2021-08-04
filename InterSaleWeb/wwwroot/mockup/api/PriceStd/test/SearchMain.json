@@ -1,0 +1,119 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "priceStdMains": [
+      {
+        "id": 1,
+        "code": "A01RKPU",
+        "type": "R",
+        "description": "",
+        "status": "A",
+        "priceStdEffectiveDate": {
+          "id": 1,
+          "code": "17901",
+          "description": ""
+        },
+        "productType": {
+          "id": 1,
+          "code": "K",
+          "description": ""
+        },
+        "productGrade": {
+          "id": 1,
+          "code": "P",
+          "description": ""
+        },
+        "currency": {
+          "id": 1,
+          "code": "U",
+          "description": ""
+        },
+        "create": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        }
+      },
+      {
+        "id": 3,
+        "code": "A01RKPU",
+        "type": "R",
+        "description": "",
+        "status": "A",
+        "priceStdEffectiveDate": {
+          "id": 1,
+          "code": "17901",
+          "description": ""
+        },
+        "productType": {
+          "id": 2,
+          "code": "X",
+          "description": ""
+        },
+        "productGrade": {
+          "id": 1,
+          "code": "P",
+          "description": ""
+        },
+        "currency": {
+          "id": 1,
+          "code": "U",
+          "description": ""
+        },
+        "create": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        }
+      },
+      {
+        "id": 2,
+        "code": "A01CPAU",
+        "type": "C",
+        "description": "",
+        "status": "A",
+        "priceStdEffectiveDate": {
+          "id": 1,
+          "code": "17901",
+          "description": ""
+        },
+        "productType": {
+          "id": 2,
+          "code": "P",
+          "description": ""
+        },
+        "productGrade": {
+          "id": 2,
+          "code": "A",
+          "description": ""
+        },
+        "currency": {
+          "id": 1,
+          "code": "U",
+          "description": ""
+        },
+        "create": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        }
+      }
+    ],
+    "_page": {
+      "_current_index": 1,
+      "_last_index": 1,
+      "_total_record": 100
+    }
+  }
+}

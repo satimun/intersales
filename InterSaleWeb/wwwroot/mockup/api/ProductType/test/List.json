@@ -1,0 +1,19 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "productTypes": [
+      {
+        "id": 1,
+        "code": "K",
+        "description": "KK"
+      },
+      {
+        "id": 2,
+        "code": "P",
+        "description": "PP"
+      }
+    ]
+  }
+}

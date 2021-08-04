@@ -1,0 +1,174 @@
+﻿<div class="container-fluid" kkf-permssion-notfound="SALES_SALESREPORT_PIVSFORECAST">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/sales">sales</a></li>
+            <li><a href="#">salesreport</a></li>
+            <li class="active"><a href="#">pivsforecastreport</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span>PI vs Forecast Report</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year From</span> : </label>
+                    <kss-pattern-input notnull="true" ng-model="yearFrom" ng-change="GenMonth" maxlength="4"
+                        disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
+                </div>
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year To</span> : </label>
+                    <kss-pattern-input notnull="true" ng-model="yearTo" ng-change="GenMonth" maxlength="4"
+                        disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
+                </div>
+
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span>Month From</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthFromID'" list="monthFrom.list" placeholder="" limit="15"
+                        stylex="" notnull="true" ng-model="monthFrom.view" ng-change="monthFrom.SetID">
+                    </kss-autocomplete>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span>Month To</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthToID'" list="monthTo.list" placeholder="" limit="15"
+                        stylex="" notnull="true" ng-model="monthTo.view" ng-change="monthTo.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label class="w100p"><span></span></label>
+                    <label style="padding-top: 10px;"><input type="checkbox" ng-model="ytd" ng-change="ytdChk(ytd)" />
+                        YTD</label>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span>Regional Zone</span> : </label>
+                    <tags-input ng-model="regzone" add-on-paste="true" placeholder="Regional Code"
+                        display-property="code" min-length="1" add-from-autocomplete-only="true"
+                        replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadRegzone($query)" min-length="0" display-property="text"
+                            load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
+                            max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span>Zones</span> : </label>
+                    <tags-input ng-model="zones" add-on-paste="true" placeholder="code : name" min-length="1"
+                        display-property="code" add-from-autocomplete-only="true" replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadZones($query)" min-length="0" display-property="text"
+                            debounce-delay="0" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true"
+                            max-results-to-show="30"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span>Customers</span> : </label>
+                    <tags-input ng-model="customers" add-on-paste="true" placeholder="code : name"
+                        display-property="code" min-length="1" add-from-autocomplete-only="true"
+                        replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadCustomers($query)" min-length="0" display-property="text"
+                            load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
+                            max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span>Cost</span> : </label>
+                    <kss-autocomplete id="'ShipmentCostID'" list="cost.list" placeholder="" limit="15" notnull="true"
+                        stylex="" ng-model="cost.view" ng-change="cost.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">&nbsp;</label>
+                    <button class="btn btn-info" ng-click="LoadData()" lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+
+            <script type="text/ng-template" id="SalesReportPiVsForecastModal.html">
+                <div class="modal-header bg-info">
+                    <h3 class="modal-title" id="modal-title">Actual Detail.</h3>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+                        <div class="form-inline">
+                            <div class="form-group margin-right-15px" ng-repeat="v in title">
+                                <label> {{ v.text }}  :</label> {{ v.value }}
+                            </div>
+                        </div>
+                        <div class="row" style="height:15px; clear: both;"></div>
+                        <div ui-grid="gridOpt" ui-grid-pinning ui-grid-move-columns ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-info">
+                    <button class="btn btn-warning" ng-click="close()">Close</button>
+                </div>
+            </script>
+
+            <div class="panel panel-success" ng-controller="SalesReportPiVsForecastReportGridCtrl">
+                <div class="panel-heading"><span>PI (Actual) Vs Forecast Detail</span> <span ng-show="isGroupChange"
+                        class="text-primary" style="margin-left: 10px;">*กรณีเปิดเงื่อนไข Group By
+                        ต้องค้นหาข้อมูลใหม่</span><span ng-show="isProcess" class="text-warning"
+                        style="margin-left: 10px;">Processing...</span></div>
+                <div class="panel-body">
+                    <form class="form-inline">
+                        <table>
+                            <tr>
+                                <td width="80" valign="top">
+                                    <label class="w100p margin-right-15px">Group By : </label>
+                                </td>
+                                <td valign="top">
+                                    <ul dnd-list="lists" style="list-style-type: none;">
+                                        <li ng-repeat="item in lists" dnd-draggable="item"
+                                            dnd-moved="lists.splice($index, 1)" dnd-effect-allowed="move"
+                                            style="float: left;">
+                                            <label class="w100p margin-right-15px" style="cursor: move;"><input
+                                                    type="checkbox" ng-change="onGroupChange(item)"
+                                                    ng-model="item.checked" /> {{ item.label }}</label>
+                                            <!--ng-change="ChangeChk()"-->
+                                        </li>
+                                        <li style="float: left;">
+                                            <label class="w100p margin-right-15px"><input type="checkbox"
+                                                    ng-model="group1" ng-change="onGroup1Change()" /> Material
+                                                Group + Product + Daimeter Group</label>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="row both clearfix" style="max-height:10px;"></div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="w100p margin-right-15px">Show Columns : </label>
+                        </div>
+                        <div class="form-group">
+                            <ul style="list-style-type: none;">
+                                <li style="float: left;" ng-repeat="item in cols | orderBy:'id'">
+                                    <label class="w100p margin-right-15px"><input type="checkbox"
+                                            ng-model="item.checked" ng-change="ColumnChk(item.id)" /> {{ item.label
+                                        }}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                    <div class="row both" style="height:15px;"></div>
+                    <!-- ui-grid -->
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-pinning ui-grid-resize-columns ui-grid-exporter
+                        ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:400px;"></div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status"
+                        title="{{ IP_DB }}[saleex].dbo.PERFORMAMST, [saleex].dbo.PERFORMATRN, [saleex].dbo.VFORCASTYEARPI">
+                        {{ IP_DB }}[saleex].dbo.PERFORMAMST, [saleex].dbo.PERFORMATRN, [saleex].dbo.VFORCASTYEARPI
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-inline right">
+                <label><input type="checkbox" ng-model="isRawData" /> Raw Data </label>
+                <button ng-click="Export()" ng-disabled="!btnExport" class="btn btn-primary margin-right-5px">
+                    Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

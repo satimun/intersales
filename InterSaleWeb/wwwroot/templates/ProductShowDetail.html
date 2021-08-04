@@ -1,0 +1,82 @@
+﻿<div class="modal-header bg-info">
+    <h3 class="modal-title" id="modal-title">Product Detail.</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+        <table class="table table-striped">
+            <tr>
+                <th>Code</th>
+                <td>{{data.code}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{data.description}}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{data.type}}</td>
+            </tr>
+            <tr>
+                <th>Twine Type</th>
+                <td>{{data.twineType}}</td>
+            </tr>
+            <tr>
+                <th>Twine Size</th>
+                <td>{{data.twineSize}}</td>
+            </tr>
+            <tr>
+                <th>Twine Series</th>
+                <td>{{data.twineSeries}}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{data.color}}</td>
+            </tr>
+            <tr>
+                <th>Knot</th>
+                <td>{{data.knot}}</td>
+            </tr>
+            <tr>
+                <th>Stretching</th>
+                <td>{{data.stretching}}</td>
+            </tr>
+            <tr>
+                <th>Selvage Woven Type</th>
+                <td>{{data.woven}}</td>
+            </tr>
+            <tr>
+                <th>Selvage</th>
+                <td>{{data.selvage}}</td>
+            </tr>
+            <tr>
+                <th>Selvage Stretching Type</th>
+                <td>{{data.selvageStretching}}</td>
+            </tr>
+            <tr>
+                <th>Mesh Size</th>
+                <td>{{data.meshSize}}</td>
+            </tr>
+            <tr>
+                <th>Mesh Depth</th>
+                <td>{{data.meshDepth}}</td>
+            </tr>
+            <tr>
+                <th>Length</th>
+                <td>{{data.length}}</td>
+            </tr>
+            <tr>
+                <th>Rum Type</th>
+                <td>{{data.rumType}}</td>
+            </tr>
+            <tr>
+                <th>Layers</th>
+                <td>
+                    <span ng-repeat="v in data.layers">{{v.view}}<br /></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer bg-info">
+    <button class="btn btn-warning" ng-click="close()">Close</button>
+</div>

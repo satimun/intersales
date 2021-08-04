@@ -1,0 +1,108 @@
+﻿<div class="container-fluid" lang-group="SETUP_TEXTDISPLAY_SETREMARK" kkf-permssion-notfound="SETUP_TEXTDISPLAY_SETREMARK">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/plan">plan</a></li>
+            <li><a href="#">shipment</a></li>
+            <li class="active"><a href="#">compare</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span>Remark Setup</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w350-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Remark Group Type</span> : </label>
+                    <kss-autocomplete id="'SetRemarkGroupTypeID'"
+                                      list="groupType.list"
+                                      placeholder="'Group Type'"
+                                      limit="15"
+                                      stylex=""
+                                      ng-model="groupType.view"
+                                      ng-change="groupType.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Status</span> : </label>
+                    <kss-autocomplete id="'setRemarkStatusID'"
+                                      list="status.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      ng-model="status.view"
+                                      ng-change="status.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs">&nbsp;</label>
+                    <button class="btn btn-info"
+                            ng-click="LoadData()"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+
+            <div active="active">
+                <ul class="nav nav-tabs">
+                    <li ng-repeat="v in tabs" ng-class="{ 'active': v.active }" class="uib-tab nav-item">
+                        <a href="#" ng-click="TabChange(v.id)" class="nav-link ">{{ v.description }}</a>
+                    </li>
+                </ul>
+                <!--<uib-tabset active="active">
+                    <uib-tab index="0" heading="Set Remark Group" select="TabChange(0)"></uib-tab>
+                    <uib-tab index="1" heading="Set Remark Text" select="TabChange(1)"></uib-tab>
+                </uib-tabset>-->
+                <div class="tab-content">
+                    <div class="panel panel-default tab-custom">
+                        <div class="panel-body">
+                            <div ng-controller="setRemarkGroupTypeCtrl">
+                                <div ui-grid="gridOpt"ui-grid-selection ui-grid-cellNav ui-grid-move-columns ui-grid-edit ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:250px;"></div>
+                            </div>
+                            <div ng-controller="setRemarkTextCtrl" ng-show="setRemark_tabIndex">
+                                <div class="row both" style="height:15px;"></div>
+                                <div ui-grid="gridOpt"ui-grid-selection ui-grid-cellNav ui-grid-move-columns ui-grid-edit ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+                            </div>
+                            <!-- buttom Action -->
+                            <div class="form-inline">
+                                <button ng-disabled="!btnActive"
+                                        ng-click="ClickAction(1)"
+                                        class="btn btn-success btn-after-grid">
+                                    Active
+                                </button>
+                                <button ng-disabled="!btnInactive"
+                                        ng-click="ClickAction(2)"
+                                        class="btn btn-warning btn-after-grid">
+                                    Inactive
+                                </button>
+                                <button ng-disabled="!btnRemove"
+                                        ng-click="ClickAction(3)"
+                                        class="btn btn-danger btn-after-grid">
+                                    Remove
+                                </button>
+                                <div class="form-inline right">
+                                    <button ng-disabled="!btnSave"
+                                            ng-click="ClickAction(4)"
+                                            class="btn btn-primary btn-after-grid">
+                                        Save
+                                    </button>
+                                    <button ng-disabled="!btnCancel"
+                                            ng-click="ClickAction(5)"
+                                            class="btn btn-warning btn-after-grid">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                            <div class="tag-status" title="{{ IP_DB }}">
+                                {{ IP_DB }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+</div>

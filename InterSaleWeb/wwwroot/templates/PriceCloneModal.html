@@ -1,0 +1,104 @@
+﻿<div class="modal-header bg-info">
+    <h3 class="modal-title" id="modal-title">Clone Price</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="panel panel-success mgr">
+                    <div class="panel-heading"><span>Price Table</span> (Source)</div>
+                    <div class="panel-body">
+                        <form class="form-inline">
+                            <div class="form-group w150-mb5">
+                                <label class="w100p"><span>Country Group</span> : </label>
+                                <kss-autocomplete id="'countryGroupModal'"
+                                                  list="countryGroup.list"
+                                                  placeholder="'Country Group Code or Country Code'"
+                                                  limit="20"
+                                                  disabled ="countryGroup.disabled"
+                                                  ng-model="countryGroup.view"
+                                                  ng-change="countryGroup.SetID"></kss-autocomplete>
+                            </div>
+                            <div class="form-group w150-mb5">
+                                <label class="w100p"><span>Effective Date</span> : </label>
+                                <input type="date" ng-model="effectiveDate" ng-change="DateChange()" uib-tooltip="{{ dateFormat }}" class="form-control" />
+                            </div>
+                            <div class="form-group w150-mb5">
+                                <label class="w100p"><span>Product Type</span> : </label>
+                                <kss-autocomplete id="'productTypePriceCloneModal'"
+                                                  list="productType.list"
+                                                  placeholder="'Code Or Description'"
+                                                  limit="20"
+                                                  ng-model="productType.view"
+                                                  ng-change="productType.SetID"></kss-autocomplete>
+                            </div>
+                            <div class="form-group w100-mb5">
+                                <label class="w100p hidden-xs color-255">&nbsp;</label>
+                                <button class="btn btn-info"
+                                        ng-click="LoadData()">
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+                        <div class="row both"></div>
+                        <div ui-grid="gridOpt1" ui-grid-selection ui-grid-pinning ui-grid-move-columns ui-grid-edit ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 hidden-lg">
+                <div style="display:flex;align-items:center;justify-content:center;">
+                    <div class="m-5">
+                        <button class="btn btn-lg btn-primary"  ng-click="MoveAction(gridApi1, gridApi2, 2)"><span class="glyphicon glyphicon-forward" style="transform:rotate(90deg)"></span></button>
+                    </div>
+                    <div class="m-5">
+                        <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi1, gridApi2, 1)" ng-disabled="!smov1"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+                    </div>
+                    <div class="m-5"> 
+                        <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi2, gridApi1, 1)" ng-disabled="!smov2"><span class="glyphicon glyphicon-triangle-top"></span></button>
+                    </div>
+                    <div class="m-5">
+                        <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi2, gridApi1, 2)"><span class="glyphicon glyphicon-backward" style="transform:rotate(90deg)"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="both hidden-lg" style="height: 20px;"></div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="panel panel-success mgl">
+                    <div class="panel-heading"><span>Clone Price Table</span> (Destination)</div>
+                    <div class="panel-body">
+                        <form class="form-inline">
+                            <div class="form-group w150-mb5">
+                                <label class="w100p"><span>Set Effective Date From</span> : </label>
+                                <input type="date" ng-model="dateFrom" ng-blur="DateChange2('f')" uib-tooltip="{{ dateFormat }}" class="form-control" />
+                            </div>
+                            <div class="form-group w150-mb5">
+                                <label class="w100p"> <span>Set Effective Date To</span> : </label>
+                                <input type="date" ng-model="dateTo"  ng-blur="DateChange2('t')" uib-tooltip="{{ dateFormat }}" class="form-control" />
+                            </div>
+                        </form>
+                        <div class="row both"></div>
+                        <div ui-grid="gridOpt2" ui-grid-selection ui-grid-pinning ui-grid-move-columns ui-grid-edit ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-sm hidden-xs hidden-md" style="position:absolute; top: 210px;" ng-style="{'left': (width - 87)/2 + 'px'}">
+                <div class="m-5">
+                    <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi1, gridApi2, 2)"><span class="glyphicon glyphicon-forward"></span></button>
+                </div>
+                <div class="m-5">
+                    <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi1, gridApi2, 1)" ng-disabled="!smov1"><span class="glyphicon glyphicon-triangle-right"></span></button>
+                </div>
+                <div class="m-5">
+                    <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi2, gridApi1, 1)" ng-disabled="!smov2"><span class="glyphicon glyphicon-triangle-left"></span></button>
+                </div>
+                <div class="m-5">
+                    <button class="btn btn-lg btn-primary" ng-click="MoveAction(gridApi2, gridApi1, 2)"><span class="glyphicon glyphicon-backward"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer bg-info">
+    <button class="btn btn-primary" ng-disabled="!btnOk" ng-click="ok()">Clone</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

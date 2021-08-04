@@ -1,0 +1,56 @@
+﻿<div class="container-fluid" lang-group="SETUP_CUSTOMER_SHIPPINGDATE" kkf-permssion-notfound="SETUP_CUSTOMER_SHIPPINGDATE">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/setup">setup</a></li>
+            <li><a href="#">customer</a></li>
+            <li><a href="#">shippingdate</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Shipping Date Setup</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w350-mb5" element-Resize>
+                    <label><span lang-codeDisalbe="LB_DATEPLAN">Filter</span> : </label>
+                    <input type="text" placeholder="{{PH_shippingDate}}" ng-style="{ width: (elementWidth - (multi * 50)) + 'px' }" ng-model="txtFind" class="form-control" />
+                </div>
+                <div class="form-group w100-mb5">
+                    <button class="btn btn-info"
+                            ng-click="LoadData(txtFind)"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+            <div class="panel panel-success">
+                <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Shipping Date</span></div>
+                <div class="panel-body">
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-edit ui-grid-exporter ui-grid-pinning ui-grid-resize-columns ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                    <!-- buttom Action -->
+                    <div class="form-inline right">
+                        <button ng-disabled="!btnSave"
+                                ng-click="SaveAction()"
+                                class="btn btn-primary btn-after-grid">
+                            Save
+                        </button>
+                        <button ng-disabled="!btnCancel"
+                                ng-click="CancelAction()"
+                                class="btn btn-warning btn-after-grid">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}">
+                        {{ IP_DB }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

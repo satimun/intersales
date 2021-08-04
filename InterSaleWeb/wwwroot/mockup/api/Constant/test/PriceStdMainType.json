@@ -1,0 +1,21 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [
+
+  ],
+  "data": {
+    "priceStdMainType": [
+      {
+        "id": "R",
+        "code": "R",
+        "description": "Range"
+      },
+      {
+        "id": "C",
+        "code": "C",
+        "description": "Product Code"
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+﻿<div class="container-fluid" lang-group="PLAN_SHIPMENT_DELIVERYREPORT" kkf-permssion-notfound="PLAN_SHIPMENT_DELIVERYREPORT">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/plan">plan</a></li>
+            <li><a href="#">shipment</a></li>
+            <li class="active"><a href="#">deliveryreport</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-codeDisableDisable="PN_PLANLIST">% KPI of Actual Shipment Report</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year</span> : </label>
+                    <kss-pattern-input notnull="true"
+                                       ng-model="year"
+                                       ng-change="GenMonth"
+                                       maxlength="4"
+                                       pattern="^[0-9]{4}$"
+                                       placeholder="YYYY"></kss-pattern-input>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month From</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthFromID'"
+                                      list="monthFrom.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthFrom.view"
+                                      ng-change="monthFrom.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month To</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthToID'"
+                                      list="monthTo.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthTo.view"
+                                      ng-change="monthTo.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_ZONE">Regional Zone</span> : </label>
+                    <tags-input ng-model="regzone"
+                                add-on-paste="true"
+                                placeholder="Regional Code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadRegzone($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">&nbsp;</label>
+                    <button class="btn btn-info"
+                            ng-click="LoadData()"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+
+            <div class="panel panel-success" ng-controller="shipmentPlanDeliveryGridTotalCtrl">
+                <div class="panel-heading"><span lang-codeDisableDisable="PN_PLANLIST">Summary % value(THB) Per Month</span></div>
+                <div class="panel-body">
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}">
+                        {{ IP_DB }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading"><span lang-codeDisableDisable="PN_PLANLIST">Shipment Plan Vs Actual</span></div>
+                <div class="panel-body">
+                    <div ng-controller="shipmentPlanDeliveryGrid1Ctrl" >
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID === 1" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid2Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 2 && dataH.monthToID >= 2" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid3Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 3 && dataH.monthToID >= 3" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid4Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 4 && dataH.monthToID >= 4" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid5Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 5 && dataH.monthToID >= 5" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid6Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 6 && dataH.monthToID >= 6" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid7Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 7 && dataH.monthToID >= 7" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid8Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 8 && dataH.monthToID >= 8" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid9Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 9 && dataH.monthToID >= 9" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid10Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 10 && dataH.monthToID >= 10" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid11Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthFromID <= 11 && dataH.monthToID >= 11" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                    <div ng-controller="shipmentPlanDeliveryGrid12Ctrl" style="margin-top:15px;">
+                        <div ui-grid="gridOpt" ng-if="dataH.monthToID === 12" ui-grid-cellNav ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:200px;"></div>
+                    </div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}">
+                        {{ IP_DB }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-inline right">
+                <button ng-click="Export()"
+                        ng-disabled="!btnExport"
+                        class="btn btn-primary margin-right-5px">
+                    Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

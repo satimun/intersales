@@ -1,0 +1,167 @@
+﻿<div class="modal-header bg-info">
+    <h3 class="modal-title" id="modal-title">Spec Net Edit.</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+        <div active="active">
+            <ul class="nav nav-tabs">
+                <li ng-repeat="v in tabList" ng-class="{ 'active': v.active }" class="uib-tab nav-item">
+                    <a href="#" ng-click="TabChange(v.id)" class="nav-link ">{{ v.description }}</a>
+                </li>
+            </ul>
+            <div class="tab-content" ng-show="seltab === 1">
+                <form name="spec">
+                    <table class="table table-striped">
+                        <tr>
+                            <th width="110px">Spec</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Unit</th>
+                        </tr>
+                        <tr><td colspan="4" class="bg-success"><b>Sales Spec</b></td></tr>
+                        <tr>
+                            <td>Mesh Size</td>
+                            <td>
+                                <kss-pattern-input ng-model="s_meshSize.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_meshSize.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="mUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="s_meshSize.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_meshSize.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="mUnitChange"></kss-pattern-input>
+                            </td>
+                            <td><select class="form-control" ng-options="item as item.symbol for item in mUnitType track by item.id" ng-model="s_meshSize.unit" ng-change="mUnitChange()"></select></td>
+                        </tr>
+                        <tr>
+                            <td>Mesh Depth</td>
+                            <td>
+                                <kss-pattern-input ng-model="s_meshDepth.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_meshDepth.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="dUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="s_meshDepth.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_meshDepth.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="dUnitChange"></kss-pattern-input>
+                            </td>
+                            <td><select class="form-control" ng-options="item as item.symbol for item in dUnitType track by item.id" ng-model="s_meshDepth.unit" ng-change="dUnitChange()"></select></td>
+                        </tr>
+                        <tr>
+                            <td>Length</td>
+                            <td>
+                                <kss-pattern-input ng-model="s_length.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_length.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="lUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="s_length.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]*?[/]?[0-9]+$"
+                                                   error="s_length.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="lUnitChange"></kss-pattern-input>
+                            </td>
+                            <td><select class="form-control" ng-options="item as item.symbol for item in lUnitType track by item.id" ng-model="s_length.unit" ng-change="lUnitChange()"></select></td>
+                        </tr>
+                        <tr>
+                            <td>Sales Description</td>
+                            <td colspan="3">{{ salesDes }}</td>
+                        </tr>
+                        <tr><td colspan="4" class="bg-success"><b>Production Spec</b></td></tr>
+                        <tr>
+                            <td>Mesh Size</td>
+                            <td>
+                                <kss-pattern-input ng-model="p_meshSize.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_meshSize.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="pmUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="p_meshSize.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_meshSize.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="pmUnitChange"></kss-pattern-input>
+                            <td><input type="text" class="form-control" ng-model="p_meshSize.unit.symbol" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>Mesh Depth</td>
+                            <td>
+                                <kss-pattern-input ng-model="p_meshDepth.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_meshDepth.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="pdUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="p_meshDepth.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_meshDepth.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="pdUnitChange"></kss-pattern-input>
+                            </td>
+                            <td><input type="text" class="form-control" ng-model="p_meshDepth.unit.symbol" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>Length</td>
+                            <td>
+                                <kss-pattern-input ng-model="p_length.min"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_length.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="plUnitChange"></kss-pattern-input>
+                            </td>
+                            <td>
+                                <kss-pattern-input ng-model="p_length.max"
+                                                   pattern="^[0-9]*?[.]?[0-9]+$"
+                                                   error="p_length.error"
+                                                   ng-keyup="ChkSuccess"
+                                                   ng-change="plUnitChange"></kss-pattern-input>
+                            </td>
+                            <td><input type="text" class="form-control" ng-model="p_length.unit.symbol" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>Tag Description</td>
+                            <td colspan="3">{{ tagDes }}</td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="tab-content" ng-show="seltab === 2">
+                <form class="form-inline">
+                    <div class="form-group w350-mb5">
+                        <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Filter</span> : </label>
+                        <input type="text" class="form-control" ng-model="txtFind" placeholder="Code or Description" />
+                    </div>
+                    <div class="form-group w100-mb5">
+                        <label class="w100p hidden-xs color-255">&nbsp;</label>
+                        <button class="btn btn-info"
+                                ng-click="LoadData()"
+                                lang-codeDisable="BTN_SEARCH">
+                            Search
+                        </button>
+                    </div>
+                </form>
+                <div class="row both" ng-show="!priceMode"></div>
+                <label ng-show="!priceMode"><input type="checkbox" ng-model="priceTableAvailable" ng-change="LoadData()" /> Data Available in Price Table.</label>
+                <div class="row both"></div>
+                <div ui-grid="gridOpt" ui-grid-selection ui-grid-pinning ui-grid-cellNav ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer bg-info">
+    <button class="btn btn-primary" ng-disabled="!btnOk" ng-click="ok()">Ok</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

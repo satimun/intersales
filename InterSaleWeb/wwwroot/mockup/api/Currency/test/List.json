@@ -1,0 +1,20 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "currencys": [
+      {
+        "id": 1,
+        "code": "B",
+        "description": "Thai"
+      },
+      {
+        "id": 2,
+        "code": "U",
+        "description": "Us"
+      }
+    ]
+  }
+}
+

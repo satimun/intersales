@@ -1,0 +1,69 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "priceStdValues": [
+      {
+        "id": 1,
+        "seq": 4,
+        "unitTypeID": 3,
+        "pricePercent": 3.11,
+        "priceAmount": 5.03,
+        "increaseAmount": 34,
+        "status": "W",
+        "product": {
+          "id": 1,
+          "code": "PU303W/030&0602",
+          "description": "0.30mm 30mmsq*60md*1670ml DK YOKO GREEN M542",
+          "seriesDescription": "",
+          "selvedgeDescription": "",
+          "rumeDescription": ""
+        },
+        "unitType": {
+          "id": 10,
+          "code": "KG",
+          "description": ""
+        },
+        "create": {
+          "by": "6000322 : somruk",
+          "datetime": "10/10/2017 08:00:00"
+        },
+        "modify": {
+          "by": "6000322 : somruk",
+          "datetime": "10/10/2017 08:00:00"
+        }
+      },
+      {
+        "id": 2,
+        "seq": 4,
+        "unitTypeID": 3,
+        "pricePercent": 3.11,
+        "priceAmount": 5.03,
+        "increaseAmount": 34,
+        "status": "W",
+        "product": {
+          "id": 1,
+          "code": "PU303W/030&0602",
+          "description": "0.30mm 30mmsq*60md*1670ml DK YOKO GREEN M542",
+          "seriesDescription": "",
+          "selvedgeDescription": "",
+          "rumeDescription": ""
+        },
+        "unitType": {
+          "id": 11,
+          "code": "KG",
+          "description": ""
+        },
+        "create": {
+          "by": "6000322 : somruk",
+          "datetime": "10/10/2017 08:00:00"
+        },
+        "modify": {
+          "by": "6000322 : somruk",
+          "datetime": "10/10/2017 08:00:00"
+        }
+      }
+    ]
+  }
+}

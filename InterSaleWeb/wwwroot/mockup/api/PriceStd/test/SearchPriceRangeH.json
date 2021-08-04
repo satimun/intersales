@@ -1,0 +1,110 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "priceStdRangeHs": [
+      {
+        "id": 1,
+        "minTwineSizeCode": "210/4",
+        "maxTwineSizeCode": "210/4",
+        "unitType": {
+          "id": 1,
+          "code": "KG",
+          "description": "Kilogram"
+        },
+        "colorGroups": {
+          "id": 1,
+          "code": "01",
+          "description": "",
+          "colors": [
+            {
+              "id": 1,
+              "code": "P219",
+              "description": "color1"
+            },
+            {
+              "id": 2,
+              "code": "P220",
+              "description": "color2"
+            }
+          ]
+        },
+        "knot": {
+          "id": 1,
+          "code": "SK",
+          "description": ""
+        },
+        "stretching": {
+          "id": 1,
+          "code": "T",
+          "description": "T"
+        },
+        "selvageWovenType": {
+          "id": 1,
+          "code": "G",
+          "description": ""
+        },
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016  10:12:00"
+        },
+        "modify": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016  10:12:00"
+        }
+      },
+      {
+        "id": 2,
+        "minTwineSizeCode": "210/5",
+        "maxTwineSizeCode": "210/5",
+        "unitType": {
+          "id": 1,
+          "code": "KG",
+          "description": "Kilogram"
+        },
+        "colorGroups": {
+          "id": 1,
+          "code": "02",
+          "description": "",
+          "colors": [
+            {
+              "id": 1,
+              "code": "P230",
+              "description": "color3"
+            },
+            {
+              "id": 2,
+              "code": "P231",
+              "description": "color4"
+            }
+          ]
+        },
+        "knot": {
+          "id": 1,
+          "code": "SK",
+          "description": ""
+        },
+        "stretching": {
+          "id": 1,
+          "code": "T",
+          "description": "T"
+        },
+        "selvageWovenType": {
+          "id": 1,
+          "code": "G",
+          "description": ""
+        },
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016  10:12:00"
+        },
+        "modify": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016  10:12:00"
+        }
+      }
+    ]
+  }
+}
+

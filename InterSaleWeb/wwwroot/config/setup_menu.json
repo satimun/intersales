@@ -1,0 +1,27 @@
+﻿{
+  "setup": {
+    "PriceDiscount": {
+      "active": true,
+      "list": {
+        "pricestd": {
+          "active": true,
+          "href": "/setup/pricestd"
+        },
+        "discountstd": {
+          "active": true,
+          "href": "/setup/discountstd"
+        }
+      }
+    },
+    "view": {
+
+    }
+  },
+  "sale": {
+    "active": false,
+    "submenu": {
+
+    }
+  }
+  
+}

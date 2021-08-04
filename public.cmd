@@ -1,0 +1,2 @@
+dotnet build InterSaleApi/InterSaleApi.csproj -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+dotnet build InterSaleWeb/InterSaleWeb.csproj -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile

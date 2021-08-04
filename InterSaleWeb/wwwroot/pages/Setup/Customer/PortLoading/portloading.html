@@ -1,0 +1,83 @@
+﻿<div class="container-fluid" lang-group="SETUP_CUSTOMER_PORTLOADING" kkf-permssion-notfound="SETUP_CUSTOMER_PORTLOADING">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/setup">setup</a></li>
+            <li><a href="#">customer</a></li>
+            <li><a href="#">portloading</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Port of Loading Setup</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w350-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Filter</span> : </label>
+                    <input type="text" class="form-control" ng-model="txtFind" placeholder="Code or Description" />
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Status</span> : </label>
+                    <kss-autocomplete id="'setupPortLoadingStatusID'"
+                                      list="status.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      ng-model="status.view"
+                                      ng-change="status.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">&nbsp;</label>
+                    <button class="btn btn-info"
+                            ng-click="PreLoadData()"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+            <div class="panel panel-success">
+                <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Port of Loading</span></div>
+                <div class="panel-body">
+                    <div ui-grid="gridOpt" ui-grid-selection ui-grid-cellNav ui-grid-move-columns ui-grid-edit ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                    <div class="form-inline">
+                        <button ng-disabled="!btnActive"
+                                ng-click="UpdateStatusAction('A')"
+                                class="btn btn-success btn-after-grid">
+                            Active
+                        </button>
+                        <button ng-disabled="!btnInactive"
+                                ng-click="UpdateStatusAction('I')"
+                                class="btn btn-warning btn-after-grid">
+                            Inactive
+                        </button>
+                        <button ng-disabled="!btnRemove"
+                                ng-click="UpdateStatusAction('C')"
+                                class="btn btn-danger btn-after-grid">
+                            Remove
+                        </button>
+                        <div class="form-inline right">
+                            <button ng-disabled="!btnSave"
+                                    ng-click="SaveAction()"
+                                    class="btn btn-primary btn-after-grid">
+                                Save
+                            </button>
+                            <button ng-disabled="!btnCancel"
+                                    ng-click="CancelAction()"
+                                    class="btn btn-warning btn-after-grid">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}">
+                        {{ IP_DB }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

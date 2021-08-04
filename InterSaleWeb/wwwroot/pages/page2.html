@@ -1,0 +1,59 @@
+﻿<div role="rowgroup" class="ui-grid-header">
+    <div class="ui-grid-top-panel">
+        <div class="ui-grid-header-viewport">
+            <div class="ui-grid-header-canvas">
+                <div class="ui-grid-header-cell-wrapper" ng-style="colContainer.headerCellWrapperStyle()">
+                    <div role="row" class="ui-grid-header-cell-row">
+
+                        <div class="ui-grid-header-cell ui-grid-clearfix ui-grid-category" ng-repeat="cat in grid.options.category" ng-if="cat.visible && (colContainer.renderedColumns | filter:{ colDef:{category: cat.name}}:true).length > 0">
+                            <div class="ui-grid-header-category" ng-if="cat.display != \'\'">{{ cat.display }}</div>
+                            <div class="ui-grid-header-cell ui-grid-clearfix grid-header" ng-repeat="col in colContainer.renderedColumns | filter:{ colDef:{category: cat.name}}:true " ui-grid-header-cell col="col" render-index="$index"> </div>
+                        </div>
+
+                        <div class="ui-grid-header-cell ui-grid-clearfix ui-grid-category" ng-repeat="col in colContainer.renderedColumns">
+                            <div class="ui-grid-header-category" ng-if="cat.display != \'\'">{{ cat.display }}</div>
+                            <div class="ui-grid-header-cell ui-grid-clearfix grid-header" ng-repeat="col in colContainer.renderedColumns | filter:{ colDef:{category: cat.name}}:true " ui-grid-header-cell col="col" render-index="$index"> </div>
+                            <div class="ui-grid-header-cell ui-grid-clearfix" ng-if="col.colDef.category === undefined" ng-repeat="col in colContainer.renderedColumns track by col.uid" ui-grid-header-cell col="col" render-index="$index"> </div>
+                        </div>
+
+                        <!--<div class="ui-grid-header-cell ui-grid-clearfix" ng-if="col.colDef.category === undefined" ng-repeat="col in colContainer.renderedColumns track by col.uid" ui-grid-header-cell col="col" render-index="$index">
+    </div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div role="rowgroup" class="ui-grid-header">
+    <div class="ui-grid-top-panel">
+        <div class="ui-grid-header-viewport">
+            <div class="ui-grid-header-canvas">
+                <div class="ui-grid-header-cell-wrapper" ng-style="colContainer.headerCellWrapperStyle()">
+                    <div role="row" class="ui-grid-header-cell-row">
+                        <div class="ui-grid-header-cell ui-grid-clearfix" ng-repeat="col in colContainer.renderedColumns track by col.uid" ui-grid-header-cell col="col" render-index="$index">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="ui-grid-header-cell-wrapper" ng-style="colContainer.headerCellWrapperStyle()">
+    <div role="row" class="ui-grid-header-cell-row">
+        <div class="ui-grid-header-cell ui-grid-clearfix ng-scope ng-isolate-scope ui-grid-coluiGrid-0009" ng-repeat="col in colContainer.renderedColumns track by col.uid" ui-grid-header-cell="" col="col" render-index="$index">
+            <div role="columnheader" ng-class="{ 'sortable': sortable, 'ui-grid-header-cell-last-col': isLastCol }" ui-grid-one-bind-aria-labelledby-grid="col.uid + '-header-text ' + col.uid + '-sortdir-text'" aria-sort="none" class="ng-scope sortable" aria-labelledby="1525328770101-uiGrid-0009-header-text 1525328770101-uiGrid-0009-sortdir-text">
+                <div role="button" tabindex="0" ng-keydown="handleKeyDown($event)" class="ui-grid-cell-contents ui-grid-header-cell-primary-focus" col-index="renderIndex" ng-class="{ 'ui-grid-head-multiLine': col.colDef.multiLine }" title="Customer">
+                    <span class="ui-grid-header-cell-label ng-binding" ui-grid-one-bind-id-grid="col.uid + '-header-text'" id="1525328770101-uiGrid-0009-header-text">Customer</span> 
+                    <span ui-grid-one-bind-id-grid="col.uid + '-sortdir-text'" ui-grid-visible="col.sort.direction" aria-label="Sort None" class="ui-grid-invisible" id="1525328770101-uiGrid-0009-sortdir-text">
+                        <i ng-class="{ 'ui-grid-icon-up-dir': col.sort.direction == asc, 'ui-grid-icon-down-dir': col.sort.direction == desc, 'ui-grid-icon-blank': !col.sort.direction }" title="" aria-hidden="true" class="ui-grid-icon-blank"></i> 
+                        <sub ui-grid-visible="isSortPriorityVisible()" class="ui-grid-sort-priority-number ng-binding ui-grid-invisible">1</sub>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+

@@ -1,0 +1,177 @@
+﻿<div class="container-fluid" kkf-permssion-notfound="SALES_SALESREPORT_INVTURNOVER">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/sales">sales</a></li>
+            <li><a href="#">report</a></li>
+            <li class="active"><a href="#">invturnoverreport</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-codeDisableDisable="PN_PLANLIST">Inventory Turnover Ratio Report</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year</span> : </label>
+                    <kss-pattern-input notnull="true"
+                                       ng-model="year"
+                                       ng-change="GenMonth"
+                                       maxlength="4"
+                                       pattern="^[0-9]{4}$"
+                                       placeholder="YYYY"></kss-pattern-input>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month From</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthFromID'"
+                                      list="monthFrom.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthFrom.view"
+                                      ng-change="monthFrom.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month To</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthToID'"
+                                      list="monthTo.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthTo.view"
+                                      ng-change="monthTo.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label class="w100p"><span></span></label>
+                    <label style="padding-top: 10px;"><input type="checkbox" ng-model="ytd" ng-change="ytdChk(ytd)" /> YTD</label>
+                </div>
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span>Days : </span></label>
+                    <input class="form-control" type="text" readonly ng-model="days" />
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_ZONE">Regional Zone</span> : </label>
+                    <tags-input ng-model="regzone"
+                                add-on-paste="true"
+                                placeholder="Regional Code"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadRegzone($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_SALES">Zones</span> : </label>
+                    <tags-input ng-model="zones"
+                                add-on-paste="true"
+                                placeholder="code : name"
+                                min-length="1"
+                                display-property="code"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadZones($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       debounce-delay="0"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       max-results-to-show="30"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group w250-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_CUSTOMERS">Customers</span> : </label>
+                    <tags-input ng-model="customers"
+                                add-on-paste="true"
+                                placeholder="code : name"
+                                display-property="code"
+                                min-length="1"
+                                add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                        <auto-complete source="LoadCustomers($query)"
+                                       min-length="0"
+                                       display-property="text"
+                                       load-on-focus="true"
+                                       load-on-empty="true"
+                                       load-on-down-arrow="true"
+                                       debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
+                    </tags-input>
+                </div>
+                <div class="form-group">
+                    <label class="w100p"><span></span></label>
+                    <label style="padding-top: 10px;"><input type="checkbox" ng-model="deadstock" /> DeadStock</label>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">&nbsp;</label>
+                    <button class="btn btn-info"
+                            ng-click="LoadData()"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+
+            <div class="panel panel-success" ng-controller="SalesReportInvTurnoverReportGridCtrl">
+                <div class="panel-heading"><span lang-codeDisableDisable="PN_PLANLIST">Inventory Turnover Ratio Detail</span></div>
+                <div class="panel-body">
+                    <form class="form-inline" style="max-height:32px;">
+                        <div class="form-group">
+                            <label class="w100p margin-right-15px">Group By : </label>
+                        </div>
+                        <div class="form-group">
+                            <ul dnd-list="lists" style="list-style-type: none;">
+                                <li ng-repeat="item in lists"
+                                    dnd-draggable="item"
+                                    dnd-moved="lists.splice($index, 1)"
+                                    dnd-effect-allowed="move" style="float: left;">
+                                    <label class="w100p margin-right-15px" style="cursor: move;"><input type="checkbox" ng-model="item.checked" ng-change="ChangeChk()" /> {{ item.label }}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                    <form class="form-inline" style="max-height:32px;">
+                        <div class="form-group">
+                            <label class="w100p margin-right-15px">Show Columns : </label>
+                        </div>
+                        <div class="form-group">
+                            <ul style="list-style-type: none;">
+                                <li style="float: left;" ng-repeat="item in cols | orderBy:'id'">
+                                    <label class="w100p margin-right-15px"><input type="checkbox" ng-model="item.checked" ng-change="ColumnChk(item.id)" /> {{ item.label }}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                    <div class="row both" style="height:15px;"></div>
+                    <!-- ui-grid -->
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:400px;"></div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}sxmInventoryRatio, sxsAvgDayAmtKPI, [saleex].dbo.COMMERCIAL1TRN, [saleex].dbo.STKTRN, [saleex].dbo.MMKANG_VALUE">
+                        {{ IP_DB }}sxmInventoryRatio, sxsAvgDayAmtKPI, [saleex].dbo.COMMERCIAL1TRN, [saleex].dbo.STKTRN, [saleex].dbo.MMKANG_VALUE
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-inline right">
+                <button ng-click="Export()"
+                        ng-disabled="!btnExport"
+                        class="btn btn-primary margin-right-5px">
+                    Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

@@ -1,0 +1,180 @@
+﻿<div class="container-fluid" kkf-permssion-notfound="SALES_SALESREPORT_ORDERONHAND">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/sales">sales</a></li>
+            <li><a href="#">salesreport</a></li>
+            <li class="active"><a href="#">orderonhandreport</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span>Order Onhand Report</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="col-sm-12" style="margin-bottom: 15px">
+                    <fieldset>
+                        <legend>Filter Data</legend>
+                        <div class="form-group w250-mb5">
+                            <label class="w100p"><span lang-codeDisable="LB_ZONE">Regional Zone</span> : </label>
+                            <tags-input ng-model="regzone" add-on-paste="true" placeholder="Regional Code"
+                                display-property="code" min-length="1" add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                                <auto-complete source="LoadRegzone($query)" min-length="0" display-property="text"
+                                    load-on-focus="true" load-on-empty="true" load-on-down-arrow="true"
+                                    debounce-delay="0" max-results-to-show="15"></auto-complete>
+                            </tags-input>
+                        </div>
+                        <div class="form-group w250-mb5">
+                            <label class="w100p"><span lang-codeDisable="LB_SALES">Zones</span> : </label>
+                            <tags-input ng-model="zones" add-on-paste="true" placeholder="code : name" min-length="1"
+                                display-property="code" add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                                <auto-complete source="LoadZones($query)" min-length="0" display-property="text"
+                                    debounce-delay="0" load-on-focus="true" load-on-empty="true"
+                                    load-on-down-arrow="true" max-results-to-show="30"></auto-complete>
+                            </tags-input>
+                        </div>
+                        <div class="form-group w250-mb5">
+                            <label class="w100p"><span lang-codeDisable="LB_CUSTOMERS">Customers</span> : </label>
+                            <tags-input ng-model="customers" add-on-paste="true" placeholder="code : name"
+                                display-property="code" min-length="1" add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
+                                <auto-complete source="LoadCustomers($query)" min-length="0" display-property="text"
+                                    load-on-focus="true" load-on-empty="true" load-on-down-arrow="true"
+                                    debounce-delay="0" max-results-to-show="15"></auto-complete>
+                            </tags-input>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>Filter Order</legend>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p">Show Order : </label>
+                            <select class="form-control" ng-model="showOrder"
+                                ng-options="c.value as c.text for c in showOrders" ng-change="ShowChk()"></select>
+                        </div>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p"><span lang-coded="LB_DATEFROM">Date From</span> : </label>
+                            <input type="date" uib-tooltip="{{ dateFormat }}" ng-disabled="!showOrder"
+                                ng-model="dateFrom" ng-change="ChkDate()" class="form-control" />
+                        </div>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p"> <span lang-coded="LB_DATETO">Date To</span> : </label>
+                            <input type="date" uib-tooltip="{{ dateFormat }}" ng-disabled="!showOrder" ng-model="dateTo"
+                                ng-change="ChkDate()" class="form-control" />
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-3">
+                    <fieldset>
+                        <legend>Filter Inventory</legend>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p">Inventory Date : </label>
+                            <input type="date" uib-tooltip="{{ dateFormat }}" ng-model="inventoryDate"
+                                class="form-control" />
+                        </div>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p">Outstanding : </label>
+                            <select class="form-control" ng-model="closeBy"
+                                ng-options="c.value as c.text for c in closeBys"></select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>Filter More</legend>
+                        <div class="form-group w150-mb5">
+                            <label class="w100p">Admit Date : </label>
+                            <input type="date" uib-tooltip="{{ dateFormat }}" ng-model="admitDate"
+                                class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="w100p hidden-xs"></label>
+                            <label style="padding-top: 10px;"><input type="checkbox" ng-model="onlyInventory" />Only
+                                items with inventory.</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="w100p hidden-xs"></label>
+                            <label style="padding-top: 10px;"><input type="checkbox"
+                                    ng-model="deadstock" />Deadstock</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group w100-mb5">
+                        <label class="w100p hidden-xs color-255">&nbsp;</label>
+                        <button class="btn btn-info btn-lg" ng-click="LoadData()" lang-codeDisable="BTN_SEARCH">
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div class="row both"></div>
+                <hr class="m-5" />
+                <div class="row both"></div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>View Group By</legend>
+                        <ul dnd-list="lists" style="list-style-type: none;">
+                            <li ng-repeat="item in lists" dnd-draggable="item" dnd-moved="lists.splice($index, 1)"
+                                dnd-effect-allowed="move" style="float: left;">
+                                <label class="w100p margin-right-15px" style="cursor: move;"><input type="checkbox"
+                                        ng-model="item.checked" ng-change="ChangeChk()" /> {{ item.label }}</label>
+                            </li>
+                            <li style="float: left;">
+                                <label class="w100p margin-right-15px"><input type="checkbox" ng-model="group1"
+                                        ng-change="onGroup1Change()" /> Material
+                                    Group + Product + Daimeter Group</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>View More 1</legend>
+                        <ul style="list-style-type: none;">
+                            <li style="float: left;" ng-repeat="item in cols | orderBy:'id'">
+                                <label class="w100p margin-right-15px"><input type="checkbox" ng-model="item.checked"
+                                        ng-change="ColumnChk(item.id)" /> {{ item.label }}</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>View More 2</legend>
+                        <ul style="list-style-type: none;">
+                            <li style="float: left;" ng-repeat="item in cols2 | orderBy:'id'">
+                                <label class="w100p margin-right-15px"><input type="checkbox" ng-model="item.checked"
+                                        ng-change="ColumnChk(item.id)" /> {{ item.label }}</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+            <div class="panel panel-success">
+                <div class="panel-heading"><span>Order Onhand Detail</span></div>
+                <div class="panel-body">
+                    <!-- ui-grid -->
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-pinning ui-grid-resize-columns ui-grid-exporter
+                        ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:400px;"></div>
+                </div>
+                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                    <div class="tag-status" title="{{ IP_DB }}">
+                        {{ IP_DB }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-inline right">
+                <button ng-click="Export()" ng-disabled="!btnExport" class="btn btn-primary margin-right-5px">
+                    Export Excel
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

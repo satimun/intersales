@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html ng-app="App" lang="th-TH">
+<head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <title>International Sales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!-- To support old sizes -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/icon/icon57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/icon/icon72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/icon/icon114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/icon/icon144.png">
+
+    <!--To support new sizes -->
+    <link rel="apple-touch-icon" sizes="60×60" href="/img/icon/icon60.png">
+    <link rel="apple-touch-icon" sizes="76×76" href="/img/icon/icon76.png">
+    <link rel="apple-touch-icon" sizes="120×120" href="/img/icon/icon120.png">
+    <link rel="apple-touch-icon" sizes="152×152" href="/img/icon/icon152.png">
+    <link rel="apple-touch-icon" sizes="180×180" href="/img/icon/icon180.png">
+
+    <!--To support Android-->
+    <link rel="icon" sizes="192×192" href="/img/icon/icon192.png">
+    <link rel="icon" sizes="128×128" href="/img/icon/icon128.png">
+
+    <script type="text/javascript">
+        var version = '1.1.73';
+        // select_mode = 1 use in localhosts dev
+        // select_mode = 2 use in server dev
+        // select_mode = 3 use in server production
+        var select_mode = 1;
+
+        var sync = true, headEl = document.getElementsByTagName('head')[0];
+
+        function addTag(name, attributes, sync) { var el = document.createElement(name), attrName; for (attrName in attributes) { el.setAttribute(attrName, attributes[attrName]); } sync ? document.write(outerHTML(el)) : headEl.appendChild(el); }
+        function outerHTML(node) { return node.outerHTML || (function (n) { var div = document.createElement('div'), h; div.appendChild(n); h = div.innerHTML; div = null; return h; })(node); }
+
+        addTag('link', { rel: 'stylesheet', href: '/lib/bootstrap/css/bootstrap.min.css', type: 'text/css' });
+        addTag('link', { rel: 'stylesheet', href: '/lib/ui-grid/ui-grid.min.css', type: 'text/css' });
+        addTag('link', { rel: 'stylesheet', href: '/lib/ng-tags/ng-tags-input.min.css', type: 'text/css' });
+        addTag('link', { rel: 'stylesheet', href: '/lib/ng-tags/ng-tags-input.bootstrap.min.css', type: 'text/css' });
+        addTag('link', { rel: 'stylesheet', href: '/lib/fontawesome/fontawesome.min.css', type: 'text/css' });
+        //addTag('link', { rel: 'stylesheet', href: '/lib/resize/angular-resizable.min.css', type: 'text/css' });
+
+        addTag('link', { rel: 'stylesheet', href: '/css/main.css?v=' + version, type: 'text/css' });
+
+        //KSSClient
+        addTag('script', { src: 'js/KSSClient/api.js?v=' + version }, sync);
+        addTag('script', { src: 'js/KSSClient/engine.js?v=' + version }, sync);
+
+        addTag('script', { src: 'lib/angular/js/angular.min.js' }, sync);
+        //addTag('script', { src: 'lib/angular/js/angular-animate.min.js' }, sync);
+        addTag('script', { src: 'lib/angular/js/angular-route.min.js' }, sync);
+        addTag('script', { src: 'lib/angular/js/angular-sanitize.min.js' }, sync);
+        addTag('script', { src: 'lib/angular/js/angular-touch.min.js' }, sync);
+        //addTag('script', { src: 'lib/angular/js/angular-aria.min.js' }, sync);
+        //addTag('script', { src: 'lib/angular/js/angular-messages.min.js' }, sync);
+        //addTag('script', { src: 'lib/angular/js/angular-cookies.min.js' }, sync);
+
+        //ui-bootstrap
+        addTag('script', { src: 'lib/bootstrap/js/ui-bootstrap.js' }, sync);
+
+        //ui-grid
+        addTag('script', { src: 'lib/ui-grid/csv.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/pdfmake.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/vfs_fonts.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/lodash.min.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/jszip.min.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/excel-builder.dist.js' }, sync);
+        addTag('script', { src: 'lib/ui-grid/ui-grid-org.js?v=' + version }, sync);
+
+        //excel
+        addTag('script', { src: 'lib/sheetjs/js/xlsx.full.min.js' }, sync);
+
+        //ng-tags
+        addTag('script', { src: 'lib/ng-tags/ng-tags-input.min.js' }, sync);
+
+        //ng-storage
+        addTag('script', { src: 'lib/ng-storage/ngStorage.js' }, sync);
+
+        //Sweet Alert
+        addTag('script', { src: 'lib/sweetalert/sweetalert.min.js' }, sync);
+
+        //Drag And Drop
+        addTag('script', { src: 'lib/drag-drop/angular-drag-and-drop-lists.min.js' }, sync);
+
+        //Full Screen
+        addTag('script', { src: 'lib/fullscreen/angular-fullscreen.js' }, sync);
+
+        //resize
+        //addTag('script', { src: 'lib/resize/angular-resizeble.min.js' }, sync);
+
+        //App
+        addTag('script', { src: 'js/app.js?v=' + version }, sync);
+        addTag('script', { src: 'js/directive.js?v=' + version }, sync);
+        addTag('script', { src: 'js/service.js?v=' + version }, sync);
+        addTag('script', { src: 'js/filter.js?v=' + version }, sync);
+        addTag('script', { src: 'js/appctrl.js?v=' + version }, sync);
+
+        //Pages
+        addTag('script', { src: 'pages/Login/login.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Login/singlesignon.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Home/home.js?v=' + version }, sync);
+
+        addTag('script', { src: 'pages/Setup/setup.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Cost/PriceStd/pricestd.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Cost/DiscountStd/discountstd.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Cost/PriceApproval/priceapproval.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Cost/DiscountApproval/discountapproval.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Customer/CustomerGroup/CustomerGroup.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Customer/CountryGroup/countrygroup.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Customer/ShippingDate/shippingdate.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Customer/PortLoading/portloading.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/TextDisplay/SetRemark/setremark.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Setup/Default/KpiAvgPeriodDay/kpiavgperiodday.js?v=' + version }, sync);
+
+        addTag('script', { src: 'pages/Plan/plan.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/PlanList/planlist.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/Manage/manage.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/Approve/approve.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/ManagerApprove/managerapprove.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/Report/report.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/PlanVSActualReport/planvsactualreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/PlanFailReport/planfailreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/Forecast/forecast.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/bookingtransport/bookingtransport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/Remark/remark.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/SummaryReport/summaryreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Plan/Shipment/DeliveryReport/deliveryreport.js?v=' + version }, sync);
+
+        addTag('script', { src: 'pages/Sales/sales.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Sales/Report/PiVsForecastReport/pivsforecastreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Sales/Report/ciByItemsReport/cibyitemsreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Sales/Report/InvTurnoverReport/invturnoverreport.js?v=' + version }, sync);
+        addTag('script', { src: 'pages/Sales/Report/OderOnhandReport/orderonhandreport.js?v=' + version }, sync);
+
+    </script>
+    <script type="text/ng-template" id="helpContent.html">
+        <div class="modal-header bg-info">
+            <h3 class="modal-title" id="modal-title">Help</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+                <div class="panel panel-success" ng-repeat="v in contains">
+                    <div class="panel-heading"><span>{{ v.head }}</span></div>
+                    <div class="panel-body">
+                        <div ng-bind-html="v.html">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<uib-tabset active="active">
+                <uib-tab ng-repeat="v in contains" index="{{v.index}}">
+                    <uib-tab-heading>{{v.head}}</uib-tab-heading>
+                    <div ng-bind-html="v.html"></div>
+                </uib-tab>
+            </uib-tabset>-->
+
+        </div>
+        <div class="modal-footer bg-info">
+            <button class="btn btn-warning" ng-click="Cancel()">Close</button>
+        </div>
+    </script>
+</head>
+<body ng-cloak ng-controller="AppCtrl" windows-resize>
+    <!--style="zoom:90%;"-->
+    <div class="dev" ng-style="{ left: (width - 230)/2 + 'px' }" ng-show="dev">DEVELOPER MODE</div>
+    <div id="loadding">
+        <img src="img/loading.gif" width="256" />
+    </div>
+    
+    <nav class="navbar">
+        <div class="navbar-header">
+            <div class="form-inline header-menu" ng-class="{'hidex': smScreen}">
+                <a class="navbar-brand" href="/" ng-show="!smScreen">
+                    <img alt="KKF" width="45" src="img/logo.png">
+                </a>
+                <div class="navbar-brand text-head" ng-show="!smScreen"><a href="/" lang-code="TITLE_APP">ระบบขายต่างประเทศ</a></div>
+                <div class="btn btn-primary navbar-btn btn-menu"
+                     ng-click="Collapsed()" ng-if="!login">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
+            </div>
+
+            <div class="form-inline" ng-if="!login">
+                <div class="btn-group">
+                    <a class="btn btn-success navbar-btn"
+                       href="{{value.href}}"
+                       ng-repeat="(key, value) in menu"
+                       ng-click="ModeAction(key)"
+                       title="{{value.label}}"
+                       ng-class="{'active': value.active}">
+                        <span class="glyphicon {{ value.icon }}"></span>&nbsp;
+                        <span lang-code="{{value.langcode}}" ng-hide="smScreen">{{value.label}}</span>
+                    </a>
+                </div>
+                <!--<button class="btn btn-default" ng-click="ReloadStaticValue()" kkf-permssion-view="RELOAD_STATIC_VALUE"> ReloadStaticValue </button>-->
+                <div class="right" style="padding-top:8px;">
+                    <div class="btn-group" uib-dropdown>
+                        <button id="single-button" type="button" class="btn btn-warning" uib-dropdown-toggle>
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;
+                            <span ng-show="!smScreen">{{ username }}&nbsp;</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu right" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                            <li role="menuitem">
+                                <a href="#" ng-show="smScreen"><span>{{ username }}</span></a>
+                                <a href="#" ng-click="ChangePass()"><span>Change Password</span></a>
+                                <a href="#" ng-click="LogOut()"><span lang-code="BTN_LOGOUT">Log Out</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <script type="text/ng-template" id="ModalChangePassContent.html">
+                        <div class="modal-header bg-success">
+                            <h3 class="modal-title" id="modal-title">Change Password</h3>
+                        </div>
+                        <div class="modal-body" id="modal-body">
+                            <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label><span>Old Password</span> : </label>
+                                        <input type="password" ng-model="oldPass" ng-class="{ 'has-error' : errOld }" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span>New Password</span> : </label>
+                                        <input type="password" ng-model="newPass" ng-class="{ 'has-error' : errNew }" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span>Confirm Password</span> : </label>
+                                        <input type="password" ng-model="matchPass" ng-class="{ 'has-error' : errMatch }" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-success">
+                            <button class="btn btn-info" type="button" ng-click="Ok()">Save</button>
+                            <button class="btn btn-warning" type="button" ng-click="Cancel()">Cancel</button>
+                        </div>
+                    </script>
+                    <div class="btn-group" uib-dropdown>
+                        <button id="single-button" type="button" class="btn btn-info" uib-dropdown-toggle>
+                            <span><img src="{{ langSel.iconURL }}" width="18" /></span> <span ng-show="!smScreen">{{ langSel.description }}</span>
+                            &nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" style="min-width:inherit;" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                            <li role="menuitem" ng-repeat="v in lang">
+                                <a href="#" ng-click="ChangeLang(v.code)"><span><img src="{{ v.iconURL }}" width="18" /></span> <span>{{ v.description }}</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn btn-success" title="Full Screen." ng-show="!smScreen" ng-click="FullScreenAction()">
+                        <span class="glyphicon glyphicon-fullscreen"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="flex-container">
+        <div class="bg-tab" ng-class="{'bg-tab-show': !isCollapsed}" ng-click="TabAction(!isCollapsed)"></div>
+        <div class="slidenav bg-primary" ng-class="{'tab-show': isCollapsed, 'tab-hide': !isCollapsed}">
+            <div class="menu">
+                <div ng-repeat="(key1, value1) in menu">
+                    <div class="panel panel-primary"
+                         ng-if="value1.active"
+                         ng-repeat="(key2, value2) in value1.group"
+                         kkf-permssion-view="{{key2}}">
+                        <div class="panel-heading" ng-class="{'active': value2.active}" ng-click="MenuAction(value2)">
+                            <span lang-code="{{value2.langcode}}">{{ value2.label }}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': value2.active, 'glyphicon-chevron-right': !value2.active}"></i>
+                        </div>
+                        <div class="panel-collapse" ng-class="{'collapse': !value2.active}">
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a ng-repeat="(key3, value3) in value2.list"
+                                       href="{{value3.href}}" class="list-group-item"
+                                       kkf-permssion-view="{{key3}}"
+                                       lang-code="{{value3.langcode}}"
+                                       ng-class="{'active': isActive(value3.href)}">{{value3.label}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-veiw" ng-class="{'full': isCollapsed}">
+            <ng-view></ng-view>
+        </div>
+    </div>
+    <div ui-grid-clipboard ng-keydown="captureCopy($event)"></div>
+
+</body>
+</html>

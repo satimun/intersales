@@ -1,0 +1,281 @@
+﻿<div class="container-fluid" kkf-permssion-notfound="SETUP_CUSTOMER_CUSTOMERGROUP" lang-group="SETUP_CUSTOMER_CUSTOMERGROUP">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/setup">Setup</a></li>
+            <li class="active"><a href="#">Customer</a></li>
+        </ol>
+    </div>
+
+
+    <uib-tabset active="active">
+        <uib-tab select="tabChange()" index="0" heading="บันทึกกลุ่มลูกค้า">
+            <br />
+            <div class="">
+                <div class="panel panel-success model" ng-controller="GroupController">
+                    <div class="panel-heading">บันทึกกลุ่มลูกค้า</div>
+                    <div class="panel-body">
+
+                        <div class="form-inline">
+
+                            <div class="col-md-6">
+                                <label>ประเภทกลุ่มลูกค้า : </label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <kss-autocomplete id="'CustomerList'"
+                                                          list="CustomerList"
+                                                          placeholder="'ใส่ข้อมูล code ลูกค้า'"
+                                                          limit="10"
+                                                          stylex="'width:300px;'"
+                                                          ng-model="customerCode"
+                                                          ng-change="SetCustomerID"></kss-autocomplete>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="pull-right">
+                                <label>Filter : </label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm"
+                                               ng-model="txtS"
+                                               style="width: 250px;" />
+
+                                        <div class="input-group-addon btn btn-primary" style="cursor:pointer" ng-click="Fillterdata()">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row" style=" height:15px; clear: both;"></div>
+
+                        <div ng-keyup="keyupper()" ui-grid="gridOpt" ng-cloak ui-grid-selection ui-grid-cellNav ui-grid-edit ui-grid-resize-columns ui-grid-auto-resize class="grid" style="height:200px;"></div>
+
+                        <div class="row" style="height:15px; clear: both;"></div>
+
+                        <div div class="row">
+                            <div class="col-md-6">
+                                <span ng-hide="!chkSel">
+
+                                    <button type="button" class="btn btn-success" ng-click="ClickAct(0)">Active</button>
+                                    <button type="button" class="btn btn-warning" ng-click="ClickAct(1)">Inactive </button>
+                                    <button type="button" class="btn btn-danger" ng-click="ClickAct(2)">Remove</button>
+                                </span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <span ng-hide="!chkSel2">
+                                    <button ng-disabled="chkDis" type="button" class="btn btn-primary custom-button-width .navbar-right" ng-click="ClickAct2(0)">Save</button>
+                                    <button type="button" class="btn btn-default custom-button-width .navbar-right" ng-click="ClickAct2(1)">Cancel</button>
+                                </span>
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td><b>***หมายเหตุ***</b></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="right">รหัสกลุ่มลูกค้า :</tdalign="right">
+                                <td>หลักแรกต้องเป็น A-Z</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>หลักสองต้องเป็นตัวเลข 0-9</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>หลักสามต้องเป็นตัวเลข 0-9</td>
+                            </tr>
+                            <tr>
+                                <td>รายละเอียดกลุ่มลูกค้า :</td>
+                                <td>กรอกเป็นตัวอักษร ภาษาไทย หรือ อังกฤษ</td>
+                            </tr>
+                        </table>
+
+
+
+                    </div>
+                    <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                        <div class="tag-status" title="{{ IP_DB }}">
+                            {{ IP_DB }}sxsCustomerGroup
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </uib-tab>
+
+        <uib-tab index="1" select="tabChange()" heading="บันทึกความสัมพันธ์ลูกค้ากับกลุ่ม">
+            <br />
+            <div class="">
+                <div class="panel panel-success model">
+                    <div class="panel-heading">บันทึกความสัมพันธ์ลูกค้ากับกลุ่มลูกค้า</div>
+
+                    <div class="panel-body">
+                        <!-- Tab 2 -->
+                        <div ng-controller="GroupheadController">
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <label>ประเภทกลุ่มลูกค้า : </label>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <kss-autocomplete id="'CustomerList'"
+                                                              list="CustomerList"
+                                                              limit="10"
+                                                              stylex="'width:300px;'"
+                                                              ng-model="countryGroupCode"
+                                                              ng-change="SetCustomerID"></kss-autocomplete>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <!--<label>กลุ่มลูกค้า : </label>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm"
+                                                   ng-model="txtS"
+                                                   ng-change="TxtSearchChange(txtS)"
+                                                   style="width: 250px;"
+                                                   placeholder="{{ searchTooltip }}"
+                                                   uib-tooltip="{{ searchTooltip }}" />
+
+                                            <div class="input-group-addon btn btn-primary" style="cursor:pointer" ng-click="Loaddata()"><span class="glyphicon glyphicon-search"></span></div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+
+                            <div class="row" style=" height:15px; clear: both;"></div>
+                            <div ui-grid="gridOpt2" ng-cloak ui-grid-selection ui-grid-cellNav ui-grid-edit ui-grid-resize-columns ui-grid-auto-resize class="grid" style="height:200px;"></div>
+                            <div class="row" style="height:15px; clear: both;"></div>
+
+                        </div>
+                        <br />
+
+                        <!-- end -->
+                        <!-- Tab 3-->
+                        <div ng-controller="GroupdetailController">
+
+                            <div class="form-inline">
+                                <label>ค้นหา : </label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm"
+                                               ng-model="txtS"
+                                               style="width: 250px;" />
+
+                                        <div class="input-group-addon btn btn-primary" style="cursor:pointer" ng-click="Fillterdata2()">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </div>
+                                        <div class="input-group-addon btn btn-success" style="cursor:pointer" ng-click="MapCustomer()">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="height:15px; clear: both;"></div>
+                            <div ui-grid="gridOpt3" ui-grid-selection ui-grid-cellNav ui-grid-edit ui-grid-resize-columns ui-grid-auto-resize class="grid" style="height:250px;"></div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-inline">
+
+                                        <span ng-hide="!chkSel3">
+                                            <!--  <div class="btn-after-grid">-->
+                                            <label class="btn-after-grid">
+                                                <kss-autocomplete id="'groupIDList'"
+                                                                  list="groupIDList"
+                                                                  placeholder="'ใส่ข้อมูล code ลูกค้า'"
+                                                                  limit="15"
+                                                                  stylex="'width:250px;'"
+                                                                  ng-model="groupID"
+                                                                  ng-change="SetGroupID"></kss-autocomplete>
+                                            </label>
+                                            <button class="btn btn-warning" ng-click="ClickMove(0)">Move</button>
+                                            <button class="btn btn-danger" ng-click="ClickMove(1)">Remove</button>
+                                            <!--  -->
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!------------------------------ Model---------------------- -->
+                            <script type="text/ng-template" id="MapCustomerContent.html">
+                                <div class="modal-header bg-success">
+                                    <h3 class="modal-title" id="modal-title">บันทึกความสัมพันธ์ลูกค้าเข้ากลุ่ม :{{ txthearder }}</h3>
+                                </div>
+                                <div class="modal-body" id="modal-body">
+                                    <div windows-Resize class="modalContent" style="overflow:hidden;" ng-style="{ 'max-height': (height - 180) + 'px'}">
+
+
+                                        <div class="form-inline">
+                                            <label>ค้นหา : </label>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-sm"
+                                                           ng-model="txtS2"
+                                                           style="width: 250px;" />
+
+                                                    <div class="input-group-addon btn btn-primary" style="cursor:pointer" ng-click="Fillterdata3()">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="height:15px; clear: both;"></div>
+                                        <div ui-grid="gridOpt4" ui-grid-selection ui-grid-cellNav ui-grid-edit ui-grid-resize-columns ui-grid-auto-resize class="grid" style="height:350px;"></div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer bg-success">
+                                    <button class="btn btn-info" type="button" ng-click="ok()">OK</button>
+                                    <button class="btn btn-warning" type="button" ng-click="cancel()">CANCEL</button>
+                                </div>
+                            </script>
+
+
+
+
+
+
+                            <!-- end -->
+                        </div>
+
+                    </div>
+                    <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                        <div class="tag-status" title="{{ IP_DB }}">
+                            {{ IP_DB }} sxsCustomerGroup , sxsCustomer , sxsCustomerGroupMapping
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </uib-tab>
+
+
+
+    </uib-tabset> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+
+
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+
+</div>

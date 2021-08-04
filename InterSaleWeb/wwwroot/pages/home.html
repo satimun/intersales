@@ -1,0 +1,291 @@
+﻿//'use strict';
+//var page = angular.module("ProdCodePrice", []);
+//page
+app.controller("prodcodepriceController", function ($scope, $http, $log, $timeout) {
+
+    ///------------ grid 1 ----------------------
+    $scope.gridOptions1 = {
+        enableCellEditOnFocus: true,
+        //paginationPageSizes: [5, 10, 15],
+        //paginationPageSize: 5,
+        //enablePaginationControls: true,
+        enableRowSelection: true,
+        enableRowHeaderSelection: false,
+        //showGridFooter: true,
+        showColumnFooter: true
+    };
+
+    $scope.gridOptions1.multiSelect = false;
+    $scope.gridOptions1.columnDefs = [
+        {
+            name: 'headRow', displayName: '', enableCellEdit: false, width: '30', allowCellFocus: false, enableSorting: false, enableColumnMenu: false
+            , cellTemplate:
+            '<div class="ui-grid-cell-head">
+    ' +
+    '<input type="radio" ng-if="grid.appScope.cumulative(grid, row, col) && !row.isSelected" />' +
+    '<input type="radio" checked ng-if="grid.appScope.cumulative(grid, row, col) && row.isSelected" />' +
+    '<input type="button" value="X" ng-if="!grid.appScope.cumulative(grid, row, col)" />' +
+    '
+</div>',
+            footerCellTemplate: '<div class="ui-grid-cell-head"><input type="button" value="+" /></div>'
+        },
+        {
+            name: 'numRow', displayName: 'ลำดับ', enableCellEdit: false, allowCellFocus: false, enableSorting: false, enableColumnMenu: false, width: '55'
+            , cellTemplate: '<div class="ui-grid-cell-contents"><center>{{grid.appScope.cumulative(grid, row, col)}}</center></div>'
+        },
+        {
+            name: 'friends', displayName: 'test', enableCellEdit: false
+            , cellTemplate: '<div class="ui-grid-cell-contents">{{grid.appScope.cumulative(grid, row, col)}}</div>'
+        },
+        {
+            name: 'name', enableColumnMenu: false, displayName: 'เลขที่ตารางช่วงแสดงผล',
+            cellEditableCondition: function ($scope) {
+                return $scope.row.entity.isActive
+            },
+            footerCellTemplate: '<div class="ui-grid-footer-content"><input type="text"></div>'
+        },
+        {
+            name: 'age', displayName: 'ประเภทกำหนดราคา', type: 'number',
+            cellEditableCondition: function ($scope) {
+                return $scope.row.entity.isActive
+            },
+            footerCellTemplate: '<div class="ui-grid-footer-content"><input type="text"></div>'
+        },
+        {
+            name: 'gender', displayName: 'ประเภทสินค้า', editableCellTemplate: 'ui-grid/dropdownEditor',
+            cellFilter: 'mapGender', editDropdownValueLabel: 'gender', editDropdownOptionsArray: [
+                { id: 1, gender: 'male' },
+                { id: 2, gender: 'female' }
+            ],
+            cellEditableCondition: function ($scope) {
+                return $scope.row.entity.isActive
+            },
+            footerCellTemplate: '<div class="ui-grid-footer-content"><input type="text"></div>'
+        },
+        {
+            name: 'registered', displayName: 'ระดับคุณภาพ', type: 'date', cellFilter: 'date:"dd/MM/yyyy"',
+            cellEditableCondition: function ($scope) {
+                return $scope.row.entity.isActive
+            },
+            footerCellTemplate: '<div class="ui-grid-footer-content"><input type="text"></div>'
+        },
+        {
+            name: 'isActive', displayName: 'สกุลเงิน', type: 'boolean',
+            footerCellTemplate: '<div class="ui-grid-footer-content"><input type="text"></div>'
+        }
+    ];
+
+    $scope.cumulative = function (grid, myRow, myCol) {
+        //console.log(myRow.entity.friends);
+        //console.log(grid);
+        //console.log(myRow);
+        //console.log(myCol.field);
+
+        if (myCol.field == "headRow") {
+            if (myRow.entity.isActive) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (myCol.field == "numRow") {
+            //console.log(grid);
+            var numRow = 0;
+            grid.renderContainers.body.visibleRowCache.forEach(function (row, index) {
+                if (myRow.uid == row.uid) {
+                    numRow = (index + 1);
+                }
+            });
+            return numRow;
+        } else if (myCol.field == "friends") {
+            var myRowFound = false;
+            var cumulative = "";
+            myRow.entity.friends.forEach(function (row, index) {
+                //console.log(row)
+                if (index == 0) {
+                    cumulative += "" + row.name;
+                } else {
+                    cumulative += "<br />" + row.name;
+                }
+            });
+            return cumulative;
+        }
+        return false;
+    };
+
+    $scope.msg = {};
+
+    $scope.gridOptions1.onRegisterApi = function (gridApi) {
+        //set gridApi on scope
+        $scope.gridApi = gridApi;
+        gridApi.selection.on.rowSelectionChanged($scope,function(row){
+            //var msg = 'row selected ' + row.isSelected;
+            //$log.log(msg);
+            //console.log(row);
+      });
+        gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+            //$scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue;
+            //$scope.$apply();
+        });
+    };
+
+    //    //if (row.entity.age > 30) {
+    //    //    return false;
+    //    //} else {
+    //    //    return true;
+    //    //}
+    //    console.log(row);
+    //    return true;
+    //};
+
+    //$scope.gridOptions1.data = [
+    //    {
+    //        id: 1,
+    //        name: "SoMRuk",
+    //        type: 2.23,
+    //        gender: 1,
+    //        dateT: "1991-02-21T23:02:31+06:00",
+    //        isActive: false
+    //    }
+    //];
+
+    $http.get("https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/500_complex.json")
+        .then(function (response) {
+            //console.log(response.data);
+            for (i = 0; i < response.data.length; i++) {
+                response.data[i].registered = new Date(response.data[i].registered);
+                response.data[i].gender = response.data[i].gender === 'male' ? 1 : 2;
+            }
+            $scope.gridOptions1.data = response.data;
+        }, function () {
+            console.log("Error");
+        });
+
+
+    ///------------ grid 3 ----------------------
+    $scope.gridOptions3 = {
+        enableCellEditOnFocus: true,
+        paginationPageSizes: [5, 10, 15],
+        paginationPageSize: 5,
+        enablePaginationControls: true,
+        enableRowSelection: true,
+        enableRowHeaderSelection: false
+    };
+    $scope.gridOptions3.multiSelect = true;
+
+    $scope.gridOptions3.columnDefs = [
+        {
+            name: 'headRow', displayName: '', enableCellEdit: false, width: '30', allowCellFocus: false, enableSorting: false, enableColumnMenu: false
+            , cellTemplate:
+            '<div class="ui-grid-cell-head">
+    ' +
+    '<input type="checkbox" ng-if="grid.appScope.cumulative3(grid, row, col) && !row.isSelected"> ' +
+    '<input type="checkbox" checked ng-if="grid.appScope.cumulative3(grid, row, col) && row.isSelected"> ' +
+    '<span ng-if="!grid.appScope.cumulative3(grid, row, col)">X</span>' +
+    '
+</div>'
+        },
+        {
+            name: 'numRow', displayName: 'ลำดับ', enableCellEdit: false, allowCellFocus: false, enableSorting: false, enableColumnMenu: false, width: '55'
+            , cellTemplate: '<div class="ui-grid-cell-contents"><center>{{grid.appScope.cumulative3(grid, row, col)}}</center></div>'
+
+        },
+        {
+            name: 'friends', displayName: 'test', enableCellEdit: false
+            , cellTemplate: '<div class="ui-grid-cell-contents">{{grid.appScope.cumulative3(grid, row, col)}}</div>'
+        },
+        {
+            name: 'name', enableColumnMenu: false, displayName: 'เลขที่ตารางช่วงแสดงผล',
+            cellEditableCondition: function ($scope) {
+                //console.log($scope.row.entity.isActive);
+                return $scope.row.entity.isActive
+            }
+        },
+        { name: 'age', displayName: 'ประเภทกำหนดราคา', type: 'number' },
+        {
+            name: 'gender', displayName: 'ประเภทสินค้า', editableCellTemplate: 'ui-grid/dropdownEditor',
+            cellFilter: 'mapGender', editDropdownValueLabel: 'gender', editDropdownOptionsArray: [
+                { id: 1, gender: 'male' },
+                { id: 2, gender: 'female' }
+            ]
+        },
+        { name: 'registered', displayName: 'ระดับคุณภาพ', type: 'date', cellFilter: 'date:"dd/MM/yyyy"' },
+        { name: 'isActive', displayName: 'สกุลเงิน', type: 'boolean' }
+    ];
+
+    $scope.cumulative3 = function (grid, myRow, myCol) {
+        //console.log(grid);
+        //console.log(myRow);
+        //console.log(myCol.field);
+
+        if (myCol.field == "headRow") {
+            if (myRow.entity.isActive) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (myCol.field == "numRow") {
+            var numRow = 0;
+            grid.renderContainers.body.visibleRowCache.forEach(function (row, index) {
+                if (myRow.uid == row.uid) {
+                    numRow = (grid.appScope.gridOptions3.paginationPageSize * (grid.appScope.gridOptions3.paginationCurrentPage - 1)) + (index + 1);
+                }
+            });
+            return numRow;
+        } else if (myCol.field == "friends") {
+            var myRowFound = false;
+            var cumulative = "";
+            myRow.entity.friends.forEach(function (row, index) {
+                if (index == 0) {
+                    cumulative += "" + row.name;
+                } else {
+                    cumulative += "<br />" + row.name;
+                }
+            });
+            return cumulative;
+        }
+        return false;
+    };
+
+    $scope.msg = {};
+
+    $scope.gridOptions3.onRegisterApi = function (gridApi) {
+        //set gridApi on scope
+        $scope.gridApi = gridApi;
+        gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+            //var msg = 'row selected ' + row.isSelected;
+            //$log.log(msg);
+            //console.log(row);
+        });
+        gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+            //$scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue;
+            //$scope.$apply();
+        });
+    };
+
+    $http.get("https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/500_complex.json")
+        .then(function (response) {
+            //console.log(response.data);
+            for (i = 0; i < response.data.length; i++) {
+                response.data[i].registered = new Date(response.data[i].registered);
+                response.data[i].gender = response.data[i].gender === 'male' ? 1 : 2;
+            }
+            $scope.gridOptions3.data = response.data;
+        }, function () {
+            console.log("Error");
+        });
+})
+
+.filter('mapGender', function () {
+    var genderHash = {
+        1: 'male',
+        2: 'female'
+    };
+    return function (input) {
+        if (!input) {
+            return '';
+        } else {
+            return genderHash[input];
+        }
+    };
+});
+

@@ -1,0 +1,47 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "priceStdEffectiveDates": [
+      {
+        "id": 1,
+        "code": "17C02",
+        "effectiveDateFrom": "10/12/2017 00:00:00",
+        "effectiveDateTo": "20/12/2017 00:00:00",
+        "effectiveOldDateFrom": "",
+        "effectiveOldDateTo": "10/10/2016 00:00:00",
+        "countApprove": 99,
+        "countTotal": 100,
+        "status": "A",
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "10/10/2016 00:00:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        }
+      },
+      {
+        "id": 2,
+        "code": "17C01",
+        "effectiveDateFrom": "10/11/2017 00:00:00",
+        "effectiveDateTo": "20/11/2017 00:00:00",
+        "effectiveOldDateFrom": "10/10/2016 00:00:00",
+        "effectiveOldDateTo": "",
+        "countApprove": 99,
+        "countTotal": 100,
+        "status": "P",
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "10/10/2016 00:00:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": "10/10/2016 00:00:00"
+        }
+      }
+    ]
+  }
+}

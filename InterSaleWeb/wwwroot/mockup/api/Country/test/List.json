@@ -1,0 +1,19 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "countrys": [
+      {
+        "id": 1,
+        "code": "A01",
+        "description": "INDONESIA"
+      },
+      {
+        "id": 2,
+        "code": "A02",
+        "description": "THAILAND"
+      }
+    ]
+  }
+}

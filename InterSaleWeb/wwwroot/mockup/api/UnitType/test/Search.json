@@ -1,0 +1,41 @@
+﻿{
+  "status": "S",
+  "message": "SUCCESS",
+  "warning": [],
+  "data": {
+    "unitTypes": [
+      {
+        "id": 10,
+        "code": "3P",
+        "description": "x3Pack",
+        "amountMulti": "3",
+        "amountUnitCode": "PC",
+        "groupType": "S",
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016 10:12:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": ""
+        }
+      },
+      {
+        "id": 11,
+        "code": "4P",
+        "description": "x4Pack",
+        "amountMulti": "4",
+        "amountUnitCode": "PC",
+        "groupType": "S",
+        "create": {
+          "by": "6000626 : รัตนะ อุดทาโกสุม",
+          "datetime": "25/10/2016 10:12:00"
+        },
+        "modify": {
+          "by": "",
+          "datetime": ""
+        }
+      }
+    ]
+  }
+}

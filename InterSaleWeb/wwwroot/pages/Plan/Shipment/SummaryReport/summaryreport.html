@@ -1,0 +1,162 @@
+﻿<div class="container-fluid" lang-group="PLAN_SHIPMENT_SUMMARYREPORT" kkf-permssion-notfound="PLAN_SHIPMENT_SUMMARYREPORT">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/plan">plan</a></li>
+            <li><a href="#">shipment</a></li>
+            <li class="active"><a href="#">summaryreport</a></li>
+        </ol>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span lang-codeDisable="PN_PLANLIST">Shipment Plan Summary Report</span></div>
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="form-group w70-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year</span> : </label>
+                    <kss-pattern-input notnull="true"
+                                       ng-model="year"
+                                       ng-change="GenMonth"
+                                       maxlength="4"
+                                       pattern="^[0-9]{4}$"
+                                       placeholder="YYYY"></kss-pattern-input>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month From</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthFromID'"
+                                      list="monthFrom.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthFrom.view"
+                                      ng-change="monthFrom.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w150-mb5">
+                    <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Month To</span> : </label>
+                    <kss-autocomplete id="'ShipmentForecastMonthToID'"
+                                      list="monthTo.list"
+                                      placeholder=""
+                                      limit="15"
+                                      stylex=""
+                                      notnull="true"
+                                      ng-model="monthTo.view"
+                                      ng-change="monthTo.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group w100-mb5">
+                    <label class="w100p hidden-xs color-255">Seach</label>
+                    <button class="btn btn-info"
+                            ng-click="LoadData()"
+                            lang-codeDisable="BTN_SEARCH">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <div class="row both" style="height:15px;"></div>
+
+            <div active="active">
+                <ul class="nav nav-tabs">
+                    <li ng-repeat="v in tabList" ng-class="{ 'active': v.active }" class="uib-tab nav-item">
+                        <a href="#" ng-click="TabChange(v.id)" class="nav-link ">{{ v.description }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="panel panel-default tab-custom">
+                        <div class="panel-body pb-0">
+                            <div class="panel panel-success" ng-controller="shipmentSummaryReportGrid1Ctrl" ng-show="seltab !== 'S' && seltab !== 'R'"> 
+                                <div class="panel-heading">
+                                    <span lang-codeDisableDisable="PN_PLANLIST">Plan</span>
+                                    <div class="right"> <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                                </div>
+                                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                                    <div class="tag-status" title="{{ IP_DB }}">
+                                        {{ IP_DB }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success" ng-controller="shipmentSummaryReportGrid2Ctrl" ng-show="seltab !== 'S' && seltab !== 'R'">
+                                <div class="panel-heading">
+                                    <span lang-codeDisableDisable="PN_PLANLIST">Actual</span>
+                                    <div class="right"> <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                                </div>
+                                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                                    <div class="tag-status" title="{{ IP_DB }}">
+                                        {{ IP_DB }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success" ng-controller="shipmentSummaryReportGrid3Ctrl" ng-show="seltab === 'S'">
+                                <div class="panel-heading">
+                                    <span lang-codeDisableDisable="PN_PLANLIST">Plan vs Actual (Green Color Only Actual)</span>
+                                    <div class="right"> <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                                </div>
+                                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                                    <div class="tag-status" title="{{ IP_DB }}">
+                                        {{ IP_DB }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success" ng-controller="shipmentSummaryReportGrid4Ctrl" ng-show="seltab === 'R'">
+                                <div class="panel-heading">
+                                    <span lang-codeDisableDisable="PN_PLANLIST">Problems Summary</span>
+                                    <div class="right"> <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                                </div>
+                                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                                    <div class="tag-status" title="{{ IP_DB }}">
+                                        {{ IP_DB }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-success" ng-controller="shipmentSummaryReportGrid5Ctrl" ng-show="seltab === 'R'">
+                                <div class="panel-heading">
+                                    <span lang-codeDisableDisable="PN_PLANLIST">Problems Detail</span>
+                                    <div class="right"> <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:350px;"></div>
+                                </div>
+                                <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
+                                    <div class="tag-status" title="{{ IP_DB }}">
+                                        {{ IP_DB }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-inline right">
+                <button ng-click="Export(1)"
+                        ng-disabled="!btnExport"
+                        class="btn btn-primary margin-right-5px">
+                    Export Current Excel
+                </button>
+                <button ng-click="Export()"
+                        ng-disabled="!btnExport"
+                        class="btn btn-primary margin-right-5px">
+                    Export ALL Excel
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
+
+</div>

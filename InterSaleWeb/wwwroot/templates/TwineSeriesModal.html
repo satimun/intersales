@@ -1,0 +1,29 @@
+﻿<div class="modal-header bg-info">
+    <h3 class="modal-title" id="modal-title">Choose Twine Series.</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div windows-Resize class="modalContent" ng-style="{ 'max-height': (height - 180) + 'px'}">
+        <form class="form-inline">
+            <div class="form-group w350-mb5">
+                <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Filter</span> : </label>
+                <input type="text" class="form-control" ng-model="txtFind" placeholder="Code or Description" />
+            </div>
+            <div class="form-group w100-mb5">
+                <label class="w100p hidden-xs color-255">&nbsp;</label>
+                <button class="btn btn-info"
+                        ng-click="LoadData()"
+                        lang-codeDisable="BTN_SEARCH">
+                    Search
+                </button>
+            </div>
+        </form>
+        <div class="row both" ng-show="!priceMode"></div>
+        <label ng-show="!priceMode"><input type="checkbox" ng-model="priceTableAvailable" ng-change="LoadData()" /> Data Available in Price Table.</label>
+        <div class="row both"></div>
+        <div ui-grid="gridOpt" ui-grid-selection ui-grid-pinning ui-grid-cellNav ui-grid-move-columns ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid" style="height:300px;"></div>
+    </div>
+</div>
+<div class="modal-footer bg-info">
+    <button class="btn btn-primary" ng-disabled="!btnOk" ng-click="ok()">Ok</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

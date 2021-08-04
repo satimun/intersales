@@ -1,0 +1,1284 @@
+﻿{
+    "status": "S",
+    "message": "SUCCESS",
+    "warning": null,
+    "data": {
+        "priceStds": [
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16099,
+                        "priceStdTableType": "C",
+                        "priceStdTableCode": "A00CMPU18201-1",
+                        "priceFOB": 5,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    },
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0141/*058U400F",
+                "productRange": null,
+                "productDescription": "014 1.59*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0143/*034U400F",
+                "productRange": null,
+                "productDescription": "014 1.91*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                  {
+                    "priceStdValueID": 16100,
+                    "priceStdTableType": "R",
+                    "priceStdTableCode": "A00RMPU18202-1",
+                    "priceFOB": 3,
+                    "priceCAF": 0,
+                    "priceCIF": 0,
+                    "effectiveStatus": "V",
+                    "priceStatus": "A"
+                  }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015F/*034ผ0708",
+                "productRange": null,
+                "productDescription": "015 1.91*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*034ผ1008",
+                "productRange": null,
+                "productDescription": "015 1.91*100*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0141/*078U4000",
+                "productRange": null,
+                "productDescription": "014 2.22*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0140/*100U400F",
+                "productRange": null,
+                "productDescription": "014 2.54*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*100ผ1008",
+                "productRange": null,
+                "productDescription": "015 2.54*100*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*100ผ1008",
+                "productRange": null,
+                "productDescription": "015 2.54*100*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015O/*100ผ0708",
+                "productRange": null,
+                "productDescription": "015 2.54*70*68.58 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0152/*100ผ0508",
+                "productRange": null,
+                "productDescription": "015 2.54*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0151/0254ผ0500",
+                "productRange": null,
+                "productDescription": "015 2.54*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*114Q050F",
+                "productRange": null,
+                "productDescription": "014 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*114B050F",
+                "productRange": null,
+                "productDescription": "014 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*1143050F",
+                "productRange": null,
+                "productDescription": "014 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0145/*114B050F",
+                "productRange": null,
+                "productDescription": "014 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M014B/*114B050F",
+                "productRange": null,
+                "productDescription": "014 3.18*50*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0151/0318ผ0500",
+                "productRange": null,
+                "productDescription": "015 3.18*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0152/*114ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.18*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*114ร0508",
+                "productRange": null,
+                "productDescription": "015 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*114ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.18*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015C/*114ผ1008",
+                "productRange": null,
+                "productDescription": "015 3.18*100*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/+038ผ0608",
+                "productRange": null,
+                "productDescription": "015 3.8*60*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*112U400F",
+                "productRange": null,
+                "productDescription": "014 3.81*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0155/*112ผ0608",
+                "productRange": null,
+                "productDescription": "015 3.81*60*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0155/*112ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0154/N722ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*91.4 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015L/*112ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*86.87 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*112ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*112ร0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*112ผ0508",
+                "productRange": null,
+                "productDescription": "015 3.81*50*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015O/*112ผ0708",
+                "productRange": null,
+                "productDescription": "015 3.81*70*68.58 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015F/*112ผ0708",
+                "productRange": null,
+                "productDescription": "015 3.81*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015F/*112ร0708",
+                "productRange": null,
+                "productDescription": "015 3.81*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015C/*112ร1008",
+                "productRange": null,
+                "productDescription": "015 3.81*100*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*112ร1008",
+                "productRange": null,
+                "productDescription": "015 3.81*100*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015V/*112ผ1008",
+                "productRange": null,
+                "productDescription": "015 3.81*100*82.3 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015L/*112ร1008",
+                "productRange": null,
+                "productDescription": "015 3.81*100*86.87 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015C/*112ผ0808",
+                "productRange": null,
+                "productDescription": "015 3.81*80*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*158U400F",
+                "productRange": null,
+                "productDescription": "014 4.13*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015L/*134ร1008",
+                "productRange": null,
+                "productDescription": "015 4.45*100*86.87 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M012R/*134K0504",
+                "productRange": null,
+                "productDescription": "012 4.45*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*134ผ0508",
+                "productRange": null,
+                "productDescription": "015 4.45*50*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015F/*134ผ0708",
+                "productRange": null,
+                "productDescription": "015 4.45*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*178U400F",
+                "productRange": null,
+                "productDescription": "014 4.76*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*200U400F",
+                "productRange": null,
+                "productDescription": "014 5.08*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*214U400F",
+                "productRange": null,
+                "productDescription": "014 5.72*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0149/*212U400F",
+                "productRange": null,
+                "productDescription": "014 6.35*400*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0152/*234ผ1008",
+                "productRange": null,
+                "productDescription": "015 6.99*100*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/*234ผ0708",
+                "productRange": null,
+                "productDescription": "015 6.99*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/0015ผ0708",
+                "productRange": null,
+                "productDescription": "015 7.5*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/7.50ผ0700",
+                "productRange": null,
+                "productDescription": "015 7.5*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015D/*300ผ1008",
+                "productRange": null,
+                "productDescription": "015 7.62*100*91.44 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M015F/*300ผ0708",
+                "productRange": null,
+                "productDescription": "015 7.62*70*73.15 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/*300ผ0708",
+                "productRange": null,
+                "productDescription": "015 7.62*70*68.58 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            },
+            {
+                "priceValues": [
+                    {
+                        "priceStdValueID": 16100,
+                        "priceStdTableType": "R",
+                        "priceStdTableCode": "A00RMPU18202-1",
+                        "priceFOB": 3,
+                        "priceCAF": 0,
+                        "priceCIF": 0,
+                        "effectiveStatus": "V",
+                        "priceStatus": "A"
+                    }
+                ],
+                "_result": {
+                    "_status": "S",
+                    "_message": "SUCCESS"
+                },
+                "productCode": "M0150/*312ร0708",
+                "productRange": null,
+                "productDescription": "015 8.89*70*68.58 DK T M206",
+                "productGradeCode": "P",
+                "customerCode": "A0000"
+            }
+        ]
+    }
+}

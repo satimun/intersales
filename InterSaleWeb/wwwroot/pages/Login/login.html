@@ -1,0 +1,23 @@
+﻿<div id="login-block">
+    <div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><span style="font-size:18px;">Please Log In</span></div>
+            <div class="panel-body">
+                <form>
+                    <label>Username : </label>
+                    <div class="form-group">
+                        <input type="text" class="form-control login-form" ng-model="userName" placeholder="Username">
+                    </div>
+                    <label>Password : </label>
+                    <div class="form-group">
+                        <input type="password" class="form-control login-form" ng-model="passWord" placeholder="Password">
+                    </div>
+                    <div class="form-inline">
+                        <!--<label>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">ลืมรหัสผ่าน</a></label>-->
+                        <button type="submit" class="btn btn-primary right" ng-click="LogInAction()">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
