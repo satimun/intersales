@@ -13,6 +13,8 @@ app.controller("shipmentCompareReportController", function ($rootScope, $scope, 
         $scope.planDate = (m > 12 ? '01' : m) + '/' + (m > 12 ? d.getFullYear() + 1 : d.getFullYear());
     }
 
+    
+
     // Set Week
     $scope.weeks = [];
     $scope.weekList = [];
@@ -559,6 +561,35 @@ app.controller("shipmentCompareReportController", function ($rootScope, $scope, 
 
     };
 
+    $scope.onSize = function (mode)
+    {
+        var height = document.getElementsByClassName('grid')[0].clientHeight;
+        if (height == 0) {
+            height = document.getElementsByClassName('grid')[1].clientHeight;
+        }
+        var size = $scope.chgSize;
+        var offsetValueHeight = window.innerHeight && document.documentElement.clientHeight ?
+            Math.min(window.innerHeight, document.documentElement.clientHeight) :
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.getElementsByTagName('body')[0].clientHeight;
+        if (size == undefined) {
+            size = 0;
+        }
+
+        var newHeight = parseInt(offsetValueHeight);
+        switch (mode) {
+            case "1":
+                newHeight = parseInt(height + size);
+                break;
+            case "-1":
+                newHeight = parseInt(height - size);
+                break;
+        }
+        //console.log(height, size, newHeight, mode)
+        angular.element(document.getElementsByClassName('grid')).css('height', newHeight + 'px');
+    };
+
 });
 
 app.controller("shipmentCompareReport1Ctrl", function ($rootScope, $scope, common) {
@@ -632,6 +663,26 @@ app.controller("shipmentCompareReport1Ctrl", function ($rootScope, $scope, commo
     $scope.help1 = [
         { head: 'คำอธิบายสีใน Grid', html: htmlHelp }
     ];
+
+    $scope.getTableHeight = function (newHeight) {
+        var rowHeight = 30; // your row height
+        var headerHeight = 30; // your header height
+       // var offsetValue = 365;
+        var offsetValueHeight = window.innerHeight && document.documentElement.clientHeight ?
+            Math.min(window.innerHeight, document.documentElement.clientHeight) :
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.getElementsByTagName('body')[0].clientHeight;
+        ///console.log(offsetValueHeight)
+       /* return {
+            height: ($scope.gridOpt.data.length * rowHeight + headerHeight) + "px"
+        };*/
+        // parseInt(window.innerHeight - offsetValue)
+        if (newHeight == undefined) {
+            newHeight = offsetValueHeight;
+        }
+        return "height: " + parseInt(newHeight) + "px!important";
+    };
 
 });
 
@@ -717,6 +768,14 @@ app.controller("shipmentCompareReport2Ctrl", function ($rootScope, $scope, commo
     $scope.help1 = [
         { head: 'คำอธิบายสีใน Grid', html: htmlHelp }
     ];
+
+    $scope.getTableHeight = function () {
+        var rowHeight = 30; // your row height
+        var headerHeight = 30; // your header height
+        return {
+            height: ($scope.gridOpt.data.length * rowHeight + headerHeight) + "px"
+        };
+    };
 
 });
 

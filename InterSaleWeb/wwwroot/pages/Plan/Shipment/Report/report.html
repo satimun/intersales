@@ -120,10 +120,11 @@
                     <div class="right">
                         <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label>
                     </div>
+                    
                 </div>
                 <div class="panel-body">
                     <!-- ui-grid -->
-                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:300px;"></div>
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" ng-style="getTableHeight()"></div>
                 </div>
                 <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
                     <div class="tag-status" title="{{ IP_DB }}sxtShipmentPlanH, sxtShipmentPlanD, sxsRemark, [saleex].dbo.COMMERCIAL1MST, [saleex].dbo.COMMERCIAL1TRN">
@@ -137,11 +138,12 @@
                     <span lang-codeDisableDisable="PN_PLANLIST">Shipment Plan Report : Compare</span>
                     <div class="right">
                         <label class="btn btn-xs btn-info" title="Help" ng-click="ModalHelp(help1)"><i class="glyphicon glyphicon-question-sign"></i></label>
-                    </div>                      
+                    </div>
+
                 </div>
                 <div class="panel-body">
                     <!-- ui-grid -->
-                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" style="height:300px;"></div>
+                    <div ui-grid="gridOpt" ui-grid-cellNav ui-grid-move-columns ui-grid-pinning ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-cell-selection class="grid multi-line" ng-style="getTableHeight()"></div>
                 </div>
                 <div class="panel-footer" kkf-permssion-view="STATUS_BAR">
                     <div class="tag-status" title="{{ IP_DB }}sxtShipmentPlanH, sxtShipmentPlanD, sxsRemark, [saleex].dbo.COMMERCIAL1MST, [saleex].dbo.COMMERCIAL1TRN, [saleex].dbo.COMMERCIAL1TRN, [saleex].dbo.COMMERCIAL2MST, [saleex].dbo.COMMERCIAL2TRN">
@@ -150,20 +152,33 @@
                 </div>
             </div>
 
-            <div class="form-inline right">
-                <div class="form-group">
-                    <label><input type="checkbox" ng-model="hideValue" /> <span>Hide Value</span> </label>
-                </div>
-                &nbsp;&nbsp;
-                <button ng-click="ExportExcel()"
-                        ng-disabled="!btnExport"
-                        class="btn btn-primary margin-right-5px">
-                    Export Excel
+            <div class="form-inline left">
+                Resize ตาราง :
+                <button ng-click="onSize('-1')"
+                        class="btn btn-default margin-right-5px font-weight-bold">
+                     -
+                </button>
+                <input type="number" ng-model="chgSize"  class="form-control sm" style="width:90px;" placeholder="ระบุตัวเลข" />
+                <button ng-click="onSize('1')"
+                        class="btn btn-default margin-right-5px">
+                    +
                 </button>
             </div>
 
+                <div class="form-inline right">
+                    <div class="form-group">
+                        <label><input type="checkbox" ng-model="hideValue" /> <span>Hide Value</span> </label>
+                    </div>
+                    &nbsp;&nbsp;
+                    <button ng-click="ExportExcel()"
+                            ng-disabled="!btnExport"
+                            class="btn btn-primary margin-right-5px">
+                        Export Excel
+                    </button>
+                </div>
+
+            </div>
         </div>
-    </div>
 
     <div class="footerbar">COPYRIGHT &copy; {{ footerText }}</div>
 
