@@ -113,7 +113,7 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
         } catch (ex) {
             console.log(ex);
         }
-        $scope.monthTo.list = $scope.monthFrom.list.filter(x => x.id >= id);
+        $scope.monthTo.list = $scope.yearFrom != $scope.yearTo ? $scope.monthFrom.list : $scope.monthFrom.list.filter(x => x.id >= id);
         if ($scope.monthTo.id < $scope.monthFrom.id) { $scope.monthTo.view = $scope.monthFrom.view; }
     };
 
@@ -279,7 +279,6 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
                 });
 
                 $rootScope.piForecastData = res.data.profomaInvoices;
-                //console.log(res.data.profomaInvoices)
                 $rootScope.SalesReportPiVsForecastReportGridCtrl_SetData();
 
                 $scope.dataH = {
@@ -746,7 +745,6 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
                         o.total[`_actual${y}`].value += v.actual.value;
                     }
                 });
-                console.log(o);
             } else {
 
                 o.total.forecast.weight += d.forecast.weight;
