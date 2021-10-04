@@ -14,15 +14,18 @@ app.controller("shipmentForecastReportController", function ($rootScope, $scope,
             data: { year: year },
             callback: function (res) {
                 var tmp = []
+                let costd = null;
                 res.data.costs.forEach(function (v) {
                     v.description = `ต้นทุนชุดที่ ${v.id}`;
                     tmp.push({ id: v.id, view: v.description });
-                    if (v.defaultFlag === 'Y') {
-                        $scope.cost.view = v.description;
+                    if (v.defaultFlag == 'Y') {
+                        costd = v.description;
                     }
-                });
+                });                
                 $scope.cost.list = tmp;
+                $scope.cost.view = costd;
                 $scope.$apply();
+                
             },
             error: function (res) {
                 common.AlertMessage("Error", res.message);
@@ -189,7 +192,7 @@ app.controller("shipmentForecastReportController", function ($rootScope, $scope,
     $rootScope.shipmentForecastData = [];
 
     $scope.LoadData = function () {
-        if ($scope.cost.id === undefined) {
+        if (!$scope.cost.id) {
             return false;
         }
 

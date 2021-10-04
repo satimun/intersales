@@ -140,7 +140,7 @@ app.directive('kssAutocomplete', function ($filter) {
                 scope.val = '';
             };
             scope.change = (val) => {
-                var tmp = $filter('filter')(scope.list, { 'view': val });
+                var tmp = scope.list.filter(v => v.view == val);
                 if (val) { scope.error = true; } else { if (scope.notnull) scope.error = true; else scope.error = false; }
                 if (angular.isArray(tmp)) {
                     if (tmp.length === 1 && scope.val !== '') {
