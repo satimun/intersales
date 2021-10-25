@@ -8,9 +8,10 @@ namespace InterSaleModel.Model.Entity
     {
         public int ID { get; set; }
         public string Code { get; set; }
-        public string Code2 { get; set; }
         public string CodeOld { get; set; }
+        public string CodeNew { get; set; }
         public string Description { get; set; }
+        public string DescriptionNew { get; set; }
         public int Revision { get; set; }
         public string Status { get; set; }
         public int CreateBy { get; set; }

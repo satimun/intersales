@@ -1,6 +1,7 @@
 ﻿using InterSaleModel.Model.API.Request;
 using InterSaleModel.Model.API.Response;
 using InterSaleModel.Model.API.Response.PublicModel;
+using InterSaleModel.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,19 @@ namespace InterSaleApi.Engine.API.InvTurnOver
             //this.ExecuteForecast(dataRequest, dataResponse);
             var kpis = ADO.AvgDateAmtKPIADO.GetInstant().Search(new InterSaleModel.Model.API.Request.PublicRequest.SearchRequest()
             {
-                ids = new List<string>() { dataReq.year.ToString() }, ids1 = new List<string>(), status = new List<string>() { "A" }
+                ids = new List<string>() { dataReq.year.ToString() },
+                ids1 = new List<string>(),
+                status = new List<string>() { "A" }
             });
+
+            //prdouct color
+            List<sxsProductColor> productColor = new List<sxsProductColor>();
+            productColor = ADO.ProductColorADO.GetInstant().Search(new InterSaleModel.Model.API.Request.PublicRequest.SearchRequest() { status = new List<string>() { "A" } });
+            productColor.ForEach(v => v.Description = string.Concat(v.DescriptionNew, " (", v.CodeOld, ")"));
+
             ADO.InventoryRatoADO.GetInstant().Search(dataReq).ForEach(x =>
             {
+                var pc = productColor.Find(v => v.ID == x.Color_ID);
                 dataRes.invTurnOvers.Add(new InvTurnOverReportRes.InventoryTurnOver()
                 {
                     zone = new INTIdCodeDescriptionModel() { id = x.Zone_ID, code = x.Zone_Code, description = x.Zone_Des },
@@ -28,7 +38,7 @@ namespace InterSaleApi.Engine.API.InvTurnOver
                     customer = new INTIdCodeDescriptionModel() { id = x.Customer_ID, code = x.Customer_Code, description = x.Customer_Des },
                     productType = new INTIdCodeDescriptionModel() { id = x.ProductType_ID, code = x.ProductType_Code, description = x.ProductType_Des },
                     diameter = x.Diameter,
-                    color = new INTIdCodeDescriptionModel() { id = x.Color_ID, code = x.Color_Code, description = x.Color_Des },
+                    color = new INTIdCodeDescriptionModel() { id = x.Color_ID, code = pc.CodeNew, description = pc.Description },
                     salesCost = x.SalesCost,
                     salesWeight = x.SalesWeight,
                     quotedCost = x.QuotedCost,
@@ -46,7 +56,7 @@ namespace InterSaleApi.Engine.API.InvTurnOver
                     avgPeriodDayKPI = kpis.Where(z => z.ZoneAccount_ID == x.Zone_ID).Select(z => z.AvgPeriodDay).ToList().FirstOrDefault(),
 
                     day = x.Day,
-                    dayLast = x.Day_Last,                    
+                    dayLast = x.Day_Last,
                 });
             });
 

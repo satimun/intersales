@@ -50,8 +50,7 @@
     "compounds": [
         {
           "name": "Run Dev",
-          "configurations": ["Server", "Client"],
-          "preLaunchTask": "${defaultBuildTask}"
+          "configurations": ["Server", "Client"]
         }
       ]
 }

@@ -97,6 +97,7 @@ namespace InterSaleApi.Engine.API.ProformaInvoice
                 else if (l == 10) // product Color
                 {
                     productColor = ADO.ProductColorADO.GetInstant().Search(new InterSaleModel.Model.API.Request.PublicRequest.SearchRequest() { status = new List<string>() { "A" } });
+                    productColor.ForEach(v => v.Description = string.Concat(v.DescriptionNew, " (", v.CodeOld, ")"));
                 }
                 else if (l == 11 && dataReq.MaterialGroup)
                 {
@@ -140,7 +141,7 @@ namespace InterSaleApi.Engine.API.ProformaInvoice
                 var productTypeTmp = productType.Find(v => v.Code == x.First().ProductTypeCode);
                 if (productTypeTmp != null || (productTypeTmp?.Code == x.First().ProductTypeCode))
                 {
-                    var productColorTmp = productColor.Find(v => v.CodeOld == x.First().ColorCode);
+                    var productColorTmp = productColor.Find(v => v.CodeNew == x.First().ColorCode);
                     var materialGroupTmp = materialGroup.Find(v => v.ID == productTypeTmp?.MaterialGroup_ID);
 
                     var tmp = new ProformaInvoiceCompareForecastReportRes.pic()
