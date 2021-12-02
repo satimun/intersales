@@ -50,15 +50,41 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
         let dateFrom = new Date();
         let dateTo = new Date();
         if (ytd) {
-            $scope.yearFrom = d.getFullYear() - 1;
-            $scope.yearTo = d.getFullYear();
+            //-- ป้อมปรับ YTD = เดือน 11 ปีปัจจุบัน - เดือน 10 ปีหน้า
+            if (d.getMonth() < 11) {
+                $scope.yearFrom = d.getFullYear() - 1;
+                $scope.yearTo = d.getFullYear();
+            } else {
+                $scope.yearFrom = d.getFullYear();
+                $scope.yearTo = d.getFullYear() + 1;
+            }
+            //$scope.yearFrom = d.getFullYear() - 1;
+            //$scope.yearTo = d.getFullYear();
+            
             dateFrom = new Date($scope.yearFrom, 10, 1);
             var td = new Date($scope.yearTo, 10, 0);
-            if ($scope.dtpTo.getTime() > td.getTime()) {
+            if (d.getMonth() < 11)
+            {
+                 if ($scope.dtpTo.getTime() > td.getTime()) {
+                    dateTo = td;
+                 }
+            }
+            else {
                 dateTo = td;
             }
+            //console.log(dateTo)
+            
+            //if ($scope.dtpTo.getTime() > td.getTime()) {
+            //    dateTo = td;
+            //}
         } else {
-            $scope.yearFrom = $scope.yearTo;
+            //$scope.yearFrom = $scope.yearTo;
+            if (d.getMonth() < 11) {
+                $scope.yearFrom = $scope.yearTo;
+            } else {
+                $scope.yearTo = $scope.yearFrom;
+            }
+           
             dateFrom = new Date($scope.yearTo, d.getMonth(), 1);
             dateTo = new Date($scope.yearTo, d.getMonth() + 1, 0);
         }
@@ -67,6 +93,8 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
         $timeout(() => {
             $scope.monthTo.view = dateTo.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + dateTo.getFullYear() : '');
         });
+        // console.log(dateTo)
+        // console.log($scope.monthTo)
     };
 
     // load & set MonthTo
@@ -91,14 +119,43 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
 
     $scope.genMonth = (year) => {
         $scope.monthFrom.list = [];
+        //if ($scope.ytd) {
+        //    for (var j = 10; j < 12; j++) { var date1 = new Date(year - 1, j, 1); $scope.monthFrom.list.push({ id: date1.getFullYear() + ':' + j, view: date1.toLocaleString("en-us", { month: "long" }).concat(' ' + date1.getFullYear()) }); }
+        //}
+        //for (var i = 0; i < 12; i++) {
+        //    var date = new Date(year, i, 1);
+        //    $scope.months.push(date.toLocaleString("en-us", { month: "long" }));
+        //    $scope.monthFrom.list.push({ id: date.getFullYear() + ':' + (i < 10 ? '0' + i : i), view: date.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + date.getFullYear() : '') });
+        //}
+
         if ($scope.ytd) {
-            for (var j = 10; j < 12; j++) { var date1 = new Date(year - 1, j, 1); $scope.monthFrom.list.push({ id: date1.getFullYear() + ':' + j, view: date1.toLocaleString("en-us", { month: "long" }).concat(' ' + date1.getFullYear()) }); }
+            if (d.getMonth() < 11) {
+                for (var j = 10; j < 12; j++) { var date1 = new Date(year - 1, j, 1); $scope.monthFrom.list.push({ id: date1.getFullYear() + ':' + j, view: date1.toLocaleString("en-us", { month: "long" }).concat(' ' + date1.getFullYear()) }); }
+                for (var i = 0; i < 12; i++) {
+                    var date = new Date(year, i, 1);
+                    $scope.months.push(date.toLocaleString("en-us", { month: "long" }));
+                    $scope.monthFrom.list.push({ id: date.getFullYear() + ':' + (i < 10 ? '0' + i : i), view: date.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + date.getFullYear() : '') });
+                }
+            } else {
+                for (var i = 10; i < 12; i++) {
+                    var date = new Date(year, i, 1);
+                    $scope.months.push(date.toLocaleString("en-us", { month: "long" }));
+                    $scope.monthFrom.list.push({ id: date.getFullYear() + ':' + (i < 10 ? '0' + i : i), view: date.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + date.getFullYear() : '') });
+                }
+                for (var j = 0; j < 10; j++) {
+                    var date1 = new Date(year + 1, j, 1);
+                    $scope.monthFrom.list.push({ id: date1.getFullYear() + ':' + j, view: date1.toLocaleString("en-us", { month: "long" }).concat(' ' + date1.getFullYear()) });
+                }
+            }
+            
+        } else {
+            for (var i = 0; i < 12; i++) {
+                var date = new Date(year, i, 1);
+                $scope.months.push(date.toLocaleString("en-us", { month: "long" }));
+                $scope.monthFrom.list.push({ id: date.getFullYear() + ':' + (i < 10 ? '0' + i : i), view: date.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + date.getFullYear() : '') });
+            }
         }
-        for (var i = 0; i < 12; i++) {
-            var date = new Date(year, i, 1);
-            $scope.months.push(date.toLocaleString("en-us", { month: "long" }));
-            $scope.monthFrom.list.push({ id: date.getFullYear() + ':' + (i < 10 ? '0' + i : i), view: date.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + date.getFullYear() : '') });
-        }
+        
         $scope.monthFrom.view = d.toLocaleString("en-us", { month: "long" }).concat($scope.ytd ? ' ' + d.getFullYear() : '');
     };
     $scope.genMonth(d.getFullYear());
