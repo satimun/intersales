@@ -49,7 +49,7 @@ namespace InterSaleApi
                 {
                     builder
                     .AllowAnyOrigin()
-                    .WithOrigins("http://localhost:8082", "https://intersales.kkfnets.com", "http://devintersales.kkfnets.com")
+                    .WithOrigins("http://localhost:8082", "https://intersales.kkfnets.com", "http://intersales.kkfnets.com", "http://devintersales.kkfnets.com")
                     //.WithMethods("GET", "PUT", "POST", "DELETE")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
