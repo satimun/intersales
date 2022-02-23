@@ -1,9 +1,10 @@
 ﻿KSSClient = typeof KSSClient && {};
 KSSClient.API = KSSClient.API || {};
 
+
 var path = "";
 if (select_mode === 1) { path = "http://localhost:8083/v1/api/"; }
-else if (select_mode === 2) { path = "http://devintersales.kkfnets.com:8080/v1/api/"; }
+else if (select_mode === 2) { path = "https://intersalesapis.kkfnets.com/v1/api/"; }
 else if (select_mode === 3) { path = "https://intersalesapis.kkfnets.com/v1/api/"; }
 
 KSSClient.API.CountLoading = 0; 
@@ -64,6 +65,7 @@ KSSClient.API.Call = function (option) {
         if (KSSClient.API.CountLoading == 0) { loadding.style.display = 'none'; }
     };
     xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
     xhr.send(data);
     setTimeout(function () {
         if (KSSClient.API.CountLoading > 0)

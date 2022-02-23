@@ -1732,9 +1732,9 @@ app.controller("priceStdFilter", function ($rootScope, $scope, $timeout, $filter
         $rootScope.PriceAddEdit('Price Product Spec Header', chk);
     };
 
-    $scope.UpdateStatus = (status) => {
+    $scope.UpdateStatus = (status, priceEffectiveDateID = '') => {
         KSSClient.API.PriceStd.UpdateStatusRangeH({
-            data: { ids: $scope.gridApi.selection.getSelectedRows().map(x => x.id), status: status },
+            data: { ids: $scope.gridApi.selection.getSelectedRows().map(x => x.id), status: status, priceEffectiveDateID: priceEffectiveDateID },
             callback: (res) => { common.AlertMessage('Success', '').then((ok) => { $scope.Cancel(); }); },
             error: (res) => { common.AlertMessage("Error", res.message); }
         });
@@ -1743,9 +1743,11 @@ app.controller("priceStdFilter", function ($rootScope, $scope, $timeout, $filter
     $scope.UpdateStatusAction = (status) => {
         if (status === 'C') {
             var msg = "";
+            var priceEffectiveDateID = $rootScope.selectGrid[1].id;
+            //console.log($rootScope)
             $scope.gridApi.selection.getSelectedRows().forEach(function (row) { if (!row.totalRow) msg += row.minTwineSize.code + ' - ' + row.maxTwineSize.code + ' ' + row.unitType.code + '\n'; });
-            common.ConfirmDialog('Are you sure?', 'Remove Product Spec : \n' + msg).then((ok) => { if (ok) $scope.UpdateStatus(status); });
-        } else { $scope.UpdateStatus(status); }
+            common.ConfirmDialog('Are you sure?', 'Remove Product Spec : \n' + msg).then((ok) => { if (ok) $scope.UpdateStatus(status, priceEffectiveDateID); });
+        } else { $scope.UpdateStatus(status, priceEffectiveDateID); }
     };
 
     $scope.Save = () => {

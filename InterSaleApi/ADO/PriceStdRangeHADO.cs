@@ -106,6 +106,7 @@ namespace InterSaleApi.ADO
             param.Add("@ids", StringUtil.Join(",", d.ids));
             param.Add("@status", StringUtil.GetStringValue(d.status));
             param.Add("@empID", empID);
+            param.Add("@priceEffectiveDateID", d.priceEffectiveDateID);
 
             return QuerySP<UpdateStatusRes.idStatus>(transac, "SP_PriceStdRangeH_UpdateStatus", param, logger).ToList();
         }

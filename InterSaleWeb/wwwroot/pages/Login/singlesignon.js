@@ -30,10 +30,19 @@ app.controller("singlesignonController", function ($rootScope, $scope, $location
         },
         error: function (res) {
             if (RegExp('^O9', 'i').test(res.message)) {
+                
                 if (select_mode === 1) {
+                    //common.AlertMessage("Error", "1");
                     $window.location.href = '/login';
                 } else {
-                    $window.location.href = `https://singlesignon.kkfnets.com/member/signin/?backurl=${encodeURI($window.location.href)}`;
+                    if (select_mode == 3) {
+                        //common.AlertMessage("Error", "3");
+                        $window.location.href = `https://singlesignon.kkfnets.com/member/signin/?backurl=${encodeURI($window.location.href)}`;
+                    } else {
+                        //common.AlertMessage("Error", "2");
+                        $window.location.href = '/login';
+                    }
+                    
                 }
             } else {
                 common.AlertMessage("Error", res.message);

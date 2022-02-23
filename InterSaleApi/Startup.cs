@@ -30,7 +30,7 @@ namespace InterSaleApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string rootName = "D:/logs/{MachineName}/{Date}/";
+            string rootName = Configuration["LogPath"]; //"D:/logs/{MachineName}/{Date}/"
             string fileName = "{ServiceName}.{Date}.log";
             KKFCoreEngine.KKFLogger.LoggerManager.InitInstant(rootName, fileName);
 
@@ -48,13 +48,13 @@ namespace InterSaleApi
                 options.AddPolicy("AllowCors", builder =>
                 {
                     builder
-                    .AllowAnyOrigin()
-                    .WithOrigins("http://localhost:8082", "https://intersales.kkfnets.com", "http://intersales.kkfnets.com", "http://devintersales.kkfnets.com")
-                    //.WithMethods("GET", "PUT", "POST", "DELETE")
-                    .AllowAnyMethod()
+                    .WithOrigins("https://*.kkfnets.com", "http://*.kkfnets.com", "https://intersales.kkfnets.com", "http://intersales.kkfnets.com", "http://localhost:8082", "http://intersalesdev.kkfnets.com", "https://intersalesdev.kkfnets.com")
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithExposedHeaders("x-custom-header");
+                    .WithExposedHeaders("x-custom-header")
+                    .WithMethods("GET", "PUT", "POST", "DELETE");
+
                 });
             });
             services.AddMvc();

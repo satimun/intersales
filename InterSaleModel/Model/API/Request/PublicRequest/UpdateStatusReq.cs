@@ -10,5 +10,7 @@ namespace InterSaleModel.Model.API.Request
         public List<int> ids1 { get; set; }
         public string type { get; set; }
         public string status { get; set; }
+        public string priceEffectiveDateID { get; set; }
+        public string discountStdEffectiveDateID { get; set; }
     }
 }

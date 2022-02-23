@@ -2,7 +2,7 @@
 app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $window, $timeout, $q, common, oauth, $uibModal, $interval, $templateCache, Fullscreen) {
 
     if (select_mode === 1) { $rootScope.IP_URL = "http://localhost:8736/"; $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > "; $scope.dev = true; }
-    else if (select_mode === 2) { $rootScope.IP_URL = "http://devintersales.kkfnets.com/"; $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > "; $scope.dev = true; }
+    else if (select_mode === 2) { $rootScope.IP_URL = "https://intersalesdev.kkfnets.com/"; $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > "; $scope.dev = true; }
     else if (select_mode === 3) { $rootScope.IP_URL = "https://intersales.kkfnets.com/"; $rootScope.IP_DB = "191.20.2.3 > smartsales > "; }
 
     $scope.footerText = 'KIG 2018';
