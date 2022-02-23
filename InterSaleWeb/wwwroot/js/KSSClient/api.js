@@ -4,7 +4,7 @@ KSSClient.API = KSSClient.API || {};
 
 var path = "";
 if (select_mode === 1) { path = "http://localhost:8083/v1/api/"; }
-else if (select_mode === 2) { path = "https://intersalesapisdev.kkfnets.com//v1/api/"; }
+else if (select_mode === 2) { path = "https://intersalesapisdev.kkfnets.com/v1/api/"; }
 else if (select_mode === 3) { path = "https://intersalesapis.kkfnets.com/v1/api/"; }
 
 KSSClient.API.CountLoading = 0; 
