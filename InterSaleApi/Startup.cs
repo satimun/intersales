@@ -48,13 +48,13 @@ namespace InterSaleApi
                 options.AddPolicy("AllowCors", builder =>
                 {
                     builder
-                    .WithOrigins("https://*.kkfnets.com", "http://*.kkfnets.com", "https://intersales.kkfnets.com", "http://intersales.kkfnets.com", "http://localhost:8082", "http://intersalesdev.kkfnets.com", "https://intersalesdev.kkfnets.com")
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyOrigin()
+                    .WithOrigins("http://localhost:8082", "https://intersales.kkfnets.com", "http://intersales.kkfnets.com", "http://devintersales.kkfnets.com", "http://intersalesdev.kkfnets.com", "https://intersalesdev.kkfnets.com")
+                    //.WithMethods("GET", "PUT", "POST", "DELETE")
+                    .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithExposedHeaders("x-custom-header")
-                    .WithMethods("GET", "PUT", "POST", "DELETE");
-
+                    .WithExposedHeaders("x-custom-header");
                 });
             });
             services.AddMvc();
