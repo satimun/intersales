@@ -91,5 +91,18 @@ namespace InterSaleApi.ADO
 
             return Query<sxvCustomer>(cmd, param, logger).ToList();
         }
+
+        public List<CustomerForFilter> Filter(ShipmentPlanForecastReport2Req d, Logger logger = null)
+        {
+            Dapper.DynamicParameters param = new Dapper.DynamicParameters();
+            param.Add("@customerIDs", StringUtil.Join(",", d.customerIDs));
+            param.Add("@zoneAccountIDs", StringUtil.Join(",", d.zoneAccountIDs));
+            param.Add("@regionalZoneIDs", StringUtil.Join(",", d.regionalZoneIDs));
+            param.Add("@countryIDs", StringUtil.Join(",", d.countryIDs));
+            param.Add("@saleEmployeeID", d.saleEmployeeID);
+
+            return QuerySP<CustomerForFilter>("SP_Customer_Filter", param, logger).ToList();
+        }
+
     }
 }

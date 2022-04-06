@@ -54,7 +54,7 @@ namespace InterSaleApi.Engine.API
             try
             {
 
-                this.Logger = LoggerManager.GetLogger(this.GetType().Name);
+                //this.Logger = LoggerManager.GetLogger(this.GetType().Name);
                 this.token = token;
 
                 this.employeeID = 0;
@@ -65,11 +65,11 @@ namespace InterSaleApi.Engine.API
 
                 //logID = APILogADO.GetInstant().Insert(this.Logger.RefID, token, this.GetType().Name, employeeID, employeeName, Environment.MachineName, reqStr);
 
-                this.Logger.LogBegin();
+                //this.Logger.LogBegin();
                 StringBuilder msg = new StringBuilder();
                 msg.Append("Data Request = ");
                 msg.Append(reqStr);
-                this.Logger.LogInfo(msg.ToString());              
+                //this.Logger.LogInfo(msg.ToString());              
                 
                 var dataReq = dataRequset == null ? null : this.MappingRequest(dataRequset);
                 res.data = new TResponse();

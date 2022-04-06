@@ -20,7 +20,7 @@ namespace InterSaleApi.Engine.API.CommercialInvoice
 
         protected override void ExecuteChild(CommercialInvoiceItemsReportReq dataReq, CommercialInvoiceItemsReportRes dataRes)
         {
-            var customerFilter = ADO.CustomerADO.GetInstant().ForFilter(new ShipmentPlanForecastReport2Req()
+            var customerFilter = ADO.CustomerADO.GetInstant().Filter(new ShipmentPlanForecastReport2Req()
             {
                 customerIDs = dataReq.CustomerID,
                 zoneAccountIDs = dataReq.ZoneID,

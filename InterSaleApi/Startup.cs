@@ -42,7 +42,7 @@ namespace InterSaleApi
             //XmlDocument xml = new XmlDocument();
             //xml.Load("config.xml");
             // BaseADO.CONNECTIONSTRING = xml.InnerText.ToString();
-           
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowCors", builder =>
