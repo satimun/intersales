@@ -15,7 +15,8 @@ namespace KKFCoreEngine.KKFLogger
         private string LogFileFormat { get; set; }
         private string LogUri { get; set; }
         private string LogFileName { get; set; }
-        
+        private string LogFolderFormat { get; set; }
+
         private Dictionary<string, FileStream> FileStreamMap { get; set; }
         private List<Logger> Loggers { get; set; }
 
@@ -38,6 +39,8 @@ namespace KKFCoreEngine.KKFLogger
             if (instant == null) throw new Exception("Not LoggerManager.InitInstant");
             return instant;
         }
+
+        
         private LoggerManager(string logUriFormat, string logFileFormat)
         {
             this.FileStreamMap = new Dictionary<string, FileStream>();
@@ -62,6 +65,19 @@ namespace KKFCoreEngine.KKFLogger
         {
             return GetLogger(Guid.NewGuid().ToString(), serviceName);
         }
+
+        private static void deleteOldLog(string dirName)
+        {
+            string[] files = Directory.GetFiles(dirName);
+
+            foreach (string file in files)
+            {
+                FileInfo fi = new FileInfo(file);
+                if (fi.LastAccessTime < DateTime.Now.AddMonths(-3))
+                    fi.Delete();
+            }
+        }
+
         public static Logger GetLogger(string refID, string serviceName)
         {
             lock (lockGetLogger)
