@@ -359,7 +359,7 @@ app.controller("DiscountApprovalGridPriceCtrl", function ($rootScope, $scope, co
 
     //$scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'discountPercent', display: '% Discount', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, setclass: SetClass, multiLine: true }));
     //$scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'discountAmount', display: 'Fix Discount', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, setclass: SetClass, multiLine: true }));
-    //$scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'increaseAmount', display: 'Surchange', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, setclass: SetClass, multiLine: true }));
+    //$scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'increaseAmount', display: 'Surcharge', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, setclass: SetClass, multiLine: true }));
 
     $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'priceFOB', display: 'HC', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, group: { name: 'fob', display: 'FOB', langCode: '' }, setclass: SetClass }));
     $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'restFOB', display: 'Net Price', width: { min: 70 }, format: { type: 'decimal', scale: 2, summary: 'none' }, group: { name: 'fob', display: 'FOB', langCode: '' }, setclass: SetClass }));

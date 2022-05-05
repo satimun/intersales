@@ -66,16 +66,38 @@ namespace KKFCoreEngine.KKFLogger
             return GetLogger(Guid.NewGuid().ToString(), serviceName);
         }
 
+        /// <summary>
+        /// delete old log วันปัจจุบัน - 90 วัน
+        /// </summary>
+        /// <param name="dirName"></param>
         private static void deleteOldLog(string dirName)
         {
-            string[] files = Directory.GetFiles(dirName);
-
-            foreach (string file in files)
+            var directories = Directory.GetDirectories(dirName);
+            foreach(string folder in directories)
             {
-                FileInfo fi = new FileInfo(file);
-                if (fi.LastAccessTime < DateTime.Now.AddMonths(-3))
-                    fi.Delete();
+                string[] files = Directory.GetFiles(folder);
+                int flagDel = 0;
+
+                foreach (string file in files)
+                {
+                    FileInfo fi = new FileInfo(file);
+                    if (fi.LastAccessTime < DateTime.Now.AddMonths(-3))
+                    {
+                        fi.Delete();
+                        flagDel++;
+                    }
+                        
+                }
+
+                if (flagDel > 0)
+                {
+                    Directory.Delete(folder, true);
+                }
+
+                
             }
+            
+
         }
 
         public static Logger GetLogger(string refID, string serviceName)
@@ -106,6 +128,15 @@ namespace KKFCoreEngine.KKFLogger
 
                 if (!Directory.Exists(logManager.LogUri))
                     Directory.CreateDirectory(logManager.LogUri);
+
+                string[] paths = logManager.LogUri.Split('/');
+                string path = "";
+                for(int i =0; i < paths.Length - 2;i++)
+                {
+                    path += paths[i] + "/";
+                }
+
+                deleteOldLog(path);
 
                 //logManager.ClearLogUnWrite();
                 string keyFile = logManager.LogUri + logManager.LogFileName;
