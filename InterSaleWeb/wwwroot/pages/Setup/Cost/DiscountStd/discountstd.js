@@ -1762,7 +1762,7 @@ app.controller("discountStdFilter", function ($rootScope, $scope, $timeout, $fil
     $scope.UpdateStatusAction = (status) => {
         if (status === 'C') {
             var msg = "";
-            var discountStdEffectiveDateID = $rootScope.selectGrid[1].id;
+            var discountStdEffectiveDateID = $rootScope.selectGridDiscount[1].id;
             $scope.gridApi.selection.getSelectedRows().forEach(function (row) { if (!row.totalRow) msg += row.minTwineSize.code + ' - ' + row.maxTwineSize.code + ' ' + row.unitType.code + '\n'; });
             common.ConfirmDialog('Are you sure?', 'Remove Product Spec : \n' + msg).then((ok) => { if (ok) $scope.UpdateStatus(status, discountStdEffectiveDateID); });
         } else { $scope.UpdateStatus(status, discountStdEffectiveDateID); }
