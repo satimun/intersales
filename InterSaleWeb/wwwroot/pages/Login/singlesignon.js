@@ -37,12 +37,10 @@ app.controller("singlesignonController", function ($rootScope, $scope, $location
                     cache: 'no-cache',
                     headers: {
                         'Content-Type': 'application/json',
-                        AccessToken: getCookie('AccessToken'),
-                        Token: getCookie('Token'),
+                        AccessToken: common.getCookie('AccessToken'),
+                        Token: common.getCookie('Token'),
                     }
                 };
-
-                console.log($rootScope.SSO_URL)
 
                 fetch(`${$rootScope.SSO_URL}api/Oauth/TokenStatus`, requestOptions).then(() => {
                     if (select_mode === 3) {
