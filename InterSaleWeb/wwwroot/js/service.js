@@ -33,8 +33,8 @@ app.service('common', function ($rootScope, $window, $http, $timeout, $localStor
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
-                , 'Token': window.localStorage.getItem('Token')
-                , 'AccessToken': window.localStorage.getItem('AccessToken')
+                , 'Token': $this.getCookie('Token')
+                , 'AccessToken': $this.getCookie('AccessToken')
             }
         }).then((res) => {
             if (!option.noloadding) { $this.callCount--; }
@@ -1121,6 +1121,24 @@ app.service('common', function ($rootScope, $window, $http, $timeout, $localStor
         return +(Math.round(num + "e+" + places) + "e-" + places);
     };
 
+    // cookie
+    this.setCookie = function (cname, cvalue, exminutes) {
+        const d = new Date()
+        d.setTime(d.getTime() + (exminutes * 60 * 1000))
+        const expires = `expires=${d.toUTCString()}`
+        const isSecure = window.location.protocol == 'https:'
+        const secure = isSecure ? ' samesite=none; secure;' : ''
+        document.cookie = `${cname}=${cvalue}; ${expires};${secure} path=/;`
+    }
+
+    this.getCookie = function (cname, src) {
+        const cookie = src || document.cookie
+        const cvalue = cookie.split('; ').find(c => c.startsWith(`${cname}=`))
+        if (!!cvalue) {
+            return cvalue.replace(/^[^=]+./, '')
+        }
+        return ''
+    }
 
 }); //---- end service common
 
@@ -1133,7 +1151,7 @@ app.service('oauth', function ($rootScope, $timeout, $window, $q, common, API) {
         API.Oauth.DestroyToken({
             data: {},
             callback: function (res) {
-                window.localStorage.clear('Token');
+                common.setCookie('Token', '', -1);
                 window.localStorage.clear('username');
                 $window.location.href = "/singlesignon";
             },
@@ -1148,7 +1166,8 @@ app.service('oauth', function ($rootScope, $timeout, $window, $q, common, API) {
         API.Oauth.RequestToken({
             data: { username: userName, password: passWord },
             callback: function (res) {
-                window.localStorage.setItem('Token', res.data.token);
+                // expire date fix 480 minute
+                common.setCookie('Token', res.data.token, 480);
                 window.localStorage.setItem('username', res.data.username);
 
                 $timeout(() => {
@@ -1179,39 +1198,11 @@ app.service('oauth', function ($rootScope, $timeout, $window, $q, common, API) {
         });
     };
 
-    //this.ReNewToken = function () {
-    //    if (!confirm("คุณต้องการใช้งานต่อด้วย Token เดิม?")) {
-    //        this.LogOut();
-    //    } else {
-    //        var ps = prompt("Please enter your password:");
-    //        if (ps == null || ps == "") {
-    //            common.AlertMessage("Warning", "กรุณาป้อนรหัสผ่านของคุณ");
-    //        } else {
-    //            API.Oauth.RenewToken({
-    //                data: { password: ps },
-    //                callback: function (res) {
-    //                    //$cookies.put('Token', res.data.token);
-    //                    //$cookies.put('username', $scope.username);
-    //                    API.Oauth.Token = $cookies.get('Token');
-    //                },
-    //                error: function (res) {
-    //                    common.AlertMessage("Error", res.message);
-    //                }
-    //            });
-    //        }
-    //    }
-    //}
-
     this.GetToken = function () {
         $rootScope.username = window.localStorage.getItem('username');
 
-        if (!window.localStorage.getItem('Token')) {
-
-            if (select_mode === 1) {
-                $window.location.href = '/login';
-            } else {
-                $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
-            }
+        if (!common.getCookie('Token')) {
+            $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
         }
         else {
             //this.getTokenState();

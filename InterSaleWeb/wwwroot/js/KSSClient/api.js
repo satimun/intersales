@@ -7,12 +7,21 @@ if (select_mode === 1) { path = "http://localhost:8083/v1/api/"; }
 else if (select_mode === 2) { path = "https://intersalesapisdev.kkfnets.com/v1/api/"; }
 else if (select_mode === 3) { path = "https://intersalesapis.kkfnets.com/v1/api/"; }
 
-KSSClient.API.CountLoading = 0; 
+KSSClient.API.CountLoading = 0;
+
+function getCookie(cname, src) {
+    const cookie = src || document.cookie
+    const cvalue = cookie.split('; ').find(c => c.startsWith(`${cname}=`))
+    if (!!cvalue) {
+        return cvalue.replace(/^[^=]+./, '')
+    }
+    return ''
+}
 
 KSSClient.API.Call = function (option) {
     var token = "test";
-    if (window.localStorage.getItem('Token')) {
-        token = window.localStorage.getItem('Token');
+    if (getCookie('Token')) {
+        token = getCookie('Token');
     }
 
     var method = option.api.method.toUpperCase();
@@ -36,7 +45,7 @@ KSSClient.API.Call = function (option) {
                 url += key[i] + "=" + (!option.data[key[i]] ? '' : option.data[key[i]]);
             }
             if (key.length > i + 1) url += "&";
-        }      
+        }
         data = null;
     }
     var xhr = new XMLHttpRequest();
@@ -57,7 +66,7 @@ KSSClient.API.Call = function (option) {
         }
         else if (xhr.readyState == 4 && xhr.status != 204 && xhr.status != 0) {
             var res = {};
-            res.status = "F"; 
+            res.status = "F";
             res.message = "ไม่สามารถเชื่อมต่อ API ได้";
             option.error(res);
             if (!option.noloadding) { KSSClient.API.CountLoading--; }
@@ -873,8 +882,8 @@ KSSClient.API.Language.Dictionary = function (option) {
                 KSSClient.API.Language.Dictionary.StaticValue[option.data.group] = obj;
                 option.callback(obj);
             },
-        error: option.error
-    });
+            error: option.error
+        });
 };
 KSSClient.API.Language.Dictionary.StaticValue = {};
 
@@ -946,7 +955,7 @@ KSSClient.API.ShipmentPlanMain.SavePlan = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlanMain.GetStatus = function (option) {
     KSSClient.API.Call({
@@ -976,7 +985,7 @@ KSSClient.API.ShipmentPlan.AutoPlan = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlan.SearchOutstanding = function (option) {
     KSSClient.API.Call({
@@ -985,7 +994,7 @@ KSSClient.API.ShipmentPlan.SearchOutstanding = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlan.SearchOutstandingAuto = function (option) {
     KSSClient.API.Call({
@@ -994,7 +1003,7 @@ KSSClient.API.ShipmentPlan.SearchOutstandingAuto = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlan.ClientAutoPlan = function (option) {
     KSSClient.API.Call({
@@ -1003,7 +1012,7 @@ KSSClient.API.ShipmentPlan.ClientAutoPlan = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlan.SearchOutstandingExcel = function (option) {
     KSSClient.API.Call({
@@ -1012,7 +1021,7 @@ KSSClient.API.ShipmentPlan.SearchOutstandingExcel = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlan.SearchCost = function (option) {
     KSSClient.API.Call({
@@ -1213,7 +1222,7 @@ KSSClient.API.ShipmentPlanDateCircle.Get = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlanDateCircle.SearchCustomer = function (option) {
     KSSClient.API.Call({
@@ -1222,7 +1231,7 @@ KSSClient.API.ShipmentPlanDateCircle.SearchCustomer = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 KSSClient.API.ShipmentPlanDateCircle.Save = function (option) {
     KSSClient.API.Call({
@@ -1231,7 +1240,7 @@ KSSClient.API.ShipmentPlanDateCircle.Save = function (option) {
         callback: option.callback,
         error: option.error
     });
-}; 
+};
 
 
 //// set up bee ADD customer 

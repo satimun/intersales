@@ -30,9 +30,9 @@ namespace InterSaleApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string rootName = Configuration["LogPath"]; //"D:/logs/{MachineName}/{Date}/"
-            string fileName = "{ServiceName}.{Date}.log";
-            KKFCoreEngine.KKFLogger.LoggerManager.InitInstant(rootName, fileName);
+            // string rootName = Configuration["LogPath"]; //"D:/logs/{MachineName}/{Date}/"
+            // string fileName = "{ServiceName}.{Date}.log";
+            // KKFCoreEngine.KKFLogger.LoggerManager.InitInstant(rootName, fileName);
 
             //getDbsetting
             //XmlSerializer xml = new XmlSerializer();
