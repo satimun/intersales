@@ -20,7 +20,7 @@ var app = angular.module("App",
 
 app.info({ version: version });
 
-app.config(function ($routeProvider, $locationProvider, $httpProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     
     $routeProvider
         .when("/", {

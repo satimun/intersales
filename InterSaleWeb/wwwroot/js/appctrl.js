@@ -29,10 +29,13 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     if (d.toLocaleDateString('en-US') === d.toLocaleDateString()) $rootScope.dateFormat = 'MM/dd/yyyy';
     else $rootScope.dateFormat = 'dd/MM/yyyy';
 
+    let appVersion = window.localStorage.getItem('version');
 
     // Clear Cache
-    if (version !== app.info().version) {
+    if (version !== appVersion) {
         $templateCache.removeAll();
+        window.localStorage.setItem('version', version);
+        common.AlertMessage('Warning', 'New Version Available ' + version)
     }
 
     $scope.menu = {
