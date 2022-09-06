@@ -58,7 +58,7 @@ app.service('common', function ($rootScope, $window, $http, $timeout, $localStor
         var deferred = $q.defer();
         msg = msg.replace(/(#.*)$/g, '\n\n$1');
 
-        if (msg.substring(0, 2) === 'O1') {
+        if (msg.substring(0, 2) === 'O1' && msg.substring(0, 5) !== 'O1001') {
             $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
         } else if (msg.substring(0, 2) === 'O9') {
             $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
