@@ -24,8 +24,8 @@ namespace InterSaleApi.Engine.API
             {
                 if (value == null)
                 {
-                    // try { LoggerManager.InitInstant(); } catch (Exception ex) { Debug.WriteLine(ex.Message); }
-                    // this._Logger = LoggerManager.GetLogger("UNITTEST");
+                     try { LoggerManager.InitInstant(); } catch (Exception ex) { Debug.WriteLine(ex.Message); }
+                     this._Logger = LoggerManager.GetLogger("UNITTEST");
                 }
                 else this._Logger = value;
             }
@@ -54,7 +54,7 @@ namespace InterSaleApi.Engine.API
             try
             {
 
-                // this.Logger = LoggerManager.GetLogger(this.GetType().Name);
+                this.Logger = LoggerManager.GetLogger(this.GetType().Name);
                 this.token = token;
 
                 this.employeeID = 0;
@@ -65,17 +65,17 @@ namespace InterSaleApi.Engine.API
 
                 //logID = APILogADO.GetInstant().Insert(this.Logger.RefID, token, this.GetType().Name, employeeID, employeeName, Environment.MachineName, reqStr);
 
-                // this.Logger.LogBegin();
+                this.Logger.LogBegin();
                 StringBuilder msg = new StringBuilder();
                 msg.Append("Data Request = ");
                 msg.Append(reqStr);
-                // this.Logger.LogInfo(msg.ToString());
+                this.Logger.LogInfo(msg.ToString());
 
                 var dataReq = dataRequset == null ? null : this.MappingRequest(dataRequset);
                 res.data = new TResponse();
 
                 if (this.GetType().Name.IndexOf("Oauth") == -1)
-                    this.ValidatePermission();
+                   this.ValidatePermission();
 
                 this.ExecuteChild(dataReq, res.data);
                 res.status = "S";
@@ -92,16 +92,16 @@ namespace InterSaleApi.Engine.API
                 res.status = "F";
                 res.message = ex.Message;
                 StackTraceMsg = ex.StackTrace;
-                // new KKFException(this.Logger, ex.Message);
+                new KKFException(this.Logger, ex.Message);
             }
             finally
             {
-                // if (this.Logger != null)
-                // {
-                //     this.Logger.LogInfo("DATA RESPONSE = " + Newtonsoft.Json.JsonConvert.SerializeObject(res));
-                //     this.Logger.LogEnd();
-                //     this.Logger.Dispose();
-                // }
+                if (this.Logger != null)
+                {
+                    this.Logger.LogInfo("DATA RESPONSE = " + Newtonsoft.Json.JsonConvert.SerializeObject(res));
+                    this.Logger.LogEnd();
+                    this.Logger.Dispose();
+                }
 
                 //APILogADO.GetInstant().Update(logID, res.status, res.message, Newtonsoft.Json.JsonConvert.SerializeObject(res), StackTraceMsg);
             }
