@@ -26,24 +26,31 @@ app.controller("singlesignonController", function ($rootScope, $scope, $location
                     clearInterval(count);
                     $scope.onSignIn();
                 }
-            }, 1000);            
+            }, 1000);
         },
         error: function (res) {
             if (RegExp('^O9', 'i').test(res.message)) {
-                
-                if (select_mode === 1) {
-                    //common.AlertMessage("Error", "1");
-                    $window.location.href = '/login';
-                } else {
-                    if (select_mode == 3) {
-                        //common.AlertMessage("Error", "3");
-                        $window.location.href = `https://singlesignon.kkfnets.com/member/signin/?backurl=${encodeURI($window.location.href)}`;
+
+                // check connect sso
+                const requestOptions = {
+                    method: 'GET',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        AccessToken: common.getCookie('AccessToken'),
+                        Token: common.getCookie('Token'),
+                    }
+                };
+
+                fetch(`${$rootScope.SSO_URL}api/Oauth/TokenStatus`, requestOptions).then(() => {
+                    if (select_mode === 3) {
+                        $window.location.href = `${$rootScope.SSO_URL}member/signin/?backurl=${encodeURI($window.location.href)}`;
                     } else {
-                        //common.AlertMessage("Error", "2");
                         $window.location.href = '/login';
                     }
-                    
-                }
+                }).catch(() => {
+                    $window.location.href = '/login';
+                })
             } else {
                 common.AlertMessage("Error", res.message);
             }

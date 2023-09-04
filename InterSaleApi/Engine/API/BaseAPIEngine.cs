@@ -24,8 +24,8 @@ namespace InterSaleApi.Engine.API
             {
                 if (value == null)
                 {
-                    try { LoggerManager.InitInstant(); } catch (Exception ex) { Debug.WriteLine(ex.Message); }
-                    this._Logger = LoggerManager.GetLogger("UNITTEST");
+                     try { LoggerManager.InitInstant(); } catch (Exception ex) { Debug.WriteLine(ex.Message); }
+                     this._Logger = LoggerManager.GetLogger("UNITTEST");
                 }
                 else this._Logger = value;
             }
@@ -75,7 +75,7 @@ namespace InterSaleApi.Engine.API
                 res.data = new TResponse();
 
                 if (this.GetType().Name.IndexOf("Oauth") == -1)
-                    this.ValidatePermission();
+                   this.ValidatePermission();
 
                 this.ExecuteChild(dataReq, res.data);
                 res.status = "S";

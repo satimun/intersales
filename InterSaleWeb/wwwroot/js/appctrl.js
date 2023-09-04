@@ -1,9 +1,21 @@
 ﻿
 app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $window, $timeout, $q, common, oauth, $uibModal, $interval, $templateCache, Fullscreen) {
 
-    if (select_mode === 1) { $rootScope.IP_URL = "http://localhost:8736/"; $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > "; $scope.dev = true; }
-    else if (select_mode === 2) { $rootScope.IP_URL = "https://intersalesdev.kkfnets.com/"; $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > "; $scope.dev = true; }
-    else if (select_mode === 3) { $rootScope.IP_URL = "https://intersales.kkfnets.com/"; $rootScope.IP_DB = "191.20.2.3 > smartsales > "; }
+    if (select_mode === 1) {
+        $rootScope.IP_URL = "http://localhost:8736/";
+        $rootScope.SSO_URL = "http://localhost:2243/";
+        $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > ";
+        $scope.dev = true;
+    } else if (select_mode === 2) {
+        $rootScope.IP_URL = "https://intersalesdev.kkfnets.com/";
+        $rootScope.SSO_URL = "https://singlesignon.kkfnets.com/";
+        $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > ";
+        $scope.dev = true;
+    } else if (select_mode === 3) {
+        $rootScope.IP_URL = "https://intersales.kkfnets.com/";
+        $rootScope.SSO_URL = "https://singlesignon.kkfnets.com/";
+        $rootScope.IP_DB = "191.20.2.3 > smartsales > ";
+    }
 
     $scope.footerText = 'KIG 2018';
     $rootScope.login = false;
@@ -17,10 +29,13 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     if (d.toLocaleDateString('en-US') === d.toLocaleDateString()) $rootScope.dateFormat = 'MM/dd/yyyy';
     else $rootScope.dateFormat = 'dd/MM/yyyy';
 
+    let appVersion = window.localStorage.getItem('version');
 
     // Clear Cache
-    if (version !== app.info().version) {
+    if (version !== appVersion) {
         $templateCache.removeAll();
+        window.localStorage.setItem('version', version);
+        common.AlertMessage('Warning', 'New Version Available ' + version)
     }
 
     $scope.menu = {
@@ -36,12 +51,12 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
                     label: "Report",
                     langcode: "MNG_SALESREPORT",
                     active: false,
-                    list: {                        
+                    list: {
                         SALES_SALESREPORT_PIVSFORECAST: {
                             label: "PI Vs Forecast Report",
                             langcode: "MN_SALESREPORT_PIVSFORECASTREPORT",
                             href: "/sales/salesreport/pivsforecastreport"
-                        },                        
+                        },
                         SALES_SALESREPORT_ORDERONHAND: {
                             label: "Order Onhand Report",
                             langcode: "MN_SALESREPORT_ORDERONHAND",
@@ -254,7 +269,7 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     };
 
     $rootScope.backUrl = $location.url();
-    KSSClient.API.Oauth.Token = window.localStorage.getItem('Token');
+    KSSClient.API.Oauth.Token = common.getCookie('Token');
     $rootScope.username = window.localStorage.getItem('username');
 
     if (!RegExp("^/login", "g").test($location.url()) && !RegExp("^/singlesignon", "g").test($location.url())) {

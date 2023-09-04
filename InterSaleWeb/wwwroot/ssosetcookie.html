@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Set Cookie</title>
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+</head>
+
+<body>
+    <h1>Set Cookie Intersales</h1>
+    <script type="text/javascript">
+        const url = "https://singlesignon.kkfnets.com";
+
+        function setCookie(cname, cvalue, exminutes) {
+            const d = new Date()
+            d.setTime(d.getTime() + (exminutes * 60 * 1000))
+            const expires = `expires=${d.toUTCString()}`
+            const isSecure = window.location.protocol == 'https:'
+            const secure = isSecure ? ' samesite=none; secure;' : ''
+            document.cookie = `${cname}=${cvalue}; ${expires};${secure} path=/;`
+        }
+
+        window.addEventListener('message', function (event) {
+            if (event.origin === url) {
+                if (event.data) {
+                    setCookie("AccessToken", event.data['AccessToken'], 365 * 24 * 60);
+                    setCookie("Token", event.data['Token'], Number(event.data['LoginTime']) || undefined);
+                } else {
+                    setCookie("Token", '', -1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -61,7 +61,7 @@
     padding: 15px 15px 10px 8px;
     font-size: 15px;
     min-width: 151.65px;
-    max-width: 151.65px;
+    /* max-width: 151.65px; */
 }
 .text-head a, .text-head a:hover {
     color: #fff;
