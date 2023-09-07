@@ -25,6 +25,7 @@ namespace InterSaleApi.Engine.API
                        {
                            id = x.ID
                            , discountStdMainID = x.DiscountStdMain_ID
+                           , discountStdEffectiveDateID = x.DiscountStdEffectiveDate_ID
                            , minTwineSize = new DiscountStdRangeHs.TwineSize() { code = x.MinProductTwineSizeCode, size = x.MinFilamentSize, amount = x.MinFilamentAmount, word = x.MinFilamentWord??"" }
                            , maxTwineSize = new DiscountStdRangeHs.TwineSize() { code = x.MaxProductTwineSizeCode, size = x.MaxFilamentSize, amount = x.MaxFilamentAmount, word = x.MaxFilamentWord??"" }
                            , unitType = new INTIdCodeDescriptionModel() { id = x.UnitType_ID, code = x.UnitType_Code ?? "", description = x.UnitType_Des }

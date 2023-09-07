@@ -8,6 +8,7 @@ namespace InterSaleModel.Model.Entity
     {
         public int ID { get; set; }
         public int DiscountStdMain_ID { get; set; }
+        public int? DiscountStdEffectiveDate_ID { get; set; }
         public int? ProductKnot_ID { get; set; }
         public int? ProductStretching_ID { get; set; }
         public int UnitType_ID { get; set; }
@@ -30,7 +31,5 @@ namespace InterSaleModel.Model.Entity
         public DateTime CreateDate { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime? ModifyDate { get; set; }
-
-        public int? DiscountStdEffectiveDate_ID { get; set; }
     }
 }

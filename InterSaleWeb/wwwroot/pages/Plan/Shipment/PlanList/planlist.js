@@ -476,9 +476,8 @@ app.controller("shipmentPlanListController", function ($rootScope, $scope, $wind
                                         row.shipmentPlanMain = s;
                                         if (s.status === 'C') {
                                             row.shipmentPlanMain = undefined;
-                                           // var msg = "\n" + "ไม่พบ Setup รอบส่งออกลูกค้ารหัส ";
-                                           // msg += "\n" + row.view;
-                                            var  msg = "\n" + row.view;
+                                            var msg = "\n" + "ไม่พบ Setup รอบส่งออกลูกค้ารหัส ";
+                                            msg += "\n" + row.view;
                                             common.AlertMessage("Error", "Auto Plan Fail." + msg + '\nData Outstanding have problems. \nPlease contact MIS or TeamDev.');
                                         }
                                     }

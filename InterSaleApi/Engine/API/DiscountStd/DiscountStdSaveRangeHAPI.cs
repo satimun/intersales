@@ -24,61 +24,101 @@ namespace InterSaleApi.Engine.API.DiscountStd
             conn.Open();
             SqlTransaction transac = conn.BeginTransaction();
 
-            dataReq.discountStdRangeHs.ForEach(x => {
+            dataReq.discountStdRangeHs.ForEach(req => {
                 var tmp = new DiscountStdRangeHs();
                 try
                 {
-                    tmp.discountStdMainID = x.discountStdMainID;
-                    tmp.colorGroups = x.colorGroups;
-                    tmp.minTwineSize = x.minTwineSize;
-                    tmp.maxTwineSize = x.maxTwineSize;
-                    tmp.knot = x.knot;
-                    tmp.selvageWovenType = x.selvageWovenType;
-                    tmp.stretching = x.stretching;
-                    tmp.unitType = x.unitType;
-                    tmp.status = x.status;
+                    tmp.discountStdMainID = req.discountStdMainID;
+                    tmp.discountStdEffectiveDateID = req.discountStdEffectiveDateID;
+                    tmp.colorGroups = req.colorGroups;
+                    tmp.minTwineSize = req.minTwineSize;
+                    tmp.maxTwineSize = req.maxTwineSize;
+                    tmp.knot = req.knot;
+                    tmp.selvageWovenType = req.selvageWovenType;
+                    tmp.stretching = req.stretching;
+                    tmp.unitType = req.unitType;
+                    tmp.status = req.status;
                     tmp._result._status = "S";
                     tmp._result._message = "SUCCESS";
+
                     var rangeHID = DiscountStdRangeHADO.GetInstant().Import(transac, new sxsDiscountStdRangeH() {
-                        ID = x.id
-                        , DiscountStdMain_ID = x.discountStdMainID
-                        , ProductKnot_ID = x.knot.id
-                        , ProductStretching_ID = x.stretching.id
-                        , ProductSelvageWovenType_ID = x.selvageWovenType.id
-                        , UnitType_ID = x.unitType.id??0
-                        , ProductColorGroup_ID = x.colorGroups.id
-                        , Status = x.status
-                        , MinProductTwineSizeCode = x.minTwineSize.code
-                        , MinFilamentSize = x.minTwineSize.size
-                        , MinFilamentAmount = x.minTwineSize.amount
-                        , MinFilamentWord = StringUtil.GetStringValue(x.minTwineSize.word)
-                        , MaxProductTwineSizeCode = x.maxTwineSize.code
-                        , MaxFilamentSize = x.maxTwineSize.size
-                        , MaxFilamentAmount = x.maxTwineSize.amount
-                        , MaxFilamentWord = StringUtil.GetStringValue(x.maxTwineSize.word)
+                        ID = 0
+                        , DiscountStdMain_ID = req.discountStdMainID
+                        , DiscountStdEffectiveDate_ID = req.discountStdEffectiveDateID
+                        , ProductKnot_ID = req.knot.id
+                        , ProductStretching_ID = req.stretching.id
+                        , ProductSelvageWovenType_ID = req.selvageWovenType.id
+                        , UnitType_ID = req.unitType.id??0
+                        , ProductColorGroup_ID = req.colorGroups.id
+                        , Status = req.status
+                        , MinProductTwineSizeCode = req.minTwineSize.code
+                        , MinFilamentSize = req.minTwineSize.size
+                        , MinFilamentAmount = req.minTwineSize.amount
+                        , MinFilamentWord = StringUtil.GetStringValue(req.minTwineSize.word)
+                        , MaxProductTwineSizeCode = req.maxTwineSize.code
+                        , MaxFilamentSize = req.maxTwineSize.size
+                        , MaxFilamentAmount = req.maxTwineSize.amount
+                        , MaxFilamentWord = StringUtil.GetStringValue(req.maxTwineSize.word)
                         , CreateBy = this.employeeID
-                        , DiscountStdEffectiveDate_ID = x.DiscountStdEffectiveDate_ID
                     }, this.Logger);
+
                     tmp.id = rangeHID;
                     if (tmp.id == 0) { throw new Exception("Save Fail."); }
 
-                    List<int> discountRangeDIDs = DiscountStdRangeDADO.GetInstant().GetByRangeHID(new List<int>() { tmp.id }, new List<string>() { "A", "I" }, this.Logger, transac).Select(z => z.ID).ToList();
-                    if(discountRangeDIDs.Count > 0)
+                    // get rangeH old
+                    var rangeH = DiscountStdRangeHADO.GetInstant().GetById(req.id);
+                    if(rangeH != null)
                     {
-                        DiscountStdValueADO.GetInstant().GetByRangeDID(discountRangeDIDs, new List<string> { "A", "I" }, this.Logger, transac).ForEach(z =>
+                        // get rangeD old 
+                        var rangeDs = DiscountStdRangeDADO.GetInstant().GetByRangeHID(new List<int>() { rangeH.ID }, new List<string>() { "A", "I" }, this.Logger, transac);
+                        foreach (var rangeD in rangeDs)
                         {
-                            var valueID = DiscountStdValueADO.GetInstant().Import(transac, new sxsDiscountStdValue()
+                            // copy rangeD
+                            var rangeDID = DiscountStdRangeDADO.GetInstant().Import(transac, new sxsDiscountStdRangeD() {
+                                ID = 0,
+                                DiscountStdRangeH_ID = rangeHID, // new rangeH_ID
+                                ProductTwineSeries_ID = rangeD.ProductTwineSeries_ID,
+                                MinMeshSize = rangeD.MinMeshSize,
+                                MaxMeshSize = rangeD.MaxMeshSize,
+                                MinMeshDepth = rangeD.MinMeshDepth,
+                                MaxMeshDepth = rangeD.MaxMeshDepth,
+                                MinLength = rangeD.MinLength,
+                                MaxLength = rangeD.MaxLength,
+                                TagDescription = rangeD.TagDescription,
+                                SalesDescription = rangeD.SalesDescription,
+                                Status = rangeD.Status,
+                                CreateBy = this.employeeID,
+                                discountEffectiveDateID = tmp.discountStdEffectiveDateID
+                            });
+
+                            if (rangeDID == 0) { throw new Exception("Save Fail."); }
+
+                            // get value old
+                            var values = DiscountStdValueADO.GetInstant().GetByRangeDID(rangeD.ID, tmp.discountStdEffectiveDateID.Value, transac);
+                            foreach (var value in values)
                             {
-                                ID = z.ID
-                                , DiscountStdRangeD_ID = z.DiscountStdRangeD_ID
-                                , DiscountStdEffectiveDate_ID = z.DiscountStdEffectiveDate_ID
-                                , DiscountPercent = z.DiscountPercent
-                                , DiscountAmount = z.DiscountAmount
-                                , IncreaseAmount = z.IncreaseAmount
-                                , CreateBy = this.employeeID
-                            }, this.employeeID, "M", this.Logger);
-                            if (valueID == 0) { throw new Exception("Save Fail."); }
-                        });
+                                // copy value
+                                var valueID = DiscountStdValueADO.GetInstant().Import(transac, new sxsDiscountStdValue()
+                                {
+                                    ID = 0
+                                    , DiscountStdRangeD_ID = rangeDID
+                                    , DiscountStdEffectiveDate_ID = tmp.discountStdEffectiveDateID.Value
+                                    , DiscountPercent = value.DiscountPercent
+                                    , DiscountAmount = value.DiscountAmount
+                                    , IncreaseAmount = value.IncreaseAmount
+                                    , CreateBy = this.employeeID
+                                }, this.employeeID, "M");
+
+                                if (valueID == 0) { throw new Exception("Save Fail."); }                            
+                            }
+                        }
+
+                        // cancel rangeH, rangeD, value
+                        DiscountStdRangeHADO.GetInstant().UpdateStatus(transac, new UpdateStatusReq() {
+                            ids = new List<int>() { req.id },
+                            status = "C",
+                            discountStdEffectiveDateID = tmp.discountStdEffectiveDateID?.ToString()
+                        }, this.employeeID);
                     }
                 }
                 catch (Exception ex)
