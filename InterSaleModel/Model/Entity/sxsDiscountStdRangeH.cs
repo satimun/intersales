@@ -8,6 +8,7 @@ namespace InterSaleModel.Model.Entity
     {
         public int ID { get; set; }
         public int DiscountStdMain_ID { get; set; }
+        public int? DiscountStdEffectiveDate_ID { get; set; }
         public int? ProductKnot_ID { get; set; }
         public int? ProductStretching_ID { get; set; }
         public int UnitType_ID { get; set; }

@@ -14,6 +14,7 @@ namespace InterSaleModel.Model.API.Response
     {
         public int id { get; set; }
         public int discountStdMainID { get; set; }
+        public int? discountStdEffectiveDateID { get; set; }
         public TwineSize minTwineSize { get; set; }
         public TwineSize maxTwineSize { get; set; }
         public INTIdCodeDescriptionModel unitType = new INTIdCodeDescriptionModel();

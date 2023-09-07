@@ -34,12 +34,12 @@ namespace InterSaleApi.ADO
             return QuerySP<sxsDiscountStdRangeH>("SP_DiscountStd_SearchDiscountRangeH", param, logger).ToList();
         }
 
-        public List<sxsDiscountStdRangeH> GetById(int id)
+        public sxsDiscountStdRangeH GetById(int id)
         {
             Dapper.DynamicParameters param = new Dapper.DynamicParameters();
             param.Add("@id", id);
 
-            var res = QuerySP<sxsDiscountStdRangeH>("SP_DiscountStdRangeH_GetById", param).ToList();
+            var res = QuerySP<sxsDiscountStdRangeH>("SP_DiscountStdRangeH_GetById", param).FirstOrDefault();
             return res;
         }
 
@@ -70,15 +70,10 @@ namespace InterSaleApi.ADO
 
         public int Import(SqlTransaction transac, sxsDiscountStdRangeH d, Logger logger = null)
         {
-            //string cmd = "exec SP_DiscountStdRangeH_Import @ID, @DiscountStdMain_ID, @ProductKnot_ID, @ProductStretching_ID, @UnitType_ID, " +
-            //             "@ProductSelvageWovenType_ID, @ProductColorGroup_ID, " +
-            //             "@MinProductTwineSizeCode, @MinFilamentAmount, @MinFilamentSize, @MinFilamentWord, " +
-            //             "@MaxProductTwineSizeCode, @MaxFilamentAmount, @MaxFilamentSize, @MaxFilamentWord, " +
-            //             "@empID";
-
             Dapper.DynamicParameters param = new Dapper.DynamicParameters();
             param.Add("@ID", d.ID);
             param.Add("@DiscountStdMain_ID", d.DiscountStdMain_ID);
+            param.Add("@DiscountStdEffectiveDate_ID", d.DiscountStdEffectiveDate_ID);
             param.Add("@ProductKnot_ID", d.ProductKnot_ID);
             param.Add("@ProductStretching_ID", d.ProductStretching_ID);
             param.Add("@UnitType_ID", d.UnitType_ID);

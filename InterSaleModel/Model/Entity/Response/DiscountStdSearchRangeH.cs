@@ -8,6 +8,7 @@ namespace InterSaleModel.Model.Entity.Response
     {
         public int ID;
         public int DiscountStdMain_ID;
+        public int? DiscountStdEffectiveDate_ID;
         public string MinProductTwineSizeCode;
         public decimal MinFilamentSize;
         public decimal MinFilamentAmount;

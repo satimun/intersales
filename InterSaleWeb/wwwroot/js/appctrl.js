@@ -7,10 +7,17 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
         $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > ";
         $scope.dev = true;
     } else if (select_mode === 2) {
+        //devnew--------------
         $rootScope.IP_URL = "https://intersalesdev.kkfnets.com/";
-        $rootScope.SSO_URL = "https://singlesignon.kkfnets.com/";
-        $rootScope.IP_DB = "191.20.2.3 > smartsales_dev > ";
+        $rootScope.SSO_URL = "http://localhost:2243/";
+        $rootScope.IP_DB = "191.20.2.70 > smartsales > ";
         $scope.dev = true;
+
+        //devOld-------------
+        //$rootScope.IP_URL = "https://intersalesdev.kkfnets.com/";
+        //$rootScope.SSO_URL = "https://singlesignon.kkfnets.com/";
+        //$rootScope.IP_DB = "191.20.2.3 > smartsales_dev > ";
+        //$scope.dev = true;
     } else if (select_mode === 3) {
         $rootScope.IP_URL = "https://intersales.kkfnets.com/";
         $rootScope.SSO_URL = "https://singlesignon.kkfnets.com/";

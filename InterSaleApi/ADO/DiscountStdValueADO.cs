@@ -104,5 +104,16 @@ namespace InterSaleApi.ADO
 
             return ExecuteScalarSP<int>(transac, "SP_DiscountStdValue_ReApproval", param, logger);
         }
+
+        public List<sxsDiscountStdValue> GetByRangeDID(int discountStdRangeDID, int discountStdEffectiveDateID, SqlTransaction transac = null)
+        {
+            Dapper.DynamicParameters param = new Dapper.DynamicParameters();
+            param.Add("@discountStdRangeDID", discountStdRangeDID);
+            param.Add("@discountStdEffectiveDateID", discountStdEffectiveDateID);
+
+            string cmd = "SELECT * FROM sxsDiscountStdValue WHERE DiscountStdRangeD_ID = @discountStdRangeDID AND DiscountStdEffectiveDate_ID = @discountStdEffectiveDateID AND Status <> 'C'";
+
+            return Query<sxsDiscountStdValue>(transac, cmd, param).ToList();
+        }
     }
 }
