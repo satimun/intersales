@@ -30,12 +30,15 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     else $rootScope.dateFormat = 'dd/MM/yyyy';
 
     let appVersion = window.localStorage.getItem('version');
+    console.log(appVersion, version)
 
     // Clear Cache
-    if (version !== appVersion) {
+    if (appVersion != null && version !== appVersion) {
         $templateCache.removeAll();
         window.localStorage.setItem('version', version);
         common.AlertMessage('Warning', 'New Version Available ' + version)
+    } else if (appVersion == null) {
+        window.localStorage.setItem('version', version);
     }
 
     $scope.menu = {
@@ -352,6 +355,8 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     //}
 
     $scope.LogOut = function () {
+        $templateCache.removeAll();
+        window.localStorage.clear();
         oauth.LogOut();
     };
 

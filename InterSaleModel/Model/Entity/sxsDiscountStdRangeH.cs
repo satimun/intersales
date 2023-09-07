@@ -30,5 +30,7 @@ namespace InterSaleModel.Model.Entity
         public DateTime CreateDate { get; set; }
         public int? ModifyBy { get; set; }
         public DateTime? ModifyDate { get; set; }
+
+        public int? DiscountStdEffectiveDate_ID { get; set; }
     }
 }

@@ -1774,6 +1774,8 @@ app.controller("discountStdFilter", function ($rootScope, $scope, $timeout, $fil
             if (d.isInsert || d.maxTwineSize.code !== d.maxTwineSize.codeorg || d.minTwineSize.code !== d.minTwineSize.codeorg
                 || d.unitType.code !== d.unitType.codeorg || d.knot.code !== d.knot.codeorg || d.colorGroups.code !== d.colorGroups.codeorg
                 || d.stretching.code !== d.stretching.codeorg || d.selvageWovenType.code !== d.selvageWovenType.codeorg) {
+                console.log(d)
+                d.DiscountEffectiveDateID = DiscountEffectiveDateID;
                 data.push(d);
             }
         });

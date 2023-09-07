@@ -57,6 +57,7 @@ namespace InterSaleApi.Engine.API.DiscountStd
                         , MaxFilamentAmount = x.maxTwineSize.amount
                         , MaxFilamentWord = StringUtil.GetStringValue(x.maxTwineSize.word)
                         , CreateBy = this.employeeID
+                        , DiscountStdEffectiveDate_ID = x.DiscountStdEffectiveDate_ID
                     }, this.Logger);
                     tmp.id = rangeHID;
                     if (tmp.id == 0) { throw new Exception("Save Fail."); }

@@ -79,6 +79,7 @@ namespace InterSaleApi.ADO
             Dapper.DynamicParameters param = new Dapper.DynamicParameters();
             param.Add("@ID", d.ID);
             param.Add("@DiscountStdMain_ID", d.DiscountStdMain_ID);
+            param.Add("@discountStdEffectiveDateID", d.DiscountStdEffectiveDate_ID);
             param.Add("@ProductKnot_ID", d.ProductKnot_ID);
             param.Add("@ProductStretching_ID", d.ProductStretching_ID);
             param.Add("@UnitType_ID", d.UnitType_ID);
@@ -93,6 +94,7 @@ namespace InterSaleApi.ADO
             param.Add("@MaxFilamentSize", d.MaxFilamentSize);
             param.Add("@MaxFilamentWord", d.MaxFilamentWord);
             param.Add("@empID", d.CreateBy);
+            
 
             return ExecuteScalarSP<int>(transac, "SP_DiscountStdRangeH_Import", param, logger);
         }
