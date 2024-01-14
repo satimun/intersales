@@ -31,5 +31,9 @@ namespace InterSaleModel.Model.API.Request
         public bool ColorCode;
 
         public bool OtherProduct;
+
+        public bool shippingMark;
+
+        public bool dstkflag;
     }
 }

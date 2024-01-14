@@ -24,5 +24,7 @@ namespace InterSaleModel.Model.Entity.Response
         public string QualityCode;
         public string LabelCode;
         public string ColorCode;
+        public string shippingMark;
+        public string dynamictext2;
     }
 }

@@ -302,7 +302,10 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
                 "StretchingCode": showCol.find(v => v.field === 'stretchingLB').checked,
                 "QualityCode": showCol.find(v => v.field === 'quality').checked,
                 "LabelCode": showCol.find(v => v.field === 'label.code').checked,
-                "ColorCode": showCol.find(v => v.field === 'color.code').checked
+                "ColorCode": showCol.find(v => v.field === 'color.code').checked,
+                "shippingMark": showCol.find(v => v.field === 'shippingMark').checked,
+                "dynamictext2": showCol.find(v => v.field === 'dynamictext2').checked,
+                "dstkflag": $scope.dstkflag
             },
             callback: function (res) {
                 res.data.profomaInvoices.forEach((row) => {
@@ -333,6 +336,8 @@ app.controller("SalesReportPiVsForecastReportController", function ($rootScope, 
 
                     row.label.code_view = row.label.code_vieworg = common.GetCodeDescription(row.label);
 
+                    row.shippingMark_view = row.shippingMark_vieworg = row.shippingMark;
+                    row.dynamictext2_view = row.dynamictext2_vieworg = row.dynamictext2;
                 });
 
                 $rootScope.piForecastData = res.data.profomaInvoices;
@@ -620,6 +625,9 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
     $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'label.code', display: 'Label', width: { default: 150 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
 
     $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'month', display: 'Month', width: { default: 150 }, format: { type: 'customText' }, grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
+    
+    $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'shippingMark', display: 'Shipping Mark', width: { default: 100 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
+    $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'dynamictext2', display: 'Shipping Mark 2', width: { default: 100 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
 
     $scope.gridOpt.onRegisterApi = function (gridApi) {
         $scope.gridApi = gridApi;
@@ -710,7 +718,12 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
                 return angular.isUndefined(myRow.entity.label) ? '' : myRow.entity.label.code_view;
             } else if (myCol.field === 'action') {
                 return angular.isUndefined(myRow.entity.totalRow) ? true : false;
-            }
+            } else if (myCol.field === 'shippingMark') {
+                return angular.isUndefined(myRow.entity.shippingMark) ? '' : myRow.entity.shippingMark_view;
+            } else if (myCol.field === 'dynamictext2') {
+                return angular.isUndefined(myRow.entity.dynamictext2) ? '' : myRow.entity.dynamictext2_view;
+            }  
+
         }
         return false;
     };
@@ -880,7 +893,9 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
         { label: 'Color', field: 'color.code', checked: false },
         { label: 'Label', field: 'label.code', checked: false },
 
-        { label: 'Month', field: 'month', checked: false }
+        { label: 'Month', field: 'month', checked: false },
+        { label: 'Shipping Mark', field: 'shippingMark', checked: false },
+        { label: 'Dynamic Text 2', field: 'dynamictext2', checked: false }
     ];
 
     $scope.$watch('lists', (v) => {
@@ -915,7 +930,9 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
             || item.field === 'stretchingLB'
             || item.field === 'quality'
             || item.field === 'label.code'
-            || item.field === 'color.code') && item.checked) {
+            || item.field === 'color.code'
+            || item.field === 'shippingMark'
+            || item.field === 'dynamictext2'        ) && item.checked) {
             $scope.isGroupChange = true;
             $rootScope.piForecastData = [];
         }

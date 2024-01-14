@@ -1189,13 +1189,18 @@ app.service('oauth', function ($rootScope, $timeout, $window, $q, common, API) {
             callback: function (res) {
                 if (res.data.status !== 'A') {
                     //$rootScope.ReNewToken();
-                    $templateCache.removeAll();
+                    if ($templateCache != null || $templateCache != undefined) {
+                        $templateCache.removeAll();
+                    }
+                    
                     $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
                 }
             },
             error: function (res) {
-                $templateCache.removeAll();
                 common.AlertMessage("Error", res.message);
+                if ($templateCache != null || $templateCache != undefined) {
+                    $templateCache.removeAll();
+                }
             }
         });
     };
@@ -1204,7 +1209,6 @@ app.service('oauth', function ($rootScope, $timeout, $window, $q, common, API) {
         $rootScope.username = window.localStorage.getItem('username');
 
         if (!common.getCookie('Token')) {
-            $templateCache.removeAll();
             $window.location.href = "/singlesignon?BackUrl=" + $rootScope.backUrl;
         }
         else {

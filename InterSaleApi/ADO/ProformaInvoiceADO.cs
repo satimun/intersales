@@ -77,11 +77,14 @@ namespace InterSaleApi.ADO
                 (d.StretchingCode ? "RTRIM(gp.STRETCHINGTYPECODE)" : "NULL") + " 'StretchingCode', " +
                 (d.QualityCode ? "RTRIM(fcy.PQGRADECD)" : "NULL") + " 'QualityCode', " +
                 "NULL 'LabelCode', " +
+                "NULL 'shippingMark', " +
+                "NULL 'dynamictext2', " +
                 (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' " +
                 "FROM saleex.dbo.VFORCASTYEARPI fcy " +
                 "INNER JOIN saleex.dbo.FORCASTEXCH fce ON IIF((fcy.MN = 11 OR fcy.MN = 12) AND fcy.YR = YEAR(@dateFrom), fcy.YR + 1, fcy.YR) = fce.YR AND fce.CURRENCYCODE = fcy.CURRENCYCODE AND fce.CONDTYPE = '1' " +
                 "INNER JOIN saleex.dbo.VGENPROD gp ON gp.PRODCODE=fcy.PRODCODE " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = fcy.CUSCOD AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = fcy.CUSCOD " +
+                (!d.dstkflag ?" AND c.DSTKFLAG <> 'Y' " : "") +
                 "LEFT JOIN saleex.dbo.FORCASTPERCENADJH fcah ON fcah.YR=YEAR(@dateTo) AND fcah.CUSCOD=fcy.CUSCOD AND fcah.CONDTYPE='1' " +
                 "LEFT JOIN saleex.dbo.FORCASTPERCENADJD fcad ON fcah.SEQD=fcad.SEQD AND fcad.PQGRADECD = fcy.PQGRADECD AND fcad.TWINESIZE = gp.TWINESIZE " +
                     "AND fcad.KNOTTYPECODE = gp.KNOTDAI AND fcad.PRODUCTTYPECODE = gp.PRODUCTTYPECODE " +
@@ -147,14 +150,18 @@ namespace InterSaleApi.ADO
                 (d.StretchingCode ? "RTRIM(gp.STRETCHINGTYPECODE)" : "NULL") + " 'StretchingCode', " +
                 (d.QualityCode ? "RTRIM(pi.PQGRADECD)" : "NULL") + " 'QualityCode', " +
                 (d.LabelCode ? "RTRIM(pi.LABEL1)" : "NULL") + " 'LabelCode', " +
-                (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' " +
+                (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' ," +
+                (d.shippingMark ? "RTRIM(pi.SHIP7HCODE) + ':'+ REPLACE(REPLACE(sh.SHIP7HDESC,(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '1' ),'')+'{DYNAMIC}'),RTRIM(pi.REMARK01)),(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '2' ),''))+'{DYNAMIC2}',RTRIM(pi.REMARK02))" : "NULL") + " 'shippingMark', " +
+                (d.shippingMark ? "RTRIM(pi.REMARK02)" : "NULL") + " 'dynamictext2' " +
                 "FROM saleex.dbo.PERFORMAMST pim " +
                 "INNER JOIN saleex.dbo.PERFORMATRN pi ON pim.PINO = pi.PINO AND RTRIM(pi.PRODCODE) <> '' " +
+                "left outer join saleex.dbo.[sxsShippingMark7DigitH] sh on sh.SHIP7HCODE = pi.SHIP7HCODE " +
                 "OUTER APPLY( " +
                     "SELECT TOP 1 exc.EXCHRT FROM saleex.dbo.V_ACCEXCH exc WHERE pi.CURRENCYCODE = exc.CURRENCYCODE AND pim.PIDT BETWEEN exc.FRMDATE AND exc.TODATE " +
                 ") exc " +
                 "INNER JOIN saleex.dbo.GENPROD gp ON gp.PRODCODE = pi.PRODCODE " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = pim.CUSCOD AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = pim.CUSCOD " +
+                (!d.dstkflag ? " AND c.DSTKFLAG <> 'Y' " : "") +
                 "WHERE (pim.CANID = '' OR pim.CANID IS NULL) " +
                 "AND " +
                 "( " +

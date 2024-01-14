@@ -52,12 +52,14 @@ namespace InterSaleApi.Engine.API.ShipmentPlan
             List<ShipmentPlanForecastReport2> lastyearOther = new List<ShipmentPlanForecastReport2>();
             List<ShipmentPlanForecastReport2> plan = new List<ShipmentPlanForecastReport2>();
 
+            List<ShipmentPlanForecastReport2> shippingMark = new List<ShipmentPlanForecastReport2>();
+
             List<sxsMaterialGroup> materialGroup = new List<sxsMaterialGroup>();
             List<DiameterGroupList> diameterGroup = new List<DiameterGroupList>();
 
             bool IsLastYear = dateFrom.Year == dateTo.Year;
 
-            List<int> loop = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+            List<int> loop = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15 };
             Parallel.ForEach(loop, l =>
             {
                 if (l == 1) // customer list
@@ -135,6 +137,10 @@ namespace InterSaleApi.Engine.API.ShipmentPlan
                 {
                     diameterGroup = ADO.DiameterGroupADO.GetInstant().List();
                 }
+                else if (l == 15 && dataReq.shippingMark)
+                {
+
+                }
             });
 
             forecast.AddRange(actual);
@@ -157,7 +163,9 @@ namespace InterSaleApi.Engine.API.ShipmentPlan
                 stretching = x.StretchingCode,
                 knotType = x.KnotTypeCode,
                 label = x.LabelCode,
-                color = x.ColorCode
+                color = x.ColorCode,
+                shippingMark = x.shippingMark,
+                dynamictext2 = x.dynamictext2
             });
 
             Parallel.ForEach(data, x =>
@@ -230,6 +238,9 @@ namespace InterSaleApi.Engine.API.ShipmentPlan
                         code = x.First().LabelCode,
                         description = labelTmp?.description
                     };
+
+                    tmp.shippingMark = x.First().shippingMark;
+                    tmp.dynamictext2 = x.First().dynamictext2;
 
                     tmp._key = string.Concat(tmp.month, '_', tmp.zone.code, '_', tmp.customer, '_', tmp.materialGroup, '_', tmp.productType);
 

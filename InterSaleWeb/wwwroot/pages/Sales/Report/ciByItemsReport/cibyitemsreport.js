@@ -290,6 +290,7 @@ app.controller("SalesReportCIByItemsReportController", function ($rootScope, $sc
                 showCI: showCol.find(v => v.id === 6).checked,
                 showOrder: showCol.find(v => v.id === 7).checked,
                 showSelvage: showCol.find(v => v.id === 8).checked,
+                "dstkflag": $scope.dstkflag
             },
             callback: function (res) {
 

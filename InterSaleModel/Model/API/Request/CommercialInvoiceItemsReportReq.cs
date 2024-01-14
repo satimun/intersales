@@ -36,5 +36,7 @@ namespace InterSaleModel.Model.API.Request
         public bool ShowSelvage;
 
         public List<string> customerCodes;
+
+        public bool dstkflag;
     }
 }

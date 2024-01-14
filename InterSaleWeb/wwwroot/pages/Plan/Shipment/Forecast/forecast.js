@@ -234,7 +234,10 @@ app.controller("shipmentForecastReportController", function ($rootScope, $scope,
                 "QualityCode": showCol.find(v => v.field === 'quality').checked,
                 "LabelCode": showCol.find(v => v.field === 'label.code').checked,
                 "ColorCode": showCol.find(v => v.field === 'color.code').checked,
-                otherProduct: $scope.otherProduct
+                "shippingMark": showCol.find(v => v.field === 'shippingMark').checked,
+                "dynamictext2": showCol.find(v => v.field === 'shippingMark').checked,
+                otherProduct: $scope.otherProduct,
+                "dstkflag": $scope.dstkflag
             },
             callback: function (res) {
                 res.data.shipmentPlanForecasts.forEach((row) => {
@@ -271,6 +274,9 @@ app.controller("shipmentForecastReportController", function ($rootScope, $scope,
                     row.twine = row.diameter ? intersales.GetDiameter(row.diameter) : '';
 
                     row.month_view = row.month_vieworg = $scope.months[row.month - 1];
+
+                    row.shippingMark_view = row.shippingMark_vieworg = row.shippingMark;
+                    row.dynamictext2_view = row.dynamictext2_vieworg = row.dynamictext2;
                 });
                 $rootScope.shipmentForecastData = res.data.shipmentPlanForecasts;
 
@@ -359,6 +365,7 @@ app.controller("shipmentForecastReportController", function ($rootScope, $scope,
                 , diameter: data.diameter
                 , color: data.color
                 , otherProduct: $scope.otherProduct
+                , dstkflag: $scope.dstkflag
             },
             callback: function (res) {
                 res.data.actuals.forEach((row) => { row.customer.view = common.GetCodeDescription(row.customer); });
@@ -641,6 +648,8 @@ app.controller("shipmentForecastReportGridCtrl", function ($rootScope, $scope, $
 
     $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'month', display: 'Month', width: { default: 150 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
 
+    $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'shippingMark', display: 'Shipping Mark', width: { default: 100 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
+    $scope.gridOpt.columnDefs.push(common.AddColumn2({ name: 'dynamictext2', display: 'Shipping Mark 2', width: { default: 100 }, format: { type: 'customText' }, _grouping2: true, setclass: SetClass, hiding: false, showCountItems: true }));
     $scope.gridOpt.onRegisterApi = function (gridApi) {
         $scope.gridApi = gridApi;
         //common.GridRegisterOption(gridApi, $scope, 'grid_shipmentForecast1');
@@ -742,7 +751,11 @@ app.controller("shipmentForecastReportGridCtrl", function ($rootScope, $scope, $
                 return angular.isUndefined(myRow.entity.label) ? '' : myRow.entity.label.code_view;
             } else if (myCol.field === 'action') {
                 return angular.isUndefined(myRow.entity.totalRow) ? true : false;
-            }
+            } else if (myCol.field === 'shippingMark') {
+                return angular.isUndefined(myRow.entity.shippingMark) ? '' : myRow.entity.shippingMark_view;
+            } else if (myCol.field === 'dynamictext2') {
+                return angular.isUndefined(myRow.entity.dynamictext2) ? '' : myRow.entity.dynamictext2_view;
+            } 
         }
         return false;
     };
@@ -937,7 +950,9 @@ app.controller("shipmentForecastReportGridCtrl", function ($rootScope, $scope, $
         { label: 'Color', field: 'color.code', checked: false },
         { label: 'Label', field: 'label.code', checked: false },
 
-        { label: 'Month', field: 'month', checked: false }
+        { label: 'Month', field: 'month', checked: false },
+        { label: 'Shipping Mark', field: 'shippingMark', checked: false },
+        { label: 'Dynamic Text', field: 'dynamictext2', checked: false }
     ];
 
     $scope.$watch('lists', (v) => {
@@ -972,7 +987,9 @@ app.controller("shipmentForecastReportGridCtrl", function ($rootScope, $scope, $
             || item.field === 'stretchingLB'
             || item.field === 'quality'
             || item.field === 'label.code'
-            || item.field === 'color.code') && item.checked) {
+            || item.field === 'color.code'
+            || item.field === 'shippingMark'
+            || item.field === 'dynamictext2'        ) && item.checked) {
             $scope.isGroupChange = true;
             $rootScope.shipmentForecastData = [];
         }

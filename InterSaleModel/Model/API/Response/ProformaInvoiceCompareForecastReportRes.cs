@@ -30,6 +30,9 @@ namespace InterSaleModel.Model.API.Response
 
             public string StretchingLB;
 
+            public string shippingMark;
+            public string dynamictext2;
+
 
             public INTIdCodeDescriptionModel Label;
             public INTIdCodeDescriptionModel color { get; set; }

@@ -461,11 +461,14 @@ namespace InterSaleApi.ADO
                 (d.StretchingCode ? "RTRIM(gp.STRETCHINGTYPECODE)" : "NULL") + " 'StretchingCode', " +
                 (d.QualityCode ? "RTRIM(fcy.PQGRADECD)" : "NULL") + " 'QualityCode', " +
                 "NULL 'LabelCode', " +
+                "NULL 'shippingMark', " +
+                "NULL 'dynamictext2', " +
                 (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' " +
                 "FROM saleex.dbo.VFORCASTYEAR fcy " +
                 "INNER JOIN saleex.dbo.FORCASTEXCH fce ON fce.YR=fcy.YR AND fce.CURRENCYCODE = fcy.CURRENCYCODE AND fce.CONDTYPE='1' " +
                 "INNER JOIN saleex.dbo.VGENPROD gp ON gp.PRODCODE=fcy.PRODCODE " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = fcy.CUSCOD AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = fcy.CUSCOD " +
+                (!d.dstkflag ? " AND c.DSTKFLAG <> 'Y' " : "") +
                 "LEFT JOIN saleex.dbo.FORCASTPERCENADJH fcah ON fcah.YR=fcy.YR AND fcah.CUSCOD=fcy.CUSCOD AND fcah.CONDTYPE='1' " +
                 "LEFT JOIN saleex.dbo.FORCASTPERCENADJD fcad ON fcah.SEQD=fcad.SEQD AND fcad.PQGRADECD = fcy.PQGRADECD AND fcad.TWINESIZE = gp.TWINESIZE " +
                     "AND fcad.KNOTTYPECODE = gp.KNOTDAI AND fcad.PRODUCTTYPECODE = gp.PRODUCTTYPECODE " +
@@ -531,6 +534,8 @@ namespace InterSaleApi.ADO
                 (d.StretchingCode ? "RTRIM(gp.STRETCHINGTYPECODE)" : "NULL") + " 'StretchingCode', " +
                 (d.QualityCode ? "RTRIM(od.PQGRADECD)" : "NULL") + " 'QualityCode', " +
                 (d.LabelCode ? "RTRIM(od.LABEL1)" : "NULL") + " 'LabelCode', " +
+                (d.shippingMark ? "RTRIM(od.shippingMark)" : "NULL") + " 'shippingMark', " +
+                (d.shippingMark ? "RTRIM(od.dynamictext2)" : "NULL") + " 'dynamictext2', " +
                 (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' " +
                 "FROM saleex.dbo.COMMERCIAL1MST cim " +
                 "INNER JOIN saleex.dbo.COMMERCIAL1TRN ci ON cim.CINO=ci.CINO AND RTRIM(ci.PRODCODE) <> '' " +
@@ -548,11 +553,16 @@ namespace InterSaleApi.ADO
                     (d.MeshDepthLB ? "od.EYEAMOUNTLB" : "NULL") + " 'EYEAMOUNTLB', " +
                     (d.LengthLB ? "od.LENGTHLB" : "NULL") + " 'LENGTHLB', " +
                     (d.QualityCode ? "od.PQGRADECD" : "NULL") + " 'PQGRADECD', " +
-                    (d.LabelCode ? "od.LABEL1" : "NULL") + " 'LABEL1' " +
-                    "FROM saleex.dbo.ORDERTRN od WHERE RTRIM(od.PRODCODE) <> '' AND od.PINO = ci.PINO AND od.ITEMNO = ci.PIITEMNO AND od.PRODCODE = ci.PRODCODE " +
+                    (d.LabelCode ? "od.LABEL1" : "NULL") + " 'LABEL1', " +
+                    (d.shippingMark ? "RTRIM(od.SHIP7HCODE) + ':'+ (REPLACE(REPLACE(sh.SHIP7HDESC,(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '1' ),'')+'{DYNAMIC}'),RTRIM(od.REMARK01)),(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '2' ),''))+'{DYNAMIC2}',RTRIM(od.REMARK02)))" : "NULL") + " 'shippingMark', " +
+                    (d.shippingMark ? "RTRIM(od.dynamictext2)" : "NULL") + " 'dynamictext2' " +
+                    "FROM saleex.dbo.ORDERTRN od " +
+                    " left outer join saleex.dbo.[sxsShippingMark7DigitH] sh on sh.SHIP7HCODE = od.SHIP7HCODE "+
+                    "WHERE RTRIM(od.PRODCODE) <> '' AND od.PINO = ci.PINO AND od.ITEMNO = ci.PIITEMNO AND od.PRODCODE = ci.PRODCODE " +
                 ") od " +
                 "INNER JOIN saleex.dbo.GENPROD gp ON gp.PRODCODE = ci.PRODCODE " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cim.CUSCOD AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cim.CUSCOD " +
+                (!d.dstkflag ? " AND c.DSTKFLAG <> 'Y' " : "") +
                 "WHERE ( cim.CANID = '' OR cim.CANID IS NULL ) " +
                 "AND " +
                 "( " +
@@ -705,17 +715,37 @@ namespace InterSaleApi.ADO
                 (d.StretchingCode ? "RTRIM(gp.STRETCHINGTYPECODE)" : "NULL") + " 'StretchingCode', " +
                 (d.QualityCode ? "spos.ProductGrade_Code" : "NULL") + " 'QualityCode', " +
                 (d.LabelCode ? "spos.Label_Code" : "NULL") + " 'LabelCode', " +
+                (d.shippingMark ? "RTRIM(od.shippingMark)" : "NULL") + " 'shippingMark', " +
+                (d.shippingMark ? "RTRIM(od.dynamictext2)" : "NULL") + " 'dynamictext2', " +
                 (d.ColorCode ? "RTRIM(gp.COLORSTD)" : "NULL") + " 'ColorCode' " +
                 "FROM sxtShipmentPlanMain m  " +
                 "INNER JOIN sxtShipmentPlanD spd ON spd.ShipmentPlanMain_ID = m.ID AND spd.Status='A' " +
                 "INNER JOIN sxtShipmentPlanH sph ON sph.ID=spd.ShipmentPlanH_ID AND sph.LastRevisionFlag = 'Y' AND sph.Status='A' " +
                 "INNER JOIN sxsCustomer cm ON cm.ID = spd.Customer_ID AND cm.Status = 'A' " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cm.Code AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cm.Code " + "" +
+                (!d.dstkflag ? " AND c.DSTKFLAG <> 'Y' " : "") +
                 "INNER JOIN sxtShipmentPlanOrderStand spos ON spos.ID = spd.ShipmentPlanOrderStand_ID AND spos.Status='A' " +
                 "OUTER APPLY ( " +
                     "SELECT TOP 1 exc.EXCHRT " +
                     "FROM saleex.dbo.V_ACCEXCH exc WHERE YEAR(exc.FRMDATE) >= YEAR(@dateFrom) AND exc.CURRENCYCODE = spos.Currency_Code AND sph.PlanDate BETWEEN exc.FRMDATE AND exc.TODATE " +
                 ") exc " +
+                "OUTER APPLY ( " +
+                    "SELECT TOP 1 " +
+                    "od.PINO, " +
+                    "od.PRODCODE, " +
+                    "od.ITEMNO, " +
+                    (d.Diameter ? "od.TWINESIZELB" : "NULL") + " 'TWINESIZELB', " +
+                    (d.MeshSizeLB ? "od.EYESIZELB" : "NULL") + " 'EYESIZELB', " +
+                    (d.MeshDepthLB ? "od.EYEAMOUNTLB" : "NULL") + " 'EYEAMOUNTLB', " +
+                    (d.LengthLB ? "od.LENGTHLB" : "NULL") + " 'LENGTHLB', " +
+                    (d.QualityCode ? "od.PQGRADECD" : "NULL") + " 'PQGRADECD', " +
+                    (d.LabelCode ? "od.LABEL1" : "NULL") + " 'LABEL1', " +
+                    (d.shippingMark ? "RTRIM(od.SHIP7HCODE) + ':'+ (REPLACE(REPLACE(sh.SHIP7HDESC,(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '1' ),'')+'{DYNAMIC}'),RTRIM(od.REMARK01)),(ISNULL((select VALUE from saleex.dbo.[sxsShippingMark7DigitD] shd where shd.SHIP7HCODE = sh.SHIP7HCODE and TYPE = '2' ),''))+'{DYNAMIC2}',RTRIM(od.REMARK02)))" : "NULL") + " 'shippingMark', " +
+                    (d.shippingMark ? "RTRIM(od.dynamictext2)" : "NULL") + " 'dynamictext2' " +
+                    "FROM saleex.dbo.ORDERTRN od " +
+                    " left outer join saleex.dbo.[sxsShippingMark7DigitH] sh on sh.SHIP7HCODE = od.SHIP7HCODE " +
+                    " WHERE RTRIM(od.PRODCODE) <> '' AND od.PINO = spos.PI_CODE AND od.ITEMNO = spos.ITEMNO AND od.PRODCODE = spos.PRODUCT_CODE  and od.ORDERNO = spos.Order_Code " +
+                ") od " +
                 "INNER JOIN saleex.dbo.GENPROD gp ON gp.PRODCODE = spos.Product_Code " +
                 "WHERE m.PlanType = 'M' " +
                 "AND " +

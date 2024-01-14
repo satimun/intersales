@@ -88,7 +88,8 @@ namespace InterSaleApi.ADO
                     "FROM saleex.dbo.ORDERTRN od WHERE RTRIM(od.PRODCODE) <> '' AND od.PINO = ci.PINO AND od.ITEMNO = ci.PIITEMNO AND od.PRODCODE = ci.PRODCODE " +
                 ") od " +
                 "INNER JOIN saleex.dbo.GENPROD gp ON gp.PRODCODE = ci.PRODCODE " +
-                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cim.CUSCOD AND c.DSTKFLAG <> 'Y' " +
+                "INNER JOIN saleex.dbo.CUSTOMER c ON c.CUSCOD = cim.CUSCOD " +
+                (!d.dstkflag ?" AND c.DSTKFLAG <> 'Y' " : "") +
                 "WHERE(cim.CANID = '' OR cim.CANID IS NULL) " +
                 //"AND " +
                 //"( " +

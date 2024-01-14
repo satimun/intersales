@@ -14,63 +14,72 @@
                 <div class="form-group w70-mb5">
                     <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year From</span> : </label>
                     <kss-pattern-input notnull="true" ng-model="yearFrom" ng-change="GenMonth" maxlength="4"
-                        disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
+                                       disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
                 </div>
                 <div class="form-group w70-mb5">
                     <label class="w100p"><span lang-codeDisable="LB_DATEPLAN">Year To</span> : </label>
                     <kss-pattern-input notnull="true" ng-model="yearTo" ng-change="GenMonth" maxlength="4"
-                        disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
+                                       disabled="ytd" pattern="^[0-9]{4}$" placeholder="YYYY"></kss-pattern-input>
                 </div>
 
                 <div class="form-group w150-mb5">
                     <label class="w100p"><span>Month From</span> : </label>
                     <kss-autocomplete id="'ShipmentForecastMonthFromID'" list="monthFrom.list" placeholder="" limit="15"
-                        stylex="" notnull="true" ng-model="monthFrom.view" ng-change="monthFrom.SetID">
+                                      stylex="" notnull="true" ng-model="monthFrom.view" ng-change="monthFrom.SetID">
                     </kss-autocomplete>
                 </div>
                 <div class="form-group w150-mb5">
                     <label class="w100p"><span>Month To</span> : </label>
                     <kss-autocomplete id="'ShipmentForecastMonthToID'" list="monthTo.list" placeholder="" limit="15"
-                        stylex="" notnull="true" ng-model="monthTo.view" ng-change="monthTo.SetID"></kss-autocomplete>
+                                      stylex="" notnull="true" ng-model="monthTo.view" ng-change="monthTo.SetID"></kss-autocomplete>
                 </div>
                 <div class="form-group">
                     <label class="w100p"><span></span></label>
-                    <label style="padding-top: 10px;"><input type="checkbox" ng-model="ytd" ng-change="ytdChk(ytd)" />
-                        YTD</label>
+                    <label style="padding-top: 10px;">
+                        <input type="checkbox" ng-model="ytd" ng-change="ytdChk(ytd)" />
+                        YTD
+                    </label>
                 </div>
                 <div class="form-group w250-mb5">
                     <label class="w100p"><span>Regional Zone</span> : </label>
                     <tags-input ng-model="regzone" add-on-paste="true" placeholder="Regional Code"
-                        display-property="code" min-length="1" add-from-autocomplete-only="true"
-                        replace-spaces-with-dashes="false">
+                                display-property="code" min-length="1" add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
                         <auto-complete source="LoadRegzone($query)" min-length="0" display-property="text"
-                            load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
-                            max-results-to-show="15"></auto-complete>
+                                       load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
                     </tags-input>
                 </div>
                 <div class="form-group w250-mb5">
                     <label class="w100p"><span>Zones</span> : </label>
                     <tags-input ng-model="zones" add-on-paste="true" placeholder="code : name" min-length="1"
-                        display-property="code" add-from-autocomplete-only="true" replace-spaces-with-dashes="false">
+                                display-property="code" add-from-autocomplete-only="true" replace-spaces-with-dashes="false">
                         <auto-complete source="LoadZones($query)" min-length="0" display-property="text"
-                            debounce-delay="0" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true"
-                            max-results-to-show="30"></auto-complete>
+                                       debounce-delay="0" load-on-focus="true" load-on-empty="true" load-on-down-arrow="true"
+                                       max-results-to-show="30"></auto-complete>
                     </tags-input>
                 </div>
                 <div class="form-group w250-mb5">
                     <label class="w100p"><span>Customers</span> : </label>
                     <tags-input ng-model="customers" add-on-paste="true" placeholder="code : name"
-                        display-property="code" min-length="1" add-from-autocomplete-only="true"
-                        replace-spaces-with-dashes="false">
+                                display-property="code" min-length="1" add-from-autocomplete-only="true"
+                                replace-spaces-with-dashes="false">
                         <auto-complete source="LoadCustomers($query)" min-length="0" display-property="text"
-                            load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
-                            max-results-to-show="15"></auto-complete>
+                                       load-on-focus="true" load-on-empty="true" load-on-down-arrow="true" debounce-delay="0"
+                                       max-results-to-show="15"></auto-complete>
                     </tags-input>
                 </div>
                 <div class="form-group w250-mb5">
                     <label class="w100p"><span>Cost</span> : </label>
                     <kss-autocomplete id="'ShipmentCostID'" list="cost.list" placeholder="" limit="15" notnull="true"
-                        stylex="" ng-model="cost.view" ng-change="cost.SetID"></kss-autocomplete>
+                                      stylex="" ng-model="cost.view" ng-change="cost.SetID"></kss-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label class="w100p hidden-xs"></label>
+                    <label style="padding-top: 10px;">
+                        <input type="checkbox"
+                               ng-model="dstkflag" />แสดงยอดขายลูกค้าที่ไม่คิดยอดขาย
+                    </label>
                 </div>
                 <div class="form-group w100-mb5">
                     <label class="w100p hidden-xs color-255">&nbsp;</label>

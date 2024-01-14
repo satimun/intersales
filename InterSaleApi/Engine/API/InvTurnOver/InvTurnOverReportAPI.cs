@@ -38,7 +38,7 @@ namespace InterSaleApi.Engine.API.InvTurnOver
                     customer = new INTIdCodeDescriptionModel() { id = x.Customer_ID, code = x.Customer_Code, description = x.Customer_Des },
                     productType = new INTIdCodeDescriptionModel() { id = x.ProductType_ID, code = x.ProductType_Code, description = x.ProductType_Des },
                     diameter = x.Diameter,
-                    color = new INTIdCodeDescriptionModel() { id = x.Color_ID, code = pc.CodeNew, description = pc.Description },
+                    color = new INTIdCodeDescriptionModel() { id = x.Color_ID, code = pc?.CodeNew, description = pc?.Description },
                     salesCost = x.SalesCost,
                     salesWeight = x.SalesWeight,
                     quotedCost = x.QuotedCost,
