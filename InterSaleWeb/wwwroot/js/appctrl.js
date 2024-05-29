@@ -39,124 +39,124 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
     }
 
     $scope.menu = {
-        SALES: {
-            label: "Sales",
-            langcode: "BTN_SALE",
-            active: false,
-            href: "/sales",
-            icon: "glyphicon-briefcase",
-            group:
-            {
-                SALESREPORT: {
-                    label: "Report",
-                    langcode: "MNG_SALESREPORT",
-                    active: false,
-                    list: {
-                        SALES_SALESREPORT_PIVSFORECAST: {
-                            label: "PI Vs Forecast Report",
-                            langcode: "MN_SALESREPORT_PIVSFORECASTREPORT",
-                            href: "/sales/salesreport/pivsforecastreport"
-                        },
-                        SALES_SALESREPORT_ORDERONHAND: {
-                            label: "Order Onhand Report",
-                            langcode: "MN_SALESREPORT_ORDERONHAND",
-                            href: "/sales/salesreport/orderonhandreport"
-                        },
-                        SALES_SALESREPORT_INVTURNOVER: {
-                            label: "Inventory Turnover Ratio Report",
-                            langcode: "MN_SALESREPORT_INVTurOVERREPORT",
-                            href: "/sales/salesreport/invturnoverreport"
-                        },
-                        SALES_SALESREPORT_PIBYITEMS: {
-                            label: "CI by items Report",
-                            langcode: "MN_SALESREPORT_PIBYITEMSREPORT",
-                            href: "/sales/salesreport/cibyitemsreport"
-                        },
-                    }
-                }
-            }
-        },
-        PLAN: {
-            label: "Plan",
-            langcode: "BTN_PLAN",
-            active: false,
-            href: "/plan",
-            icon: "glyphicon-tasks",
-            group:
-            {
-                SHIPMENT: {
-                    label: "Shipment",
-                    langcode: "MNG_SHIPMENT",
-                    active: false,
-                    list: {
-                        PLAN_SHIPMENT_PLANLIST: {
-                            label: "Planlist",
-                            langcode: "MN_SHIPMENT_PLANLIST",
-                            href: "/plan/shipment/planlist"
-                        }
-                        , PLAN_SHIPMENT_APPROVE1: {
-                            label: "Send To Approve",
-                            langcode: "MN_SHIPMENT_APPROVE1",
-                            href: "/plan/shipment/approve/1"
-                        }
-                        , PLAN_SHIPMENT_APPROVE2: {
-                            label: "Regional Approve",
-                            langcode: "MN_SHIPMENT_APPROVE2",
-                            href: "/plan/shipment/approve/2"
-                        }
-                        , PLAN_SHIPMENT_APPROVE3: {
-                            label: "Manager Approve",
-                            langcode: "MN_SHIPMENT_APPROVE3",
-                            href: "/plan/shipment/mng_approve"
-                        }
-                        , PLAN_SHIPMENT_BOOKINGTRANSPORT: {
-                            label: "Mark Booking Transport",
-                            langcode: "MN_SHIPMENT_BOOKINGTRANSPORT",
-                            href: "/plan/shipment/markbookingtransport/"
-                        }
-                        , PLAN_SHIPMENT_REMARK: {
-                            label: "Shipment Plan Remark",
-                            langcode: "MN_SHIPMENT_REMARK",
-                            href: "/plan/shipment/remark/"
-                        }
-                        , PLAN_SHIPMENT_REPORT: {
-                            label: "Shipment Plan Report",
-                            langcode: "MN_SHIPMENT_REPORT",
-                            href: "/plan/shipment/report/"
-                        }
-                        , PLAN_SHIPMENT_PLANFAIL: {
-                            label: "Unfulfilled Shipment Report",
-                            langcode: "MN_SHIPMENT_PLANFAIL",
-                            href: "/plan/shipment/planfailreport/"
-                        }
-                        , PLAN_SHIPMENT_PLANVSAC: {
-                            label: "Shipment Plan vs Actual Shipment Report",
-                            langcode: "MN_SHIPMENT_PLANVSAC",
-                            href: "/plan/shipment/planvsactualreport/"
-                        }
-                        , PLAN_SHIPMENT_SUMMARYREPORT: {
-                            label: "Shipment Plan Summary Report",
-                            langcode: "MN_SHIPMENT_SUMMARYREPORT",
-                            href: "/plan/shipment/summaryreport/"
-                        }
-                        , PLAN_SHIPMENT_DELIVERYREPORT: {
-                            label: "Shipment Plan KPI % Delivery Report",
-                            langcode: "MN_SHIPMENT_DELIVERYREPORT",
-                            href: "/plan/shipment/deliveryreport/"
-                        }
-                        , PLAN_SHIPMENT_FORECAST: {
-                            label: "Comparison Report (Forecast vs Shipment Plan vs Actual)",
-                            langcode: "MN_SHIPMENT_FORECAST",
-                            href: "/plan/shipment/forecastcompare/"
-                        }
-                    }
-                }
-            }
-        },
+        // SALES: {
+        //     label: "Sales",
+        //     langcode: "BTN_SALE",
+        //     active: false,
+        //     href: "/sales",
+        //     icon: "glyphicon-briefcase",
+        //     group:
+        //     {
+        //         SALESREPORT: {
+        //             label: "Report",
+        //             langcode: "MNG_SALESREPORT",
+        //             active: false,
+        //             list: {
+        //                 SALES_SALESREPORT_PIVSFORECAST: {
+        //                     label: "PI Vs Forecast Report",
+        //                     langcode: "MN_SALESREPORT_PIVSFORECASTREPORT",
+        //                     href: "/sales/salesreport/pivsforecastreport"
+        //                 },
+        //                 SALES_SALESREPORT_ORDERONHAND: {
+        //                     label: "Order Onhand Report",
+        //                     langcode: "MN_SALESREPORT_ORDERONHAND",
+        //                     href: "/sales/salesreport/orderonhandreport"
+        //                 },
+        //                 SALES_SALESREPORT_INVTURNOVER: {
+        //                     label: "Inventory Turnover Ratio Report",
+        //                     langcode: "MN_SALESREPORT_INVTurOVERREPORT",
+        //                     href: "/sales/salesreport/invturnoverreport"
+        //                 },
+        //                 SALES_SALESREPORT_PIBYITEMS: {
+        //                     label: "CI by items Report",
+        //                     langcode: "MN_SALESREPORT_PIBYITEMSREPORT",
+        //                     href: "/sales/salesreport/cibyitemsreport"
+        //                 },
+        //             }
+        //         }
+        //     }
+        // },
+        // PLAN: {
+        //     label: "Plan",
+        //     langcode: "BTN_PLAN",
+        //     active: false,
+        //     href: "/plan",
+        //     icon: "glyphicon-tasks",
+        //     group:
+        //     {
+        //         SHIPMENT: {
+        //             label: "Shipment",
+        //             langcode: "MNG_SHIPMENT",
+        //             active: false,
+        //             list: {
+        //                 PLAN_SHIPMENT_PLANLIST: {
+        //                     label: "Planlist",
+        //                     langcode: "MN_SHIPMENT_PLANLIST",
+        //                     href: "/plan/shipment/planlist"
+        //                 }
+        //                 , PLAN_SHIPMENT_APPROVE1: {
+        //                     label: "Send To Approve",
+        //                     langcode: "MN_SHIPMENT_APPROVE1",
+        //                     href: "/plan/shipment/approve/1"
+        //                 }
+        //                 , PLAN_SHIPMENT_APPROVE2: {
+        //                     label: "Regional Approve",
+        //                     langcode: "MN_SHIPMENT_APPROVE2",
+        //                     href: "/plan/shipment/approve/2"
+        //                 }
+        //                 , PLAN_SHIPMENT_APPROVE3: {
+        //                     label: "Manager Approve",
+        //                     langcode: "MN_SHIPMENT_APPROVE3",
+        //                     href: "/plan/shipment/mng_approve"
+        //                 }
+        //                 , PLAN_SHIPMENT_BOOKINGTRANSPORT: {
+        //                     label: "Mark Booking Transport",
+        //                     langcode: "MN_SHIPMENT_BOOKINGTRANSPORT",
+        //                     href: "/plan/shipment/markbookingtransport/"
+        //                 }
+        //                 , PLAN_SHIPMENT_REMARK: {
+        //                     label: "Shipment Plan Remark",
+        //                     langcode: "MN_SHIPMENT_REMARK",
+        //                     href: "/plan/shipment/remark/"
+        //                 }
+        //                 , PLAN_SHIPMENT_REPORT: {
+        //                     label: "Shipment Plan Report",
+        //                     langcode: "MN_SHIPMENT_REPORT",
+        //                     href: "/plan/shipment/report/"
+        //                 }
+        //                 , PLAN_SHIPMENT_PLANFAIL: {
+        //                     label: "Unfulfilled Shipment Report",
+        //                     langcode: "MN_SHIPMENT_PLANFAIL",
+        //                     href: "/plan/shipment/planfailreport/"
+        //                 }
+        //                 , PLAN_SHIPMENT_PLANVSAC: {
+        //                     label: "Shipment Plan vs Actual Shipment Report",
+        //                     langcode: "MN_SHIPMENT_PLANVSAC",
+        //                     href: "/plan/shipment/planvsactualreport/"
+        //                 }
+        //                 , PLAN_SHIPMENT_SUMMARYREPORT: {
+        //                     label: "Shipment Plan Summary Report",
+        //                     langcode: "MN_SHIPMENT_SUMMARYREPORT",
+        //                     href: "/plan/shipment/summaryreport/"
+        //                 }
+        //                 , PLAN_SHIPMENT_DELIVERYREPORT: {
+        //                     label: "Shipment Plan KPI % Delivery Report",
+        //                     langcode: "MN_SHIPMENT_DELIVERYREPORT",
+        //                     href: "/plan/shipment/deliveryreport/"
+        //                 }
+        //                 , PLAN_SHIPMENT_FORECAST: {
+        //                     label: "Comparison Report (Forecast vs Shipment Plan vs Actual)",
+        //                     langcode: "MN_SHIPMENT_FORECAST",
+        //                     href: "/plan/shipment/forecastcompare/"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // },
         SETUP: {
             label: "Setup",
             langcode: "BTN_SETUP",
-            active: false,
+            active: true,
             href: "/setup",
             icon: "glyphicon-cog",
             group:
@@ -193,52 +193,52 @@ app.controller("AppCtrl", function ($scope, $rootScope, $location, $filter, $win
                     langcode: "MNG_CUSTOMER",
                     active: false,
                     list: {
-                        SETUP_CUSTOMER_CUSTOMERGROUP: {
-                            label: "กลุ่มลูกค้า",
-                            langcode: "MN_CUSTOMERGROUP",
-                            href: "/setup/customer/customergroup"
-                        },
+                        // SETUP_CUSTOMER_CUSTOMERGROUP: {
+                        //     label: "กลุ่มลูกค้า",
+                        //     langcode: "MN_CUSTOMERGROUP",
+                        //     href: "/setup/customer/customergroup"
+                        // },
                         SETUP_CUSTOMER_COUNTRYGROUP: {
                             label: "กลุ่มประเทศ",
                             langcode: "MN_COUNTRYGROUP",
                             href: "/setup/customer/countrygroup"
                         },
-                        SETUP_CUSTOMER_PORTLOADING: {
-                            label: "Port of Loading",
-                            langcode: "MN_PORTLOADING",
-                            href: "/setup/customer/portloading"
-                        },
-                        SETUP_CUSTOMER_SHIPPINGDATE: {
-                            label: "รอบการส่ง",
-                            langcode: "MN_SHIPPINGDATE",
-                            href: "/setup/customer/shippingdate"
-                        }
+                        // SETUP_CUSTOMER_PORTLOADING: {
+                        //     label: "Port of Loading",
+                        //     langcode: "MN_PORTLOADING",
+                        //     href: "/setup/customer/portloading"
+                        // },
+                        // SETUP_CUSTOMER_SHIPPINGDATE: {
+                        //     label: "รอบการส่ง",
+                        //     langcode: "MN_SHIPPINGDATE",
+                        //     href: "/setup/customer/shippingdate"
+                        // }
                     }
                 },
-                DEFAULT: {
-                    label: "ค่าเริ่มต้น",
-                    langcode: "MNG_DEFAULT",
-                    active: false,
-                    list: {
-                        SETUP_DEFAULT_KPIAVGPERIODDAY: {
-                            label: "KPI Avg. Period Day",
-                            langcode: "MN_KPIAVGPERIODDAY",
-                            href: "/setup/default/kpiavgperiodday"
-                        }
-                    }
-                },
-                TEXTDISPLAY: {
-                    label: "ข้อความ และการแสดงผล",
-                    langcode: "MNG_TEXTDISPLAY",
-                    active: false,
-                    list: {
-                        SETUP_TEXTDISPLAY_SETREMARK: {
-                            label: "กำหนดหมายเหตุ",
-                            langcode: "MN_SETREMARK",
-                            href: "/setup/textdisplay/setremark"
-                        }
-                    }
-                }
+                // DEFAULT: {
+                //     label: "ค่าเริ่มต้น",
+                //     langcode: "MNG_DEFAULT",
+                //     active: false,
+                //     list: {
+                //         SETUP_DEFAULT_KPIAVGPERIODDAY: {
+                //             label: "KPI Avg. Period Day",
+                //             langcode: "MN_KPIAVGPERIODDAY",
+                //             href: "/setup/default/kpiavgperiodday"
+                //         }
+                //     }
+                // },
+                // TEXTDISPLAY: {
+                //     label: "ข้อความ และการแสดงผล",
+                //     langcode: "MNG_TEXTDISPLAY",
+                //     active: false,
+                //     list: {
+                //         SETUP_TEXTDISPLAY_SETREMARK: {
+                //             label: "กำหนดหมายเหตุ",
+                //             langcode: "MN_SETREMARK",
+                //             href: "/setup/textdisplay/setremark"
+                //         }
+                //     }
+                // }
             }
         }
     };
