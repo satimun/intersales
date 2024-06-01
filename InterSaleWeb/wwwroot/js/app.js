@@ -162,7 +162,7 @@ app.config(function ($routeProvider, $locationProvider) {
             , controller: "singlesignonController"
         })
         .otherwise({
-            redirectTo: "/"
+            redirectTo: "/setup"
         });
     $locationProvider.html5Mode(true);
 });
