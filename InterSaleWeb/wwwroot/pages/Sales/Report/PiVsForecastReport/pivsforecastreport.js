@@ -895,7 +895,7 @@ app.controller("SalesReportPiVsForecastReportGridCtrl", function ($rootScope, $s
 
         { label: 'Month', field: 'month', checked: false },
         { label: 'Shipping Mark', field: 'shippingMark', checked: false },
-        { label: 'Dynamic Text 2', field: 'dynamictext2', checked: false }
+        { label: 'Shipping Mark 2', field: 'dynamictext2', checked: false }
     ];
 
     $scope.$watch('lists', (v) => {
